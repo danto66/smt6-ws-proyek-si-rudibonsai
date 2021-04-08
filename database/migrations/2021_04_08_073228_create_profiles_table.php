@@ -21,7 +21,6 @@ class CreateProfilesTable extends Migration
             $table->integer('provinsi_id');
             $table->integer('kabupaten_id');
             $table->integer('kecamatan_id');
-            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
