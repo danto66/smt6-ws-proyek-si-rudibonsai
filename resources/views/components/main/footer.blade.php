@@ -5,7 +5,7 @@
                 <p class="font-semibold text-lg">
                     Link
                 </p>
-                <ul>
+                <ul class="text-sm mt-2">
                     <li>Pembayaran</li>
                     <li>Pengiriman</li>
                 </ul>
@@ -14,14 +14,14 @@
                 <p class="font-semibold text-lg">
                     Kontak
                 </p>
-                <ul>
+                <ul class="text-sm mt-2">
                     <li>Facebook</li>
                     <li>Whatsapp</li>
                 </ul>
             </div>
             <div class="text-white">
                 <p class="font-semibold text-lg">Tentang kami</p>
-                <p class="mt-2">
+                <p class="mt-2 text-sm">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim porro, commodi molestias nulla cum
                     beatae ullam?
                 </p>

@@ -22,11 +22,11 @@
 </head>
 
 <body class="font-sans antialiased bg-gray-100 pt-16">
-    <x-client.navbar />
+    <x-main.navbar />
 
     @yield('content')
 
-    <x-client.footer />
+    <x-main.footer />
 
 </body>
 

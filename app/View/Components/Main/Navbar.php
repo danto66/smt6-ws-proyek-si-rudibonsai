@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Client;
+namespace App\View\Components\Main;
 
 use Illuminate\View\Component;
 
@@ -23,6 +23,6 @@ class Navbar extends Component
      */
     public function render()
     {
-        return view('components.client.navbar');
+        return view('components.main.navbar');
     }
 }
