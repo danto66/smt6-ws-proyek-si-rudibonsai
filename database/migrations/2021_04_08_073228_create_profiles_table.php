@@ -18,9 +18,9 @@ class CreateProfilesTable extends Migration
             $table->string('fullname');
             $table->string('profile_picture');
             $table->text('address_detail');
-            $table->integer('provinsi_id');
-            $table->integer('kabupaten_id');
-            $table->integer('kecamatan_id');
+            $table->string('provinsi_id');
+            $table->string('kabupaten_id');
+            $table->string('kecamatan_id');
             $table->timestamps();
         });
     }

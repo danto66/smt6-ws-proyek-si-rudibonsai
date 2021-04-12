@@ -14,8 +14,7 @@ class CreateWilayahKecamatanTable extends Migration
     public function up()
     {
         Schema::create('wilayah_kecamatan', function (Blueprint $table) {
-            $table->id();
-            $table->string('kode');
+            $table->string('id')->primary();
             $table->string('kabupaten_id');
             $table->string('nama');
             $table->timestamps();

@@ -14,8 +14,7 @@ class CreateWilayahProvinsiTable extends Migration
     public function up()
     {
         Schema::create('wilayah_provinsi', function (Blueprint $table) {
-            $table->id();
-            $table->string('kode');
+            $table->string('id')->primary();
             $table->string('nama');
             $table->timestamps();
         });

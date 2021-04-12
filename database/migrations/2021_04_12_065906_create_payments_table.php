@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWilayahDesaTable extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateWilayahDesaTable extends Migration
      */
     public function up()
     {
-        Schema::create('wilayah_desa', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('kode');
-            $table->string('kecamatan_id');
-            $table->string('nama');
+            $table->string('payment_method');
+            $table->integer('payment_charge');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateWilayahDesaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wilayah_desa');
+        Schema::dropIfExists('payments');
     }
 }

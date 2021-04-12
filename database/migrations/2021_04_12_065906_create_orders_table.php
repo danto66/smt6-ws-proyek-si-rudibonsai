@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWilayahKabupatenTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateWilayahKabupatenTable extends Migration
      */
     public function up()
     {
-        Schema::create('wilayah_kabupaten', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('provinsi_id');
-            $table->string('nama');
+        Schema::create('orders', function (Blueprint $table) {
+            $table->id();
+            $table->integer('shipping_charge');
+            $table->integer('product_total_amount');
+            $table->integer('grand_total_amount');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateWilayahKabupatenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wilayah_kabupaten');
+        Schema::dropIfExists('orders');
     }
 }
