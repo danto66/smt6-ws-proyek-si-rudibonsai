@@ -18,9 +18,10 @@
 
                     <p class="mt-8">
                         <span class="font-semibold mr-2 text-gray-100">Telusuri</span>
-                        <x-button.btn-link href="#" class="bg-green-500 text-white hover:bg-green-700">
+                        <a href="" class="btn btn-green hover-darken-green">
                             Produk
-                        </x-button.btn-link>
+                        </a>
+
                     </p>
                 </div>
             </div>
