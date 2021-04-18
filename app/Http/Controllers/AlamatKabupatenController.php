@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\AlamatKabupaten;
-use Illuminate\Http\Request;
 
 class AlamatKabupatenController extends Controller
 {
-    public function index(Request $request)
+    public function index($id)
     {
-        $kabupaten = AlamatKabupaten::where('provinsi_id', $request->id)
+        $kabupaten = AlamatKabupaten::where('provinsi_id', $id)
             ->orderBy('id')
             ->get();
         return $kabupaten;

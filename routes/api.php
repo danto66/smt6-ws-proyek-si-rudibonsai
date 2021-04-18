@@ -22,5 +22,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/alamat-provinsi', [AlamatProvinsiController::class, 'index']);
-Route::get('/alamat-kabupaten/{id}', [AlamatKabupatenController::class, 'index']);
-Route::get('/alamat-kecamatan/{id}', [AlamatKecamatanController::class, 'index']);
+Route::get('/alamat-kabupaten/provinsi-id/{id}', [AlamatKabupatenController::class, 'index']);
+Route::get('/alamat-kecamatan/kabupaten-id/{id}', [AlamatKecamatanController::class, 'index']);
