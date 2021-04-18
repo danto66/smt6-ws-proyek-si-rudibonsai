@@ -51,14 +51,6 @@
                     Masuk
                 </x-button>
             </div>
-
-            {{-- <div class="flex items-center justify-between pt-4 mt-4 border-gray-100 border-t-2">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="/">Kembali</a>
-                <span class="text-sm">
-                    Belum punya akun?
-                    <a class="underline  text-gray-600 hover:text-gray-900" href="{{ route('register') }}">Daftar</a>
-                </span>
-            </div> --}}
         </form>
 
         <x-slot name="cardFooter">

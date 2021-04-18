@@ -43,8 +43,7 @@
             </div>
         </form>
         <x-slot name="cardFooter">
-            Sudah punya akun?
-            <a class="underline  text-gray-300 hover:text-gray-100" href="{{ route('login') }}">Masuk</a>
+
         </x-slot>
     </x-auth-card>
 </x-guest-layout>

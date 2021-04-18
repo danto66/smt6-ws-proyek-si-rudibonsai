@@ -5,7 +5,7 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+            {{ __('Lupa password? Jangan khawatir. Beritahu kami email akun anda dan kami akan mengirimkan link untuk reset password ke email anda.') }}
         </div>
 
         <!-- Session Status -->
@@ -27,13 +27,12 @@
 
             <div class="flex items-center justify-end mt-4">
                 <x-button>
-                    {{ __('Email Password Reset Link') }}
+                    {{ __('Kirim Link Reset Password') }}
                 </x-button>
             </div>
         </form>
         <x-slot name="cardFooter">
-            Sudah punya akun?
-            <a class="underline  text-gray-300 hover:text-gray-100" href="{{ route('login') }}">Masuk</a>
+
         </x-slot>
     </x-auth-card>
 </x-guest-layout>

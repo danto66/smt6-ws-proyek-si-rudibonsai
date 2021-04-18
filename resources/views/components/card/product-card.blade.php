@@ -7,7 +7,8 @@
         <p class="mt-2 text-gray-600 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit
             In
             odit exercitationem fuga id nam quia</p>
-        <div class="flex item-center mt-2">
+
+        {{-- <div class="flex item-center mt-2">
             <svg class="w-5 h-5 fill-current text-gray-700" viewBox="0 0 24 24">
                 <path
                     d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
@@ -28,11 +29,13 @@
                 <path
                     d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
             </svg>
+        </div> --}}
+
+        <div class="mt-3">
+            <h1 class="text-gray-700 font-bold text-xl">Rp 220.000</h1>
         </div>
-        <div class="flex flex-col space-y-2 sm:space-y-0 sm:flex-row item-center justify-between mt-3">
-            <h1 class="text-gray-700 font-bold text-xl">$220</h1>
-            <button
-                class="block sm:inline px-3 py-2 bg-green-500 hover:bg-green-700 text-white text-xs font-bold rounded">Tambah
+        <div class="block sm:flex sm:justify-end mt-3">
+            <button class="w-full sm:w-auto btn-sm btn-green hover-darken-green"><i class="fas fa-plus-square"></i>
                 Keranjang</button>
         </div>
     </div>
