@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProductIdToProductImages extends Migration
+class RelationOrderDetails extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddProductIdToProductImages extends Migration
      */
     public function up()
     {
-        Schema::table('product_images', function (Blueprint $table) {
-            $table->foreignId('product_id')->constrained('products');
+        Schema::table('order_details', function (Blueprint $table) {
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
@@ -25,8 +26,7 @@ class AddProductIdToProductImages extends Migration
      */
     public function down()
     {
-        Schema::table('product_images', function (Blueprint $table) {
-            //
+        Schema::table('order_details', function (Blueprint $table) {
         });
     }
 }

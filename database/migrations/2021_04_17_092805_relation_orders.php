@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignIdToOrders extends Migration
+class RelationOrders extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class AddForeignIdToOrders extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->foreignId('payment_id')->constrained('payments');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('shipping_id')->constrained('shippings');
+            $table->foreign('payment_id')->references('id')->on('payments');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('shipping_id')->references('id')->on('shippings');
         });
     }
 
@@ -28,7 +28,6 @@ class AddForeignIdToOrders extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            //
         });
     }
 }

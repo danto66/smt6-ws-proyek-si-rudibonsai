@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddAddressForeignIdToProfiles extends Migration
+class RelationUserProfiles extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class AddAddressForeignIdToProfiles extends Migration
      */
     public function up()
     {
-        Schema::table('profiles', function (Blueprint $table) {
+        Schema::table('user_profiles', function (Blueprint $table) {
             $table->foreign('provinsi_id')->references('id')->on('wilayah_provinsi');
             $table->foreign('kabupaten_id')->references('id')->on('wilayah_kabupaten');
             $table->foreign('kecamatan_id')->references('id')->on('wilayah_kecamatan');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

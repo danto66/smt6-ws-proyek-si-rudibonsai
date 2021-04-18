@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSuperUsersTable extends Migration
+class RelationCarts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateSuperUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('super_users', function (Blueprint $table) {
-            $table->id();
-            $table->string('email');
-            $table->string('password');
-            $table->timestamps();
+        Schema::table('carts', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
@@ -28,6 +26,7 @@ class CreateSuperUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('super_users');
+        Schema::table('carts', function (Blueprint $table) {
+        });
     }
 }

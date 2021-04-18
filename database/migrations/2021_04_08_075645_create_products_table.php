@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->integer('stock');
             $table->text('description');
+            $table->unsignedBigInteger('product_category_id');
             $table->timestamps();
         });
     }
