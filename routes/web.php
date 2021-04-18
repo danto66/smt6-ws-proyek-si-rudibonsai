@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +17,11 @@ use Illuminate\Support\Facades\Route;
 // auth
 require __DIR__ . '/auth.php';
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/', [HomeController::class, 'index'])
+    ->middleware('verified.or.guest');
+
+Route::get('/products', function () {
+    return view('main.product');
 });
 
 Route::get('/dashboard', function () {
