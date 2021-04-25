@@ -22,7 +22,7 @@ class CreateUserProfilesTable extends Migration
             $table->string('provinsi_id');
             $table->string('kabupaten_id');
             $table->string('kecamatan_id');
-            $table->string('profile_picture');
+            $table->string('profile_picture')->default('default');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
