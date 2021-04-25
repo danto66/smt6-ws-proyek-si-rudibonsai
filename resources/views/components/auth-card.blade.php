@@ -1,4 +1,5 @@
-<div class="min-h-screen flex flex-col sm:justify-center items-center sm:pt-0 bg-gray-100">
+<div
+    {{ $attributes->merge(['class' => 'min-h-screen flex flex-col sm:justify-center items-center sm:pt-0 bg-gray-100']) }}>
     <div class="shadow-md w-full sm:max-w-md">
         <div class="bg-gray-800 text-white font-bold text-center text-xl px-6 py-4 rounded-t-lg">
             {{ $cardHeader }}
