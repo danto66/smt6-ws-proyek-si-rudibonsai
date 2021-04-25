@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\AlamatKabupatenController;
-use App\Http\Controllers\AlamatKecamatanController;
-use App\Http\Controllers\AlamatProvinsiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Alamat\ProvinsiController;
+use App\Http\Controllers\Alamat\KabupatenController;
+use App\Http\Controllers\Alamat\KecamatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/alamat-provinsi', [AlamatProvinsiController::class, 'index']);
-Route::get('/alamat-kabupaten/provinsi-id/{id}', [AlamatKabupatenController::class, 'index']);
-Route::get('/alamat-kecamatan/kabupaten-id/{id}', [AlamatKecamatanController::class, 'index']);
+Route::prefix('/alamat')->name('alamat')->group(function () {
+    Route::get('/provinsi', [ProvinsiController::class, 'index'])->name('.provinsi');
+    Route::get('/kabupaten/provinsi-id/{id}', [KabupatenController::class, 'index'])->name('.kabupaten');
+    Route::get('/kecamatan/kabupaten-id/{id}', [KecamatanController::class, 'index'])->name('.kecamatan');
+});

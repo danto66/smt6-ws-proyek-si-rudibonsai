@@ -1,5 +1,4 @@
 <x-guest-layout>
-
     <x-auth-card>
         <x-slot name="cardHeader">
             Masukkan Data Diri Anda.
@@ -11,7 +10,9 @@
         <form method="POST" action="{{ route('register-step-two') }}">
             @csrf
             <x-input type="hidden" name="email" :value="$req['email']" />
+
             <x-input type="hidden" name="password" :value="$req['password']" />
+
             <x-input type="hidden" name="profile_picture" :value="('default')" />
 
             <div class="mt-4">
@@ -33,14 +34,15 @@
 
                 <div class="block">
                     <x-input id="laki" type="radio" name="gender" value="Laki-laki" required />
+
                     <x-label class="inline" for="laki" :value="__('Laki-laki')" />
                 </div>
 
                 <div class="block">
                     <x-input id="perempuan" type="radio" name="gender" value="Perempuan" required />
+
                     <x-label class="inline" for="perempuan" :value="__('Perempuan')" />
                 </div>
-
             </div>
 
             <div x-data="getAlamat()" x-init="fetchProvinsi()" class="mt-4">
@@ -49,6 +51,7 @@
                 <x-select required x-model="selectedProv" x-on:change="changeProv()" x-bind:disabled="provDisable"
                     name="provinsi_id">
                     <option value="">--Provinsi--</option>
+
                     <template x-for="prov in dataProvinsi">
                         <option :value="prov.id" x-text="prov.nama"></option>
                     </template>
@@ -57,6 +60,7 @@
                 <x-select required x-model="selectedKab" x-on:change="changeKab()" x-bind:disabled="kabDisable"
                     name="kabupaten_id" id="kabupaten">
                     <option value="">--Kabupaten--</option>
+
                     <template x-for="kab in dataKabupaten">
                         <option :value="kab.id" x-text="kab.nama"></option>
                     </template>
@@ -64,6 +68,7 @@
 
                 <x-select required x-bind:disabled="kecDisable" name="kecamatan_id" id="kecamatan">
                     <option value="">--Kecamatan--</option>
+
                     <template x-for="kec in dataKecamatan">
                         <option :value="kec.id" x-text="kec.nama"></option>
                     </template>
@@ -116,7 +121,7 @@
                 this.kecDisable = true;
             },
             fetchProvinsi() {
-                fetch('http://127.0.0.1:8000/api/alamat-provinsi')
+                fetch('http://127.0.0.1:8000/api/alamat/provinsi')
                     .then(res => res.json())
                     .then(data => {
                         this.dataProvinsi = data;
@@ -126,7 +131,7 @@
                     });
             },
             fetchKabupaten() {
-                fetch('http://127.0.0.1:8000/api/alamat-kabupaten/provinsi-id/' + this.selectedProv)
+                fetch('http://127.0.0.1:8000/api/alamat/kabupaten/provinsi-id/' + this.selectedProv)
                     .then(res => res.json())
                     .then(data => {
                         this.dataKabupaten = data;
@@ -136,7 +141,7 @@
                     })
             },
             fetchKecamatan() {
-                fetch('http://127.0.0.1:8000/api/alamat-kecamatan/kabupaten-id/' + this.selectedKab)
+                fetch('http://127.0.0.1:8000/api/alamat/kecamatan/kabupaten-id/' + this.selectedKab)
                     .then(res => res.json())
                     .then(data => {
                         this.dataKecamatan = data;

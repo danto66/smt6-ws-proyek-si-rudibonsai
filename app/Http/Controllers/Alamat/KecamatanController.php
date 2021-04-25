@@ -1,20 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Alamat;
 
-use App\Models\AlamatProvinsi;
 use Illuminate\Http\Request;
+use App\Models\Alamat\Kecamatan;
+use App\Http\Controllers\Controller;
 
-class AlamatProvinsiController extends Controller
+class KecamatanController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return AlamatProvinsi::all();
+        $kecamatan = Kecamatan::where('kabupaten_id', $id)
+            ->orderBy('id')
+            ->get();
+        return $kecamatan;
     }
 
     /**

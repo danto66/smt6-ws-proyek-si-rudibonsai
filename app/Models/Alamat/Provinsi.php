@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Alamat;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AlamatProvinsi extends Model
+class Provinsi extends Model
 {
     use HasFactory;
 
