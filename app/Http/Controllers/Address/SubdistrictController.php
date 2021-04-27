@@ -1,24 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Alamat;
+namespace App\Http\Controllers\Address;
 
-use Illuminate\Http\Request;
-use App\Models\Alamat\Kecamatan;
 use App\Http\Controllers\Controller;
+use App\Models\Address\Subdistrict;
+use Illuminate\Http\Request;
 
-class KecamatanController extends Controller
+class SubdistrictController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $kecamatan = Kecamatan::where('kabupaten_id', $id)
-            ->orderBy('id')
-            ->get();
-        return $kecamatan;
+        //
     }
 
     /**
@@ -64,5 +61,13 @@ class KecamatanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getSubdistrictsByCityId($id)
+    {
+        $subdistrict = Subdistrict::where('city_id', $id)
+            ->orderBy('subdistrict_id')
+            ->get();
+        return $subdistrict;
     }
 }

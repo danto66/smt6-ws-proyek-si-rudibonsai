@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWilayahProvinsiTable extends Migration
+class CreateProvincesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateWilayahProvinsiTable extends Migration
      */
     public function up()
     {
-        Schema::create('wilayah_provinsi', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('nama');
+        Schema::create('provinces', function (Blueprint $table) {
+            $table->unsignedInteger('province_id')->primary();
+            $table->string('province_name');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateWilayahProvinsiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wilayah_provinsi');
+        Schema::dropIfExists('provinces');
     }
 }

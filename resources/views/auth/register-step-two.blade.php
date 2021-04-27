@@ -53,7 +53,7 @@
                     <option value="">--Provinsi--</option>
 
                     <template x-for="prov in dataProvinsi">
-                        <option :value="prov.id" x-text="prov.nama"></option>
+                        <option :value="prov.province_id" x-text="prov.province_name"></option>
                     </template>
                 </x-select>
 
@@ -62,7 +62,7 @@
                     <option value="">--Kabupaten--</option>
 
                     <template x-for="kab in dataKabupaten">
-                        <option :value="kab.id" x-text="kab.nama"></option>
+                        <option :value="kab.city_id" x-text="kab.city_name"></option>
                     </template>
                 </x-select>
 
@@ -70,7 +70,7 @@
                     <option value="">--Kecamatan--</option>
 
                     <template x-for="kec in dataKecamatan">
-                        <option :value="kec.id" x-text="kec.nama"></option>
+                        <option :value="kec.subdistrict_id" x-text="kec.subdistrict_name"></option>
                     </template>
                 </x-select>
             </div>
@@ -121,7 +121,7 @@
                 this.kecDisable = true;
             },
             fetchProvinsi() {
-                fetch('http://127.0.0.1:8000/api/alamat/provinsi')
+                fetch('http://127.0.0.1:8000/api/address/provinces')
                     .then(res => res.json())
                     .then(data => {
                         this.dataProvinsi = data;
@@ -131,23 +131,23 @@
                     });
             },
             fetchKabupaten() {
-                fetch('http://127.0.0.1:8000/api/alamat/kabupaten/provinsi-id/' + this.selectedProv)
+                fetch('http://127.0.0.1:8000/api/address/cities/province/' + this.selectedProv)
                     .then(res => res.json())
                     .then(data => {
                         this.dataKabupaten = data;
                         this.kabDisable = false;
 
-                        console.log(this.dataKabupaten);
+                        // console.log(this.dataKabupaten);
                     })
             },
             fetchKecamatan() {
-                fetch('http://127.0.0.1:8000/api/alamat/kecamatan/kabupaten-id/' + this.selectedKab)
+                fetch('http://127.0.0.1:8000/api/address/subdistricts/city/' + this.selectedKab)
                     .then(res => res.json())
                     .then(data => {
                         this.dataKecamatan = data;
                         this.kecDisable = false;
 
-                        console.log(this.dataKecamatan);
+                        // console.log(this.dataKecamatan);
                     })
             }
         }

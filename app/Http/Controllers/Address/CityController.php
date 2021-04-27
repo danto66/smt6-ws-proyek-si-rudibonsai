@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Alamat;
+namespace App\Http\Controllers\Address;
 
-use Illuminate\Http\Request;
-use App\Models\Alamat\Provinsi;
 use App\Http\Controllers\Controller;
+use App\Models\Address\City;
+use Illuminate\Http\Request;
 
-class ProvinsiController extends Controller
+class CityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ProvinsiController extends Controller
      */
     public function index()
     {
-        return Provinsi::all();
+        //
     }
 
     /**
@@ -61,5 +61,13 @@ class ProvinsiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getCitiesByProvinceId($id)
+    {
+        $city = City::where('province_id', $id)
+            ->orderBy('city_id')
+            ->get();
+        return $city;
     }
 }

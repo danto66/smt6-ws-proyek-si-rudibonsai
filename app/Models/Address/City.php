@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Models\Alamat;
+namespace App\Models\Address;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Provinsi extends Model
+class City extends Model
 {
     use HasFactory;
 
-    protected $table = 'wilayah_provinsi';
+    protected $table = 'cities';
+    protected $primaryKey = 'city_id';
 }

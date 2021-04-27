@@ -18,9 +18,9 @@ class UserProfileSeeder extends Seeder
             'fullname' => 'suisei',
             'phone' => '098709870987',
             'address_detail' => 'address detail',
-            'provinsi_id' => '11',
-            'kabupaten_id' => '1101',
-            'kecamatan_id' => '1101010',
+            'province_id' => 1,
+            'city_id' => 1,
+            'subdistrict_id' => 1,
             'user_id' => 3,
         ]);
     }

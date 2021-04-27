@@ -14,9 +14,9 @@ class RelationUserProfiles extends Migration
     public function up()
     {
         Schema::table('user_profiles', function (Blueprint $table) {
-            $table->foreign('provinsi_id')->references('id')->on('wilayah_provinsi');
-            $table->foreign('kabupaten_id')->references('id')->on('wilayah_kabupaten');
-            $table->foreign('kecamatan_id')->references('id')->on('wilayah_kecamatan');
+            $table->foreign('province_id')->references('province_id')->on('provinces');
+            $table->foreign('city_id')->references('city_id')->on('cities');
+            $table->foreign('subdistrict_id')->references('subdistrict_id')->on('subdistricts');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

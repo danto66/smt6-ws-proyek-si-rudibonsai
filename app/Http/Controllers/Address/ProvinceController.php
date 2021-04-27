@@ -1,24 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Alamat;
+namespace App\Http\Controllers\Address;
 
-use Illuminate\Http\Request;
-use App\Models\Alamat\Kabupaten;
 use App\Http\Controllers\Controller;
+use App\Models\Address\Province;
+use Illuminate\Http\Request;
 
-class KabupatenController extends Controller
+class ProvinceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $kabupaten = Kabupaten::where('provinsi_id', $id)
-            ->orderBy('id')
-            ->get();
-        return $kabupaten;
+        return Province::all();
     }
 
     /**

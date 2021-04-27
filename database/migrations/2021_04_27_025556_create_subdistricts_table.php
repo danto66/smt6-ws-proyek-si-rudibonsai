@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWilayahKecamatanTable extends Migration
+class CreateSubdistrictsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateWilayahKecamatanTable extends Migration
      */
     public function up()
     {
-        Schema::create('wilayah_kecamatan', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('kabupaten_id');
-            $table->string('nama');
+        Schema::create('subdistricts', function (Blueprint $table) {
+            $table->unsignedInteger('subdistrict_id')->primary();
+            $table->unsignedInteger('city_id');
+            $table->string('subdistrict_name');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateWilayahKecamatanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wilayah_kecamatan');
+        Schema::dropIfExists('subdistricts');
     }
 }

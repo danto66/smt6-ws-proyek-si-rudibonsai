@@ -19,9 +19,9 @@ class CreateUserProfilesTable extends Migration
             $table->string('phone', 12);
             $table->enum('gender', ['Laki-laki', 'Perempuan']);
             $table->text('address_detail');
-            $table->string('provinsi_id');
-            $table->string('kabupaten_id');
-            $table->string('kecamatan_id');
+            $table->unsignedInteger('province_id');
+            $table->unsignedInteger('city_id');
+            $table->unsignedInteger('subdistrict_id');
             $table->string('profile_picture')->default('default');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
