@@ -23,6 +23,12 @@ class Navbar extends Component
      */
     public function render()
     {
+        if (auth()->check()) {
+            $cart = auth()->user()->carts->count();
+            $profile = auth()->user()->userProfile;
+
+            return view('components.main.navbar', compact('cart', 'profile'));
+        }
         return view('components.main.navbar');
     }
 }

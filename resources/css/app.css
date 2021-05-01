@@ -2,3 +2,44 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@layer components {
+    .btn {
+      @apply py-2 px-4 font-semibold rounded-md border border-transparent;
+    }
+    .btn-sm {
+      @apply py-1 px-3 font-medium text-sm rounded;
+    }
+    .btn-blue {
+      @apply bg-blue-500 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+    }
+    .btn-green {
+      @apply bg-green-500 text-white focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75;
+    }
+    .btn-outline-green {
+      @apply bg-white text-green-500 hover:bg-green-500 hover:text-white ring-1 ring-green-500 focus:outline-none;
+    }
+
+    .hover-outline-green{
+        @apply hover:bg-white hover:text-green-500 hover:ring-1 hover:ring-green-500;
+    }
+
+    .hover-green{
+      @apply hover:bg-green-500 hover:text-white
+    }
+
+    .hover-darken-green{
+        @apply hover:bg-green-700;
+    }
+
+    .admin-sidebar-item{
+      @apply text-gray-500;
+    }
+
+    .admin-sidebar-item-hover{
+      @apply hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100;
+    }
+
+    .admin-sidebar-item-active{
+      @apply bg-gray-700 bg-opacity-25 text-gray-100;
+    }
+  }

@@ -18,6 +18,9 @@ class CreateOrdersTable extends Migration
             $table->integer('shipping_charge');
             $table->integer('product_total_amount');
             $table->integer('grand_total_amount');
+            $table->unsignedBigInteger('payment_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('shipping_id');
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@ class CreateProductImagesTable extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('is_primary');
+            $table->unsignedBigInteger('product_id');
             $table->timestamps();
         });
     }
