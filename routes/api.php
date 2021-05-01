@@ -28,4 +28,6 @@ Route::prefix('/address')->name('address')->group(function () {
     Route::get('/subdistricts/city/{id}', [SubdistrictController::class, 'getSubdistrictsByCityId'])->name('.subdistricts');
 });
 
-Route::resource('/product-categories', ProductCategoryController::class)->middleware('auth:api');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::resource('/categories', ProductCategoryController::class);
+});
