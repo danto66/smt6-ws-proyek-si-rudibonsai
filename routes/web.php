@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductCategoryPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Admin\ProductPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +35,12 @@ Route::prefix('/admin')->name('admin')->group(function () {
     });
 
     Route::middleware('is.admin')->group(function () {
+        Route::post('/logout', [AdminLoginController::class, 'destroy'])->name('.logout');
         Route::get('/dashboard', function () {
             return view('admin.dashboard');
         })->name('.dashboard');
 
-        Route::post('/logout', [AdminLoginController::class, 'destroy'])->name('.logout');
+        Route::resource('/products', ProductPageController::class);
+        Route::resource('/categories', ProductCategoryPageController::class);
     });
 });

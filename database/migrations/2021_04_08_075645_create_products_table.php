@@ -18,6 +18,10 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->integer('price');
             $table->integer('stock');
+            $table->string('length'); //panjang
+            $table->string('width'); //lebar
+            $table->string('height'); //tinggi
+            $table->integer('weight'); //berat
             $table->text('description');
             $table->unsignedBigInteger('product_category_id')->nullable();
             $table->timestamps();

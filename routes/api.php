@@ -3,6 +3,7 @@
 use App\Http\Controllers\Address\CityController;
 use App\Http\Controllers\Address\ProvinceController;
 use App\Http\Controllers\Address\SubdistrictController;
+use App\Http\Controllers\Api\ProductCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,5 @@ Route::prefix('/address')->name('address')->group(function () {
     Route::get('/cities/province/{id}', [CityController::class, 'getCitiesByProvinceId'])->name('.cities');
     Route::get('/subdistricts/city/{id}', [SubdistrictController::class, 'getSubdistrictsByCityId'])->name('.subdistricts');
 });
+
+Route::resource('/product-categories', ProductCategoryController::class)->middleware('auth:api');
