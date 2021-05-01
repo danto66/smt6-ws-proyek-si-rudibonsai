@@ -30,4 +30,16 @@
     .hover-darken-green{
         @apply hover:bg-green-700;
     }
+
+    .admin-sidebar-item{
+      @apply text-gray-500;
+    }
+
+    .admin-sidebar-item-hover{
+      @apply hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100;
+    }
+
+    .admin-sidebar-item-active{
+      @apply bg-gray-700 bg-opacity-25 text-gray-100;
+    }
   }
