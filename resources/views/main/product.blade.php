@@ -7,13 +7,13 @@
         </div>
 
         <div class="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
-            <x-card.product-card />
-            <x-card.product-card />
-            <x-card.product-card />
-            <x-card.product-card />
-            <x-card.product-card />
-            <x-card.product-card />
-            <x-card.product-card />
+            <x-product.card />
+            <x-product.card />
+            <x-product.card />
+            <x-product.card />
+            <x-product.card />
+            <x-product.card />
+            <x-product.card />
 
         </div>
 

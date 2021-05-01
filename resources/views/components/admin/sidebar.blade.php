@@ -5,7 +5,8 @@
     </div>
 
     <nav class="mt-10">
-        <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100" href="/">
+        <a class="flex items-center mt-4 py-2 px-6 admin-sidebar-item admin-sidebar-item-hover {{ request()->routeIs('admin.dashboard') ? 'admin-sidebar-item-active' : '' }} "
+            href="{{ route('admin.dashboard') }}">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -19,7 +20,7 @@
 
         <div x-data="{pesananOpen : false}">
             <button x-on:click="pesananOpen=true"
-                class="flex justify-between w-full mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
+                class="flex justify-between w-full mt-4 py-2 px-6 admin-sidebar-item admin-sidebar-item-hover"
                 href="/tables">
                 <div class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -48,20 +49,37 @@
             </div>
         </div>
 
+        <div x-data="{produkOpen : false}">
+            <button x-on:click="produkOpen=true"
+                class="flex justify-between w-full mt-4 py-2 px-6 admin-sidebar-item admin-sidebar-item-hover {{ request()->routeIs('adminproducts*') || request()->routeIs('admincategories*') ? 'admin-sidebar-item-active' : '' }}"
+                href="/tables">
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                    </svg>
 
-        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
-            href="/ui-elements">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-            </svg>
+                    <span class="mx-3">Produk</span>
+                </div>
 
-            <span class="mx-3">Produk</span>
-        </a>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
 
-        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
-            href="/forms">
+            <div x-show="produkOpen" x-on:click.away="produkOpen = !produkOpen" class="px-4 py-2">
+                <div class="flex flex-col space-y-2 py-4 bg-white rounded">
+                    <a class="hover:bg-gray-200 py-2 px-4" href="{{ route('adminproducts.index') }}">Daftar Produk</a>
+
+                    <a class="hover:bg-gray-200 py-2 px-4" href="{{ route('admincategories.index') }}">Kategori
+                        Produk</a>
+                </div>
+            </div>
+        </div>
+
+        <a class="flex items-center mt-4 py-2 px-6 admin-sidebar-item admin-sidebar-item-hover" href="/">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
