@@ -41,6 +41,12 @@ Route::prefix('/admin')->name('admin')->group(function () {
         })->name('.dashboard');
 
         Route::resource('/products', ProductPageController::class);
-        Route::resource('/categories', ProductCategoryPageController::class);
+
+        Route::prefix('/categories')->name('.categories')->group(function () {
+            Route::get('/', [ProductCategoryPageController::class, 'index'])->name('.index');
+            Route::post('/', [ProductCategoryPageController::class, 'store'])->name('.store');
+            Route::put('/{category}', [ProductCategoryPageController::class, 'update'])->name('.update');
+            Route::delete('/{category}', [ProductCategoryPageController::class, 'destroy'])->name('.destroy');
+        });
     });
 });
