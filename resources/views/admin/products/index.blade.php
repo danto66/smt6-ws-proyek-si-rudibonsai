@@ -4,9 +4,17 @@
 
 @section('content')
 
-    <button class="btn btn-green hover-darken-green mt-4">
-        Tambah Produk
-    </button>
+    <div class="mt-4 py-2">
+        <a href="{{ route('admin.products.create') }}" class="btn btn-green hover-darken-green">
+            Tambah Produk
+        </a>
+    </div>
+
+    @if (session()->has('message'))
+        <div class="p-4 w-full bg-green-200 mt-4 rounded text-green-700">
+            <span>{{ session()->get('message') }}</span>
+        </div>
+    @endif
 
     <div class="flex flex-col mt-4">
         <div class="lg:px-8 sm:px-6">
@@ -43,14 +51,17 @@
                         </thead>
 
                         <tbody class="bg-white">
-                            <x-product.tr />
-                            <x-product.tr />
-                            <x-product.tr />
-                            <x-product.tr />
+                            @foreach ($products as $product)
+                                <x-product.tr :product="$product" />
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
+        </div>
+
+        <div class="mt-4">
+            {{ $products->links() }}
         </div>
     </div>
 @endsection

@@ -16,7 +16,7 @@
             <form method="POST" action="{{ route('admin.categories.destroy', ['category' => $id]) }}">
                 @method('DELETE')
                 @csrf
-                <button type="submit" class="py-1 px-3 rounded hover:bg-red-700 bg-red-500">Hapus</button>
+                <button onclick="return confirm('Hapus item ini?')" type="submit" class="py-1 px-3 rounded hover:bg-red-700 bg-red-500">Hapus</button>
             </form>
         </div>
     </td>
