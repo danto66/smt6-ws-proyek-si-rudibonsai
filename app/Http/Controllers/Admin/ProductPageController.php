@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
 
 class ProductPageController extends Controller
 {
@@ -18,9 +20,11 @@ class ProductPageController extends Controller
      */
     public function index()
     {
+
         $products = Product::paginate(10);
 
         return view('admin.products.index', compact('products'));
+
     }
 
     /**
@@ -30,9 +34,11 @@ class ProductPageController extends Controller
      */
     public function create()
     {
+
         $categories = ProductCategory::all();
 
         return view('admin.products.create', compact('categories'));
+
     }
 
     /**
@@ -43,6 +49,7 @@ class ProductPageController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'images' => 'required',
             'images.*' => 'image',
@@ -67,6 +74,7 @@ class ProductPageController extends Controller
         }
 
         return redirect()->back()->with(['status' => 'danger', 'message' => 'File foto produk kosong.']);
+
     }
 
     /**
@@ -88,10 +96,12 @@ class ProductPageController extends Controller
      */
     public function edit($id)
     {
+
         $product = Product::find($id);
         $categories = ProductCategory::all();
 
         return view('admin.products.create', compact('product', 'categories'));
+
     }
 
     /**
@@ -103,9 +113,11 @@ class ProductPageController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         Product::find($id)->update($request->all());
 
         return redirect()->route('admin.products.index')->with(['status' => 'success', 'message' => 'Produk berhasil diupdate.']);
+
     }
 
     /**
@@ -116,6 +128,7 @@ class ProductPageController extends Controller
      */
     public function destroy($id)
     {
+
         $fileName = [];
         $path = 'public/img/products/';
         $files = Product::find($id)->productImages;
@@ -200,5 +213,6 @@ class ProductPageController extends Controller
         Storage::putFileAs('public/img/products', $file, $newName);
 
         return $newName;
+
     }
 }

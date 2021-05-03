@@ -51,7 +51,9 @@
 
         <div x-data="{produkOpen : false}">
             <button x-on:click="produkOpen=true"
+
                 class="flex justify-between w-full mt-4 py-2 px-6 admin-sidebar-item admin-sidebar-item-hover {{ request()->routeIs('admin.products.*') || request()->routeIs('admin.categories*') ? 'admin-sidebar-item-active' : '' }}"
+
                 href="/tables">
                 <div class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -71,10 +73,12 @@
 
             <div x-show="produkOpen" x-on:click.away="produkOpen = !produkOpen" class="px-4 py-2">
                 <div class="flex flex-col space-y-2 py-4 bg-white rounded">
+
                     <a class="hover:bg-gray-200 py-2 px-4" href="{{ route('admin.products.index') }}">Daftar
                         Produk</a>
 
                     <a class="hover:bg-gray-200 py-2 px-4" href="{{ route('admin.categories.index') }}">Kategori
+
                         Produk</a>
                 </div>
             </div>

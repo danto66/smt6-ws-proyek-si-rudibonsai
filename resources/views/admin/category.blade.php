@@ -4,19 +4,23 @@
 
 @section('content')
 
+
     <div
         x-data="{modalCategoryShow:false, inputCategoryValue:null, inputCategoryId:null, modalTitle:null, actionPost:true}">
         <button
             x-on:click="modalCategoryShow = true; modalTitle = 'Tambah Kategori'; inputCategoryValue = null; inputCategoryId = null; actionPost = true;"
+
             class="btn btn-green hover-darken-green mt-4">
             Tambah Kategori
         </button>
+
 
         @if (session()->has('message'))
             <div class="p-4 w-full bg-green-200 mt-4 rounded text-green-700">
                 <span>{{ session()->get('message') }}</span>
             </div>
         @endif
+
 
         <div class="flex flex-col mt-4">
             <div class="lg:px-8 sm:px-6">
@@ -37,9 +41,11 @@
                             </thead>
 
                             <tbody class="bg-white">
+
                                 @foreach ($categories as $category)
                                     <x-category.tr :name="$category->name" :id="$category->id" />
                                 @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -58,9 +64,11 @@
 
                     <div
                         class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full">
+
                         <form method="POST"
                             x-bind:action="(actionPost ? '/admin/categories' : ('/admin/categories/' + inputCategoryValue))">
                             <input x-bind:disabled="actionPost" type="hidden" name="_method" value="PUT">
+
                             @csrf
                             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                 <div class="mt-3 text-center sm:mt-0 sm:text-left">
@@ -69,10 +77,12 @@
                                     </h3>
 
                                     <div class="mt-3">
+
                                         <input required class="w-full" type="text" name="name"
                                             x-bind:value="inputCategoryValue !== null ? inputCategoryValue : '' ">
                                         <input type="hidden" name="id"
                                             x-bind:value="inputCategoryId !== null ? inputCategoryId : ''">
+
                                     </div>
                                 </div>
                             </div>

@@ -29,5 +29,7 @@ Route::prefix('/address')->name('address')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
+
     Route::apiResource('/categories', ProductCategoryController::class);
+
 });
