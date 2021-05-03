@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
+use App\Models\ProductCategory;
+
 use Illuminate\Http\Request;
 
 class ProductCategoryPageController extends Controller
@@ -14,17 +17,11 @@ class ProductCategoryPageController extends Controller
      */
     public function index()
     {
-        return view('admin.category');
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $categories = ProductCategory::paginate(10);
+
+        return view('admin.category', compact('categories'));
+
     }
 
     /**
@@ -35,29 +32,11 @@ class ProductCategoryPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        ProductCategory::create($request->all());
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return redirect()->back()->with('message', 'Kategori berhasil ditambahkan.');
+
     }
 
     /**
@@ -69,7 +48,11 @@ class ProductCategoryPageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        ProductCategory::find($request->id)->update($request->all());
+
+        return redirect()->back()->with('message', 'Kategori berhasil diedit.');
+
     }
 
     /**
@@ -80,6 +63,10 @@ class ProductCategoryPageController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        ProductCategory::destroy($id);
+
+        return redirect()->back()->with('message', 'Kategori berhasil dihapus.');
+
     }
 }

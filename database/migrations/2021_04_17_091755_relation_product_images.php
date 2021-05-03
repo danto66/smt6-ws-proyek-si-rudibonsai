@@ -14,7 +14,9 @@ class RelationProductImages extends Migration
     public function up()
     {
         Schema::table('product_images', function (Blueprint $table) {
-            $table->foreign('product_id')->references('id')->on('products');
+
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 
