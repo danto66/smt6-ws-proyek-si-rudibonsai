@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductImage;
@@ -18,6 +19,7 @@ class ProductAdminController extends Controller
      */
     public function index()
     {
+
         $products = Product::paginate(10);
 
         return view('admin.products.index', compact('products'));
@@ -30,6 +32,7 @@ class ProductAdminController extends Controller
      */
     public function create()
     {
+
         $categories = ProductCategory::all();
 
         return view('admin.products.create', compact('categories'));
@@ -43,6 +46,7 @@ class ProductAdminController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'images' => 'required',
             'images.*' => 'image',
@@ -88,6 +92,7 @@ class ProductAdminController extends Controller
      */
     public function edit($id)
     {
+
         $product = Product::find($id);
         $categories = ProductCategory::all();
 
@@ -103,6 +108,7 @@ class ProductAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         Product::find($id)->update($request->all());
 
         return redirect()->route('admin.products.index')->with(['status' => 'success', 'message' => 'Produk berhasil diupdate.']);
@@ -116,6 +122,7 @@ class ProductAdminController extends Controller
      */
     public function destroy($id)
     {
+
         $fileName = [];
         $path = 'public/img/products/';
         $files = Product::find($id)->productImages;

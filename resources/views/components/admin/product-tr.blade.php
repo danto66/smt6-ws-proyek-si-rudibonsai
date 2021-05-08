@@ -1,3 +1,4 @@
+
 @props(['product' => $product])
 
 <tr>
@@ -22,33 +23,42 @@
                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                     </svg>
                 </a>
+
             </div>
 
             <div class="xl:ml-4 mt-4">
                 <div class="text-sm leading-5 font-medium text-gray-900">
+
                     {{ $product->name }}
                 </div>
 
                 <div class="hidden sm:line-clamp-2 text-sm leading-5 text-gray-500">
                     {{ $product->description }}
+
                 </div>
             </div>
         </div>
     </td>
 
     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+
         <div class="whitespace-nowrap text-sm leading-5 text-gray-900">@currency($product->price)</div>
+
     </td>
 
     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+
             {{ $product->product_category_id !== null ? $product->productCategory->name : '-' }}
+
         </span>
     </td>
 
     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+
         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-md bg-gray-100 text-gray-800">
             {{ $product->stock }}
+
         </span>
     </td>
 
@@ -56,19 +66,24 @@
         <div>
             <div class="font-medium text-gray-900">Berat:</div>
             <div>
+
                 {{ $product->weight }} gram
+
             </div>
         </div>
         <div class="mt-2">
             <div class="font-medium text-gray-900">Dimensi:</div>
             <div class="whitespace-nowrap">
+
                 {{ $product->length }}cm x {{ $product->width }}cm x {{ $product->height }}cm
+
             </div>
         </div>
     </td>
 
     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
         <div class="flex items-center space-x-2 text-white text-xs font-semibold">
+
             <a href="{{ route('admin.products.edit', ['product' => $product->id]) }}"
                 class="py-1 px-3 rounded hover:bg-yellow-700 bg-yellow-500">Edit</a>
 
@@ -78,6 +93,7 @@
                 <button onclick="return confirm('Hapus item ini?')" type="submit"
                     class="py-1 px-3 rounded hover:bg-red-700 bg-red-500">Hapus</button>
             </form>
+
         </div>
     </td>
 </tr>

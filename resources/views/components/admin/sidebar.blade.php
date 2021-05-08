@@ -70,10 +70,12 @@
 
             <div x-show="produkOpen" x-on:click.away="produkOpen = !produkOpen" class="px-4 py-2">
                 <div class="flex flex-col space-y-2 py-4 bg-white rounded">
+
                     <a class="hover:bg-gray-200 py-2 px-4" href="{{ route('admin.products.index') }}">Daftar
                         Produk</a>
 
                     <a class="hover:bg-gray-200 py-2 px-4" href="{{ route('admin.categories.index') }}">Kategori
+
                         Produk</a>
                 </div>
             </div>

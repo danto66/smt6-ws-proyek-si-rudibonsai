@@ -38,6 +38,7 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
     });
 });
 
+
 Route::prefix('/admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('/login', [AdminLoginController::class, 'create'])->name('login');
@@ -64,5 +65,6 @@ Route::prefix('/admin')->name('admin.')->group(function () {
             Route::put('/{category}', [ProductCategoryAdminController::class, 'update'])->name('update');
             Route::delete('/{category}', [ProductCategoryAdminController::class, 'destroy'])->name('destroy');
         });
+
     });
 });
