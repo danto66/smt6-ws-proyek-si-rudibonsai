@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('app')
+@section('body')
 
     <body>
         <div>

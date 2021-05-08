@@ -5,7 +5,7 @@
     </div>
 
     <nav class="mt-10">
-        <a class="flex items-center mt-4 py-2 px-6 admin-sidebar-item admin-sidebar-item-hover {{ request()->routeIs('admin.dashboard') ? 'admin-sidebar-item-active' : '' }} "
+        <a class="flex items-center mt-4 py-2 px-6 sidebar-item sidebar-item-hover {{ request()->routeIs('admin.dashboard') ? 'sidebar-item-active' : '' }} "
             href="{{ route('admin.dashboard') }}">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -20,8 +20,7 @@
 
         <div x-data="{pesananOpen : false}">
             <button x-on:click="pesananOpen=true"
-                class="flex justify-between w-full mt-4 py-2 px-6 admin-sidebar-item admin-sidebar-item-hover"
-                href="/tables">
+                class="flex justify-between w-full mt-4 py-2 px-6 sidebar-item admin-sidebar-item-hover" href="/tables">
                 <div class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -51,9 +50,7 @@
 
         <div x-data="{produkOpen : false}">
             <button x-on:click="produkOpen=true"
-
-                class="flex justify-between w-full mt-4 py-2 px-6 admin-sidebar-item admin-sidebar-item-hover {{ request()->routeIs('admin.products.*') || request()->routeIs('admin.categories*') ? 'admin-sidebar-item-active' : '' }}"
-
+                class="flex justify-between w-full mt-4 py-2 px-6 sidebar-item sidebar-item-hover {{ request()->routeIs('admin.products.*') || request()->routeIs('admin.categories*') ? 'sidebar-item-active' : '' }}"
                 href="/tables">
                 <div class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -84,7 +81,7 @@
             </div>
         </div>
 
-        <a class="flex items-center mt-4 py-2 px-6 admin-sidebar-item admin-sidebar-item-hover" href="/">
+        <a class="flex items-center mt-4 py-2 px-6 sidebar-item admin-sidebar-item-hover" href="/">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

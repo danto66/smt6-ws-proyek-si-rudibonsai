@@ -18,9 +18,9 @@ class UserProfile extends Model
         'phone',
         'gender',
         'address_detail',
-        'provinsi_id',
-        'kabupaten_id',
-        'kecamatan_id',
+        'province_id',
+        'city_id',
+        'subdistrict_id',
         'profile_picture',
         'user_id',
     ];

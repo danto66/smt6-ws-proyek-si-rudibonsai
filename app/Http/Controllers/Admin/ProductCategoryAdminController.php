@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
+use App\Models\ProductCategory;
+
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductCategoryAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +17,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+
+        $categories = ProductCategory::paginate(10);
+
+        return view('admin.category', compact('categories'));
+
     }
 
     /**
@@ -25,18 +32,11 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        ProductCategory::create($request->all());
+
+        return redirect()->back()->with('message', 'Kategori berhasil ditambahkan.');
+
     }
 
     /**
@@ -48,7 +48,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        ProductCategory::find($request->id)->update($request->all());
+
+        return redirect()->back()->with('message', 'Kategori berhasil diedit.');
+
     }
 
     /**
@@ -59,6 +63,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        ProductCategory::destroy($id);
+
+        return redirect()->back()->with('message', 'Kategori berhasil dihapus.');
+
     }
 }

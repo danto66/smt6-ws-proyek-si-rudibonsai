@@ -10,8 +10,7 @@ use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-
-class ProductPageController extends Controller
+class ProductAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +23,6 @@ class ProductPageController extends Controller
         $products = Product::paginate(10);
 
         return view('admin.products.index', compact('products'));
-
     }
 
     /**
@@ -38,7 +36,6 @@ class ProductPageController extends Controller
         $categories = ProductCategory::all();
 
         return view('admin.products.create', compact('categories'));
-
     }
 
     /**
@@ -74,7 +71,6 @@ class ProductPageController extends Controller
         }
 
         return redirect()->back()->with(['status' => 'danger', 'message' => 'File foto produk kosong.']);
-
     }
 
     /**
@@ -101,7 +97,6 @@ class ProductPageController extends Controller
         $categories = ProductCategory::all();
 
         return view('admin.products.create', compact('product', 'categories'));
-
     }
 
     /**
@@ -117,7 +112,6 @@ class ProductPageController extends Controller
         Product::find($id)->update($request->all());
 
         return redirect()->route('admin.products.index')->with(['status' => 'success', 'message' => 'Produk berhasil diupdate.']);
-
     }
 
     /**
@@ -213,6 +207,5 @@ class ProductPageController extends Controller
         Storage::putFileAs('public/img/products', $file, $newName);
 
         return $newName;
-
     }
 }

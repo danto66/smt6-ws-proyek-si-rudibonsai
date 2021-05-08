@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
-
-use App\Http\Controllers\Controller;
-
-use App\Models\ProductCategory;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\ProductCategory;
 
-class ProductCategoryPageController extends Controller
+class ProductCategoryApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +15,7 @@ class ProductCategoryPageController extends Controller
      */
     public function index()
     {
-
-        $categories = ProductCategory::paginate(10);
-
-        return view('admin.category', compact('categories'));
-
+        return ProductCategory::all();
     }
 
     /**
@@ -32,11 +26,23 @@ class ProductCategoryPageController extends Controller
      */
     public function store(Request $request)
     {
-
         ProductCategory::create($request->all());
 
-        return redirect()->back()->with('message', 'Kategori berhasil ditambahkan.');
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'Product category was created!'
+        ], 200);;
+    }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return ProductCategory::find($id);
     }
 
     /**
@@ -48,11 +54,12 @@ class ProductCategoryPageController extends Controller
      */
     public function update(Request $request, $id)
     {
+        ProductCategory::find($id)->update($request->all());
 
-        ProductCategory::find($request->id)->update($request->all());
-
-        return redirect()->back()->with('message', 'Kategori berhasil diedit.');
-
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'Product category was updated!'
+        ], 200);
     }
 
     /**
@@ -63,10 +70,11 @@ class ProductCategoryPageController extends Controller
      */
     public function destroy($id)
     {
-
         ProductCategory::destroy($id);
 
-        return redirect()->back()->with('message', 'Kategori berhasil dihapus.');
-
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'Product category was deleted'
+        ], 200);
     }
 }

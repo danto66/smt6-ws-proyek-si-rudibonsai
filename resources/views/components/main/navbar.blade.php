@@ -1,10 +1,10 @@
-<nav x-data="toggle()" class="bg-white shadow fixed w-full top-0 z-20">
+<nav x-data="navbar()" class="bg-white shadow fixed w-full top-0 z-20">
     <div class="max-w-7xl mx-auto px-2 sm:px-8 xl:px-4 lg:relative">
         <div class="relative flex items-center justify-between h-16">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 <!-- Mobile menu button-->
                 <button x-on:click="open('menu')" type="button"
-                    class="inline-flex items-center justify-center p-3 border-2 rounded-md text-gray-400"
+                    class="focus:outline-none inline-flex items-center justify-center p-3 border-2 rounded-md text-gray-400"
                     aria-controls="mobile-menu" aria-expanded="false">
 
                     <span class="sr-only">Open main menu</span>
@@ -14,46 +14,49 @@
             </div>
 
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                {{-- logo header kiri --}}
                 <div class="flex-shrink-0 flex items-center lg:mr-8">
                     <img class="block lg:hidden h-8 w-auto" src="{{ asset('img/logo/bonsai.svg') }}" alt="">
 
                     <div class="hidden lg:flex space-x-2">
-                        <img class="my-auto h-6 w-6" src="{{ asset('img/logo/bonsai.svg') }}" alt="">
+                        <img class="my-auto h-8 w-auto" src="{{ asset('img/logo/bonsai.svg') }}" alt="">
 
-                        <span class="my-auto text-2xl font-bold  h-8 w-auto">
-                            Rudibonsai
+                        <span class="my-auto text-2xl font-semibold h-8 w-auto font-poppins">
+                            RudiBonsai
                         </span>
                     </div>
                 </div>
 
+                {{-- menu utama tengah --}}
                 <div class="hidden sm:absolute sm:flex sm:justify-center sm:w-full">
                     <div class="flex space-x-4">
-                        <a href="/" class="px-3 py-2 border-b-2 border-green-500 text-sm font-medium"
-                            aria-current="page">Home</a>
+                        <a href="/"
+                            class="menu navbar-item menu-hover {{ request()->routeIs('main.home') ? 'menu-active' : '' }}">Home</a>
 
                         <a href="/products"
-                            class="text-gray-500 hover:text-black px-3 py-2 text-sm font-medium">Produk</a>
+                            class="menu navbar-item menu-hover {{ request()->routeIs('main.products*') ? 'menu-active' : '' }}">Produk</a>
 
                         <div class="relative">
-                            <button x-on:click="{dropdownInfo = !dropdownInfo}"
-                                class="text-gray-500 hover:text-black px-3 py-2 text-sm font-medium">Info
+                            {{-- button dropdown menu info --}}
+                            <button x-on:click="{dropdownInfo = true}"
+                                class="focus:outline-none menu navbar-item menu-hover">Info
                                 <i class="fas fa-caret-down"></i>
                             </button>
 
+                            {{-- menu list dropdown info --}}
                             <div x-show="dropdownInfo" x-on:click.away="{dropdownInfo = !dropdownInfo}"
                                 class="top-12 py-2 w-48 right-0 rounded absolute shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <a href=""
-                                    class="text-gray-500 hover:bg-gray-200 hover:text-black block py-2 px-4 text-sm font-medium rounded-t">Tentang
+                                    class="menu menu-hover dropdown-item block text-sm font-medium rounded-t">Tentang
                                     Kami</a>
 
-                                <a href=""
-                                    class="text-gray-500 hover:bg-gray-200 hover:text-black block py-2 px-4 text-sm font-medium ">Kontak</a>
+                                <a href="" class="menu menu-hover dropdown-item block text-sm font-medium ">Kontak</a>
 
                                 <a href=""
-                                    class="text-gray-500 hover:bg-gray-200 hover:text-black block py-2 px-4 text-sm font-medium ">Pembayaran</a>
+                                    class="menu menu-hover dropdown-item block text-sm font-medium ">Pembayaran</a>
 
                                 <a href=""
-                                    class="text-gray-500 hover:bg-gray-200 hover:text-black block py-2 px-4 text-sm font-medium rounded-b">Pengiriman</a>
+                                    class="menu menu-hover dropdown-item block text-sm font-medium rounded-b">Pengiriman</a>
                             </div>
                         </div>
                     </div>
@@ -64,19 +67,16 @@
                 <div class="absolute inset-y-0 right-0 z-30 flex items-center">
                     <!-- Profile dropdown -->
                     <div class="relative flex justify-between">
-                        <a class="hidden sm:flex justify-center text-sm rounded-xl px-3 py-1 bg-green-300" href="">
+                        <a class="hidden sm:flex justify-center text-sm rounded-xl px-3 py-1 bg-green-300 hover:bg-green-500"
+                            href="/carts">
                             <i class="my-auto fas fa-shopping-cart mr-2"></i>
-                            @if ($cart > 0)
-                                <span class="text-sm my-auto font-semibold"> {{ $cart }} </span>
-                            @else
-                                <span class="text-sm my-auto font-semibold">0</span>
-                            @endif
+                            <span class="text-sm my-auto font-semibold"> {{ $cart > 0 ? $cart : 0 }} </span>
                         </a>
 
                         <button x-on:click="open('dropdown')" type="button" class="ml-2 text-3xl flex" id="user-menu"
                             aria-expanded="false" aria-haspopup="true">
                             <span x-show="!isOpen('dropdown')"
-                                class="sm:hidden absolute font-semibold -top-2 right-7 bg-green-300 p-1 px-2 rounded-lg text-xs">
+                                class="sm:hidden absolute font-semibold -top-2 right-7 bg-green-300 text-black p-1 px-2 rounded-lg text-xs">
                                 {{ $cart }} </span>
                             <span class="sr-only">Open user menu</span>
 
@@ -95,29 +95,26 @@
                 <div x-show="isOpen('dropdown')" x-on:click.away="close"
                     class="top-16 w-full sm:w-48 right-0 absolute rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                     role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                    <div href="#" class="border-b-2 border-gray-100 block px-4 py-2 text-sm font-semibold" role="menuitem">
+                    <div href="#" class="border-b-2 border-gray-100 block px-4 py-2 text-sm font-semibold">
                         {{ $profile->fullname }} </div>
 
-                    <a href="#"
-                        class="flex justify-between font-semibold sm:hidden px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        role="menuitem">
+                    <a href="{{ route('main.cart.index') }}"
+                        class="flex justify-between sm:hidden menu menu-hover dropdown-item" role="menuitem">
                         <span>
                             <i class="mr-2 fas fa-shopping-cart"></i>
                             Keranjang
                         </span>
-                        <span class="bg-green-300 px-2 rounded-md">
+                        <span class="bg-green-300 text-black px-2 rounded-md">
                             {{ $cart }}
                         </span>
                     </a>
 
-                    <a href="#" class="font-semibold block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        role="menuitem">
+                    <a href="#" class="block menu menu-hover dropdown-item" role="menuitem">
                         <i class="mr-2 fas fa-user"></i>
                         Akun
                     </a>
 
-                    <a href="#" class="font-semibold block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        role="menuitem">
+                    <a href="#" class="block menu menu-hover dropdown-item" role="menuitem">
                         <i class="mr-2 fas fa-receipt"></i>
                         Pesanan
                     </a>
@@ -127,7 +124,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <button class="w-full px-4 py-2 text-left font-semibold text-sm text-gray-700">
+                            <button class="w-full text-left menu menu-hover dropdown-item">
                                 <i class="mr-2 fas fa-sign-out-alt"></i>
                                 Keluar
                             </button>
@@ -149,32 +146,29 @@
     </div>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div x-show="isOpen('menu')" x-on:click.away="close" class=" sm:hidden" id="mobile-menu">
+    <div x-show="isOpen('menu')" x-on:click.away="close" class="sm:hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-4 space-y-1">
-            <a href="#" class="rounded bg-gray-200 block px-3 py-2 text-base font-medium border-l-2 border-green-500"
-                aria-current="page">Home</a>
+            <a href="#"
+                class="rounded px-3 py-2 block menu menu-hover {{ request()->routeIs('main.home') ? 'menu-active' : '' }}">Home</a>
 
             <a href="/products"
-                class="rounded text-gray-500 hover:bg-gray-200 hover:text-black block px-3 py-2 text-base font-medium">Produk</a>
+                class="rounded px-3 py-2 block menu menu-hover {{ request()->routeIs('main.products*') ? 'menu-active' : '' }}">Produk</a>
 
-            <div class="rounded border-2">
+            <div class="rounded">
                 <button x-on:click="{dropdownInfo = !dropdownInfo}"
-                    class="text-gray-500 hover:bg-gray-200 hover:text-black block px-3 py-2 text-base font-medium w-full text-left focus:bg-white ">Info
-                    <i class="fas fa-caret-down"></i></button>
+                    class="rounded block px-3 py-2 w-full text-left focus:outline-none menu menu-hover">Info
+                    <i :class="dropdownInfo ? 'rotate-180 transform duration-300': 'rotate-0 transform duration-300'"
+                        class="ml-2 fas fa-caret-down"></i></button>
 
-                <div x-show="dropdownInfo" class="pb-2 px-3">
-                    <a href=""
-                        class="text-gray-500 hover:bg-gray-200 hover:text-black block p-2 text-base font-medium">Tentang
+                <div x-show="dropdownInfo" class="p-2 border-2 rounded">
+                    <a href="" class="block menu menu-hover dropdown-item rounded">Tentang
                         Kami</a>
 
-                    <a href=""
-                        class="text-gray-500 hover:bg-gray-200 hover:text-black block p-2 text-base font-medium">Kontak</a>
+                    <a href="" class="block menu menu-hover dropdown-item rounded">Kontak</a>
 
-                    <a href=""
-                        class="text-gray-500 hover:bg-gray-200 hover:text-black block p-2 text-base font-medium">Pembayaran</a>
+                    <a href="" class="block menu menu-hover dropdown-item rounded">Pembayaran</a>
 
-                    <a href=""
-                        class="text-gray-500 hover:bg-gray-200 hover:text-black block p-2 text-base font-medium">Pengiriman</a>
+                    <a href="" class="block menu menu-hover dropdown-item rounded">Pengiriman</a>
                 </div>
             </div>
 
@@ -194,7 +188,7 @@
 </nav>
 
 <script>
-    function toggle() {
+    function navbar() {
         return {
             show: false,
             itemTarget: null,

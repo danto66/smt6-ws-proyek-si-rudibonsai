@@ -49,7 +49,7 @@
                 <x-label :value="__('Alamat')" />
 
                 <x-select required x-model="selectedProv" x-on:change="changeProv()" x-bind:disabled="provDisable"
-                    name="provinsi_id">
+                    name="province_id">
                     <option value="">--Provinsi--</option>
 
                     <template x-for="prov in dataProvinsi">
@@ -58,7 +58,7 @@
                 </x-select>
 
                 <x-select required x-model="selectedKab" x-on:change="changeKab()" x-bind:disabled="kabDisable"
-                    name="kabupaten_id" id="kabupaten">
+                    name="city_id" id="kabupaten">
                     <option value="">--Kabupaten--</option>
 
                     <template x-for="kab in dataKabupaten">
@@ -66,7 +66,7 @@
                     </template>
                 </x-select>
 
-                <x-select required x-bind:disabled="kecDisable" name="kecamatan_id" id="kecamatan">
+                <x-select required x-bind:disabled="kecDisable" name="subdistrict_id" id="kecamatan">
                     <option value="">--Kecamatan--</option>
 
                     <template x-for="kec in dataKecamatan">

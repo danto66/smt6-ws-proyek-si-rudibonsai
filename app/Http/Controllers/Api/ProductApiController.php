@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\ProductCategory;
+use Illuminate\Http\Request;
 
-class ProductCategoryController extends Controller
+class ProductApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        return ProductCategory::all();
+        //
     }
 
     /**
@@ -26,12 +25,7 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        ProductCategory::create($request->all());
-
-        return response()->json([
-            'status' => 'ok',
-            'message' => 'Product category was created!'
-        ], 200);;
+        //
     }
 
     /**
@@ -42,7 +36,7 @@ class ProductCategoryController extends Controller
      */
     public function show($id)
     {
-        return ProductCategory::find($id);
+        //
     }
 
     /**
@@ -54,12 +48,7 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        ProductCategory::find($id)->update($request->all());
-
-        return response()->json([
-            'status' => 'ok',
-            'message' => 'Product category was updated!'
-        ], 200);
+        //
     }
 
     /**
@@ -70,11 +59,6 @@ class ProductCategoryController extends Controller
      */
     public function destroy($id)
     {
-        ProductCategory::destroy($id);
-
-        return response()->json([
-            'status' => 'ok',
-            'message' => 'Product category was deleted'
-        ], 200);
+        //
     }
 }

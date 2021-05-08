@@ -5,7 +5,7 @@
         <div class="bg-black h-80 sm:h-auto relative flex items-center">
             <div class="w-full h-auto">
                 <img class="object-cover sm:object-contain h-80 w-full sm:h-auto opacity-50"
-                    src="{{ asset('img/hero/hero-section-bonsai-2.jpg') }}" alt="">
+                    src="{{ asset('img/hero/hero-section-bonsai.jpg') }}" alt="">
             </div>
             <div class="absolute w-full">
                 <div class="px-8 xl:px-4 text-center lg:text-left max-w-7xl mx-auto">
@@ -34,7 +34,7 @@
             </div>
 
             <div class="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
-                <x-product.card />
+                {{-- <x-main.product-card /> --}}
 
             </div>
 

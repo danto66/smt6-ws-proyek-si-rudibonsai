@@ -52,7 +52,7 @@
 
                         <tbody class="bg-white">
                             @foreach ($products as $product)
-                                <x-product.tr :product="$product" />
+                                <x-admin.product-tr :product="$product" />
                             @endforeach
                         </tbody>
                     </table>

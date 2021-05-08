@@ -43,13 +43,17 @@
                             <tbody class="bg-white">
 
                                 @foreach ($categories as $category)
-                                    <x-category.tr :name="$category->name" :id="$category->id" />
+                                    <x-admin.category-tr :name="$category->name" :id="$category->id" />
                                 @endforeach
 
                             </tbody>
                         </table>
                     </div>
                 </div>
+            </div>
+
+            <div class="mt-4">
+                {{ $categories->links() }}
             </div>
         </div>
 
