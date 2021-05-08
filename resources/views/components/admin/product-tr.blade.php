@@ -1,16 +1,17 @@
 @props(['product' => $product])
 
 <tr>
-    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+    <td class="p-2 whitespace-no-wrap border-b border-gray-200">
         <div class="flex justify-start items-center flex-col xl:flex-row">
-            <div class="flex-shrink-0 flex-nowrap relative">
+            <div class="bg-gray-900 w-8/12 flex-shrink-0 flex-nowrap relative">
                 @if ($img = $product->productImages()->where('is_primary', 1)->get()->first())
-                    <img class="rounded-lg h-20 w-32 object-cover"
-                        src="{{ asset('storage/img/products/') . '/' . $img->name }}" alt="">
+                    <div class="aspect-w-16 aspect-h-9 bg-center bg-contain bg-no-repeat"
+                        style="background-image: url('{{ asset('storage/img/products/') . '/' . $img->name }}')">
+                    </div>
                 @else
-                    <img class="rounded-lg h-20 w-32 object-cover"
-                        src="{{ asset('storage/img/products/') . '/' . $product->productImages->first()->name }}"
-                        alt="">
+                    <div class="aspect-w-16 aspect-h-9 bg-center bg-contain bg-no-repeat"
+                        style="background-image: url('{{ asset('storage/img/products/') . '/' . $product->productImages->first()->name }}')">
+                    </div>
                 @endif
 
                 <a href="{{ route('admin.products.images.edit', ['product' => $product->id]) }}"

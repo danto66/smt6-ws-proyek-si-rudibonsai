@@ -27,9 +27,9 @@ class RegisterRequest extends FormRequest
             'fullname' => 'required|string',
             'phone' => 'required|string|size:12',
             'gender' => 'required',
-            'provinsi_id' => 'required',
-            'kabupaten_id' => 'required',
-            'kecamatan_id' => 'required',
+            'province_id' => 'required',
+            'city_id' => 'required',
+            'subdistrict_id' => 'required',
             'address_detail' => 'required',
         ];
     }

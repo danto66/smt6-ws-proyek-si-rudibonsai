@@ -39,19 +39,19 @@
                                 @foreach ($images as $image)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="whitespace-nowrap text-sm leading-5 text-gray-900">
-                                                <img class="rounded-lg h-20 w-32 object-cover"
+                                            <div class="whitespace-nowrap bg-gray-900">
+                                                {{-- <img class="rounded-lg h-20 w-32 object-cover"
                                                     src="{{ asset('storage/img/products/') . '/' . $image->name }}"
-                                                    alt="">
+                                                    alt=""> --}}
+                                                <div class="aspect-w-16 aspect-h-9 bg-center bg-contain bg-no-repeat"
+                                                    style="background-image: url('{{ asset('storage/img/products/') . '/' . $image->name }}')">
+                                                </div>
                                             </div>
                                         </td>
 
                                         <td
                                             class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                             <div class="flex justify-end space-x-2 text-white text-xs font-semibold">
-                                                {{-- <button
-                                                    class="py-1 px-3 rounded hover:bg-yellow-700 bg-yellow-500">Edit</button> --}}
-
                                                 @if ($image->is_primary == 1)
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-300"
                                                         viewBox="0 0 20 20" fill="currentColor">

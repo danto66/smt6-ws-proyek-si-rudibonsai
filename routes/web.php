@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\ProductCategoryPageController;
+use App\Http\Controllers\Admin\ProductCategoryAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AdminLoginController;
-use App\Http\Controllers\Admin\ProductPageController;
+use App\Http\Controllers\Admin\ProductAdminController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,18 +22,26 @@ use App\Http\Controllers\Admin\ProductPageController;
 // auth
 require __DIR__ . '/auth.php';
 
-Route::middleware(['not.admin', 'verified.or.guest'])->group(function () {
-    Route::get('/', [HomeController::class, 'index']);
+Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    Route::get('/products', function () {
-        return view('main.product');
+    Route::prefix('/products')->name('products.')->group(function () {
+        Route::get('/', [ProductController::class, 'index'])->name('index');
+        Route::get('/{product}', [ProductController::class, 'show'])->name('show');
+    });
+
+    Route::prefix('/carts')->name('cart.')->group(function () {
+        Route::get('/', [CartController::class, 'index'])->name('index');
+        Route::post('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('add_to_cart');
+        Route::post('/buy-now/{product}', [CartController::class, 'buyNow'])->name('buy_now');
+        Route::delete('/{cart}', [CartController::class, 'destroy'])->name('destroy');
     });
 });
 
 Route::prefix('/admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('/login', [AdminLoginController::class, 'create'])->name('login');
-        Route::post('/login', [AdminLoginController::class, 'store'])->name('login');
+        Route::post('/login', [AdminLoginController::class, 'store'])->name('login.store');
     });
 
     Route::middleware('is.admin')->group(function () {
@@ -40,19 +50,19 @@ Route::prefix('/admin')->name('admin.')->group(function () {
             return view('admin.dashboard');
         })->name('dashboard');
 
-        Route::resource('/products', ProductPageController::class);
+        Route::resource('/products', ProductAdminController::class);
         Route::prefix('/products')->name('products.')->group(function () {
-            Route::get('/{product}/images', [ProductPageController::class, 'editImages'])->name('images.edit');
-            Route::post('/{product}/images', [ProductPageController::class, 'addImage'])->name('images.add');
-            Route::put('/{product}/images/{productImage}', [ProductPageController::class, 'setPrimaryImage'])->name('images.set_primary');
-            Route::delete('/images/{productImage}', [ProductPageController::class, 'destroyImage'])->name('images.destroy');
+            Route::get('/{product}/images', [ProductAdminController::class, 'editImages'])->name('images.edit');
+            Route::post('/{product}/images', [ProductAdminController::class, 'addImage'])->name('images.add');
+            Route::put('/{product}/images/{productImage}', [ProductAdminController::class, 'setPrimaryImage'])->name('images.set_primary');
+            Route::delete('/images/{productImage}', [ProductAdminController::class, 'destroyImage'])->name('images.destroy');
         });
 
         Route::prefix('/categories')->name('categories.')->group(function () {
-            Route::get('/', [ProductCategoryPageController::class, 'index'])->name('index');
-            Route::post('/', [ProductCategoryPageController::class, 'store'])->name('store');
-            Route::put('/{category}', [ProductCategoryPageController::class, 'update'])->name('update');
-            Route::delete('/{category}', [ProductCategoryPageController::class, 'destroy'])->name('destroy');
+            Route::get('/', [ProductCategoryAdminController::class, 'index'])->name('index');
+            Route::post('/', [ProductCategoryAdminController::class, 'store'])->name('store');
+            Route::put('/{category}', [ProductCategoryAdminController::class, 'update'])->name('update');
+            Route::delete('/{category}', [ProductCategoryAdminController::class, 'destroy'])->name('destroy');
         });
     });
 });

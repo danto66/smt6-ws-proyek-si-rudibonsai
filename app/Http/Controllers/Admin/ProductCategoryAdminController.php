@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
+use Illuminate\Http\Request;
 
-class ProductCategoryController extends Controller
+class ProductCategoryAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,9 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        return ProductCategory::all();
+        $categories = ProductCategory::paginate(10);
+
+        return view('admin.category', compact('categories'));
     }
 
     /**
@@ -28,21 +30,7 @@ class ProductCategoryController extends Controller
     {
         ProductCategory::create($request->all());
 
-        return response()->json([
-            'status' => 'ok',
-            'message' => 'Product category was created!'
-        ], 200);;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return ProductCategory::find($id);
+        return redirect()->back()->with('message', 'Kategori berhasil ditambahkan.');
     }
 
     /**
@@ -54,12 +42,9 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        ProductCategory::find($id)->update($request->all());
+        ProductCategory::find($request->id)->update($request->all());
 
-        return response()->json([
-            'status' => 'ok',
-            'message' => 'Product category was updated!'
-        ], 200);
+        return redirect()->back()->with('message', 'Kategori berhasil diedit.');
     }
 
     /**
@@ -72,9 +57,6 @@ class ProductCategoryController extends Controller
     {
         ProductCategory::destroy($id);
 
-        return response()->json([
-            'status' => 'ok',
-            'message' => 'Product category was deleted'
-        ], 200);
+        return redirect()->back()->with('message', 'Kategori berhasil dihapus.');
     }
 }

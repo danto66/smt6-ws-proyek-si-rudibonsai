@@ -9,7 +9,7 @@ use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ProductPageController extends Controller
+class ProductAdminController extends Controller
 {
     /**
      * Display a listing of the resource.

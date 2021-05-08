@@ -1,45 +1,89 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @layer components {
+  /* button */
     .btn {
       @apply py-2 px-4 font-semibold rounded-md border border-transparent;
     }
+    
     .btn-sm {
       @apply py-1 px-3 font-medium text-sm rounded;
     }
+
+    .disabled{
+      @apply opacity-50 cursor-default focus:outline-none;
+    }
+
     .btn-blue {
       @apply bg-blue-500 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
     }
+
     .btn-green {
       @apply bg-green-500 text-white focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75;
     }
-    .btn-outline-green {
-      @apply bg-white text-green-500 hover:bg-green-500 hover:text-white ring-1 ring-green-500 focus:outline-none;
-    }
 
+    .btn-outline-green {
+      @apply bg-white text-green-500 ring-1 ring-green-500 focus:outline-none;
+    }
+    /* ==== */
+
+
+    /* button hover */
     .hover-outline-green{
         @apply hover:bg-white hover:text-green-500 hover:ring-1 hover:ring-green-500;
     }
 
     .hover-green{
-      @apply hover:bg-green-500 hover:text-white
+      @apply hover:bg-green-500 hover:text-white;
     }
 
     .hover-darken-green{
         @apply hover:bg-green-700;
     }
+    /* ==== */
 
-    .admin-sidebar-item{
+
+     /* sidebar */
+    .sidebar-item{
       @apply text-gray-500;
     }
 
-    .admin-sidebar-item-hover{
+    .sidebar-item-hover{
       @apply hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100;
     }
 
-    .admin-sidebar-item-active{
+    .sidebar-item-active{
       @apply bg-gray-700 bg-opacity-25 text-gray-100;
     }
+    /* ==== */
+
+
+    /* menu */
+    .menu{
+      @apply text-gray-500 text-sm font-medium;
+    }
+
+    .menu-sm{
+      @apply text-gray-500 text-base font-medium;
+    }
+
+    .menu-hover{
+      @apply hover:text-black hover:bg-gray-200;
+    }
+    
+    .menu-active{
+      @apply text-black bg-gray-200;
+    }
+
+    .navbar-item{
+      @apply px-3 py-2 rounded-lg;
+    }
+
+    .dropdown-item{
+      @apply px-4 py-2;
+    }
+
   }

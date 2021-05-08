@@ -3,7 +3,7 @@
 use App\Http\Controllers\Address\CityController;
 use App\Http\Controllers\Address\ProvinceController;
 use App\Http\Controllers\Address\SubdistrictController;
-use App\Http\Controllers\Api\ProductCategoryController;
+use App\Http\Controllers\Api\ProductCategoryApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,5 +29,5 @@ Route::prefix('/address')->name('address')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('/categories', ProductCategoryController::class);
+    Route::apiResource('/categories', ProductCategoryApiController::class);
 });

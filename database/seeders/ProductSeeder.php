@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Product;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ProductSeeder extends Seeder
 {
@@ -14,6 +15,15 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory()->count(30)->create();
+        $products = Product::factory()->count(15)->create();
+
+        foreach ($products as $product) {
+            for ($i = 1; $i <= 3; $i++) {
+                DB::table('product_images')->insert([
+                    'name' => 'p-' . $i . '.jpg',
+                    'product_id' => $product->id,
+                ]);
+            }
+        }
     }
 }
