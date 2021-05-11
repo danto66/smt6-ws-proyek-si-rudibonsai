@@ -14,9 +14,7 @@ class RelationOrders extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->foreign('payment_id')->references('id')->on('payments');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('shipping_id')->references('id')->on('shippings');
         });
     }
 

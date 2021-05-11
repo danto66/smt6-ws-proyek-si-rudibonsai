@@ -42,13 +42,15 @@ $images = $cart->productImages;
         </div>
 
         <div class="flex justify-between sm:space-x-3 flex-1">
-            <x-input min="1" max="{{ $product->stock }}" x-model.number="items[{{ $val }}]"
-                class="block w-16 h-10 pr-2" type="number" />
+            <x-input x-on:blur="validateInput(); btnDisabled=false" x-on:focus="btnDisabled=true;" min="1"
+                max="{{ $product->stock }}" x-model.number="items[{{ $val }}]" class="block w-16 h-10 pr-2"
+                type="number" />
 
             <form method="POST" action="{{ route('main.cart.destroy', ['cart' => $cart->id]) }}">
                 @method('DELETE')
                 @csrf
-                <button><i class="fa fa-trash text-red-500"></i></button>
+                <button type="submit" onclick="return confirm('Hapus item ini?')"><i
+                        class="fa fa-trash text-red-500"></i></button>
             </form>
         </div>
     </div>

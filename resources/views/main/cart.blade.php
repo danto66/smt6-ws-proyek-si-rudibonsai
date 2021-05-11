@@ -41,8 +41,8 @@
                     </div>
                 </div>
 
-                <div class="xl:flex xl:flex-row xl:space-x-2">
-                    <form method="POST" action="{{ route('main.checkout') }}">
+                <div class="flex flex-col">
+                    <form method="POST" action="{{ route('main.checkout.index') }}">
                         @csrf
                         @foreach ($carts as $cart)
                             <x-input x-model.number="items[{{ $loop->index }}]" type="hidden" name="qty[]" />
@@ -52,7 +52,8 @@
                         <input type="hidden" name="subtotal" x-model.number="subtotal">
                         <input type="hidden" name="total_weight" x-model.number="totalWeight()">
 
-                        <button type="submit" class="mt-4 w-full btn-sm btn-green hover-darken-green">Checkout</button>
+                        <button :disabled="btnDisabled" type="submit"
+                            class="mt-4 w-full btn-sm btn-green hover-darken-green">Checkout</button>
                     </form>
                 </div>
             </div>
@@ -65,6 +66,8 @@
                 items: [],
                 prices: [],
                 weight: [],
+                stocks: [],
+                btnDisabled: false,
                 subtotal: null,
                 totalItem() {
                     let totalItem = 0;
@@ -83,6 +86,7 @@
                     data.forEach(item => {
                         this.prices.push(item.product.price);
                         this.weight.push(item.product.weight);
+                        this.stocks.push(item.product.stock);
                     });
                 },
                 subtotalPrice() {
@@ -105,6 +109,21 @@
                     });
 
                     return totalWeight;
+                },
+                validateInput() {
+                    this.items.forEach((item, i) => {
+                        if (item < 1 || item > this.stocks[i]) {
+                            this.btnDisabled = true;
+                            return this.showResponseValidate();
+                        }
+                    });
+                },
+                showResponseValidate() {
+                    alert('Nilai input minimal 1 dan maksimal sesuai stok yang tersedia!');
+                    this.items.forEach((item, i) => {
+                        this.items[i] = 1;
+                    });
+                    this.btnDisabled = false;
                 }
             }
         }

@@ -54,7 +54,7 @@
                     </h1>
 
                     <div class="mt-1 text-sm">
-                        <x-select x-model="courier" x-on:change="getCourier()">
+                        <x-select x-model="courier" x-on:change="getCourier(); isValid=false;">
                             <option value="">--Pilih Kurir--</option>
                             <option value="jne">JNE</option>
                             <option value="pos">Pos Indonesia</option>
@@ -63,10 +63,11 @@
                     </div>
 
                     <div :class="{'animate-pulse' : isLoading}" class="mt-1 text-sm">
-                        <x-select x-on:change="setTotal()" x-model="shippingCost" x-bind:disabled="isDisable">
+                        <x-select x-on:change="splitShippingRes(); setTotal(); isValid=true;" x-model="shippingRes"
+                            x-bind:disabled="isDisable">
                             <option value="">--Pilih Jenis Layanan--</option>
                             <template x-for="res in results">
-                                <option :value="res.cost[0].value"
+                                <option :value="`${res.cost[0].value}|${res.service}`"
                                     x-text="`${res.service} (${setCurrencyFormat(res.cost[0].value)}) | ${res.cost[0].etd}` + (courier !== 'pos' ? ' Hari' : '')">
                                 </option>
                             </template>
@@ -115,7 +116,7 @@
 
                     <div class="sm:mt-1 text-sm font-semibold flex justify-between sm:flex-col">
                         <p class="whitespace-nowrap text-gray-400">Ongkos Kirim</p>
-                        <span x-text="setCurrencyFormat(shippingCost)" class="text-gray-600 ml-auto"></span>
+                        <span x-text="shippingCost" class="text-gray-600 ml-auto"></span>
                     </div>
 
                     <div class="mt-2 text-sm font-bold text-black flex justify-between sm:flex-col">
@@ -124,7 +125,23 @@
                     </div>
                 </div>
 
-                <button class="mt-4 w-full btn-sm btn-green hover-darken-green">Buat Pesanan</button>
+                <form method="POST" action="{{ route('main.checkout.store') }}">
+                    @csrf
+                    <input type="hidden" name="shipping_cost" x-model="shippingCost">
+                    <input type="hidden" name="product_total_amount" x-model="subtotal">
+                    <input type="hidden" name="grand_total_amount" x-model="total">
+                    <input type="hidden" name="quantity_total" value="{{ $cart_data['total_item'] }}">
+                    <input type="hidden" name="shipping_agent" x-model="courier">
+                    <input type="hidden" name="shipping_service" x-model="shippingService">
+
+                    @foreach ($cart_data['qty'] as $qty)
+                        <input type="hidden" name="qty[]" value="{{ $qty }}">
+                    @endforeach
+
+                    <button :disabled="!isValid" :class="{'disabled' : !isValid}" type="submit"
+                        class="mt-4 w-full btn-sm btn-green hover-darken-green">Buat
+                        Pesanan</button>
+                </form>
             </div>
         </div>
     </div>
@@ -132,6 +149,7 @@
     <script>
         function checkout() {
             return {
+                isValid: false,
                 origin: '74', // blitar
                 destination: '', // diisi lewat setData()
                 weight: '', // diisi lewat setData()
@@ -142,6 +160,8 @@
                 isDisable: true,
                 isLoading: false,
                 shippingCost: 0,
+                shippingService: '',
+                shippingRes: '',
                 total: 0,
                 subtotal: 0,
                 setData(destination, weight, subtotal) {
@@ -182,6 +202,12 @@
                 },
                 setTotal() {
                     this.total = parseInt(this.subtotal) + parseInt(this.shippingCost);
+                },
+                splitShippingRes() {
+                    const [cost, service] = this.shippingRes.split('|');
+
+                    this.shippingCost = cost;
+                    this.shippingService = service;
                 }
             }
         }
