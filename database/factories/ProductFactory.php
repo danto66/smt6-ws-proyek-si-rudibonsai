@@ -23,12 +23,12 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence(10),
-            'price' => rand(10000, 400000),
+            'price' => rand(1, 9) * 10000,
             'stock' => rand(1, 10),
-            'height' => rand(1, 4),
-            'width' => rand(1, 4),
-            'weight' => rand(1, 4),
-            'length' => rand(1, 4),
+            'height' => rand(1, 9),
+            'width' => rand(1, 9),
+            'weight' => rand(1, 9),
+            'length' => rand(1, 9),
             'description' => $this->faker->sentence(),
             'product_category_id' => rand(1, 5),
         ];

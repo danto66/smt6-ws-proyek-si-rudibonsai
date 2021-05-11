@@ -21,18 +21,15 @@ $images = $cart->productImages;
 
         <div class="overflow-x-auto ml-3 w-full">
             <h1 class="text-gray-600 font-semibold text-base leading-tight">
-                {{-- Lorem ipsum dolor sit. --}}
                 {{ $product->name }}
             </h1>
 
             <div class="text-gray-900 font-bold text-base whitespace-nowrap">
-                {{-- Rp 220.000.000 --}}
                 @currency($product->price)
             </div>
 
             <div class=" text-gray-600 text-sm whitespace-nowrap hidden sm:mt-2 sm:block">
                 <span class="font-semibold text-gray-400">Stok :</span>
-                {{-- <span>40</span> --}}
                 <span>{{ $product->stock }}</span>
             </div>
         </div>
@@ -41,18 +38,19 @@ $images = $cart->productImages;
     <div class="flex justify-between items-center mt-4 flex-wrap sm:mt-0 w-full sm:w-4/12">
         <div class=" text-gray-600 text-sm flex-1 whitespace-nowrap sm:hidden">
             <span class="font-semibold text-gray-400">Stok :</span>
-            {{-- <span>40</span> --}}
             <span>{{ $product->stock }}</span>
         </div>
 
         <div class="flex justify-between sm:space-x-3 flex-1">
-            <x-input min="1" max="{{ $product->stock }}" x-model.number="items[{{ $val }}]"
-                x-bind:value="items[{{ $val }}]" class="block w-16 h-10 pr-2" type="number" name="qty[]" />
+            <x-input x-on:blur="validateInput(); btnDisabled=false" x-on:focus="btnDisabled=true;" min="1"
+                max="{{ $product->stock }}" x-model.number="items[{{ $val }}]" class="block w-16 h-10 pr-2"
+                type="number" />
 
             <form method="POST" action="{{ route('main.cart.destroy', ['cart' => $cart->id]) }}">
                 @method('DELETE')
                 @csrf
-                <button><i class="fa fa-trash text-red-500"></i></button>
+                <button type="submit" onclick="return confirm('Hapus item ini?')"><i
+                        class="fa fa-trash text-red-500"></i></button>
             </form>
         </div>
     </div>

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\ProductCategory;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class ProductCategorySeeder extends Seeder
 {
@@ -14,10 +14,6 @@ class ProductCategorySeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 5; $i++) {
-            DB::table('product_categories')->insert([
-                'name' => rand(100, 999),
-            ]);
-        }
+        ProductCategory::factory()->count(5)->create();
     }
 }

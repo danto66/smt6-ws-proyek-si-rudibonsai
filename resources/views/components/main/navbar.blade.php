@@ -22,7 +22,7 @@
                         <img class="my-auto h-8 w-auto" src="{{ asset('img/logo/bonsai.svg') }}" alt="">
 
                         <span class="my-auto text-2xl font-semibold h-8 w-auto font-poppins">
-                            RudiBonsai
+                            Rudibonsai
                         </span>
                     </div>
                 </div>

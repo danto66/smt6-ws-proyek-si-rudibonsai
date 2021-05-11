@@ -16,6 +16,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
         $products = Product::factory()->count(15)->create();
+        $start = 1;
 
         foreach ($products as $product) {
             for ($i = 1; $i <= 3; $i++) {
@@ -24,6 +25,12 @@ class ProductSeeder extends Seeder
                     'product_id' => $product->id,
                 ]);
             }
+
+            DB::table('product_images')
+                ->where('id', rand($start, $start + 2))
+                ->update(['is_primary' => 1]);
+
+            $start += 3;
         }
     }
 }

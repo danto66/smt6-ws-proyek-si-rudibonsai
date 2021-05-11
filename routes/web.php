@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -22,6 +23,7 @@ use App\Http\Controllers\ProductController;
 // auth
 require __DIR__ . '/auth.php';
 
+// main app / frontend
 Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -30,21 +32,29 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
         Route::get('/{product}', [ProductController::class, 'show'])->name('show');
     });
 
-    Route::prefix('/carts')->name('cart.')->group(function () {
-        Route::get('/', [CartController::class, 'index'])->name('index');
-        Route::post('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('add_to_cart');
-        Route::post('/buy-now/{product}', [CartController::class, 'buyNow'])->name('buy_now');
-        Route::delete('/{cart}', [CartController::class, 'destroy'])->name('destroy');
+    // auth user
+    Route::middleware('auth')->group(function () {
+        Route::prefix('/carts')->name('cart.')->group(function () {
+            Route::get('/', [CartController::class, 'index'])->name('index');
+            Route::post('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('add_to_cart');
+            Route::post('/buy-now/{product}', [CartController::class, 'buyNow'])->name('buy_now');
+            Route::delete('/{cart}', [CartController::class, 'destroy'])->name('destroy');
+        });
+
+        // cheeckout
+        Route::post('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+        Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
     });
 });
 
-
+//admin dashboard / backend
 Route::prefix('/admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('/login', [AdminLoginController::class, 'create'])->name('login');
         Route::post('/login', [AdminLoginController::class, 'store'])->name('login.store');
     });
 
+    // auth admin
     Route::middleware('is.admin')->group(function () {
         Route::post('/logout', [AdminLoginController::class, 'destroy'])->name('logout');
         Route::get('/dashboard', function () {
@@ -65,6 +75,5 @@ Route::prefix('/admin')->name('admin.')->group(function () {
             Route::put('/{category}', [ProductCategoryAdminController::class, 'update'])->name('update');
             Route::delete('/{category}', [ProductCategoryAdminController::class, 'destroy'])->name('destroy');
         });
-
     });
 });

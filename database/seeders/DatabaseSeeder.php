@@ -5,10 +5,11 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
-use Illuminate\Support\Facades\DB;
 use Database\Seeders\AddressSeeder;
+use Database\Seeders\ProductSeeder;
 use Database\Seeders\UserProfileSeeder;
 use Database\Seeders\AdminProfileSeeder;
+use Database\Seeders\ProductCategorySeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,6 +26,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             AdminProfileSeeder::class,
             UserProfileSeeder::class,
+
+            // seeder tes, akan dinonaktifkan saat produksi
+            ProductCategorySeeder::class,
+            ProductSeeder::class,
         ]);
     }
 }
