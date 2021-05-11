@@ -1,7 +1,7 @@
 @extends('layouts.main.app')
 
 @section('content')
-    <div class="mt-6 px-2 sm:px-8 xl:px-4 max-w-7xl mx-auto">
+    <div class="mt-6 px-2 sm:px-8 xl:px-4 max-w-7xl mx-auto min-h-screen">
         <div class="text-gray-900 font-semibold sm:text-3xl text-xl border-b-4 border-green-500 py-2">
             Detail Produk
         </div>
@@ -59,7 +59,7 @@
                     </h1>
 
                     <div class="mt-1 text-gray-600 text-sm">
-                        <span class="font-semibold text-gray-400">Ukuran :</span>
+                        <span class="font-semibold text-gray-400">Dimensi :</span>
 
                         <span>{{ $product->length }}cm x {{ $product->width }}cm x {{ $product->height }}cm</span>
                     </div>

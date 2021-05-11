@@ -25,7 +25,7 @@
             </h1>
 
             <div class="mt-1 text-gray-600 text-xs sm:text-sm">
-                <span class="font-semibold text-gray-400 hidden sm:block">Ukuran :</span>
+                <span class="font-semibold text-gray-400 hidden sm:block">Dimensi :</span>
                 <span>{{ $product->length }}cm x {{ $product->width }}cm x {{ $product->height }}cm</span>
             </div>
 
