@@ -14,7 +14,7 @@
     }
 
     .disabled{
-      @apply opacity-50 cursor-default focus:outline-none;
+      @apply opacity-50 cursor-default focus:outline-none pointer-events-none;
     }
 
     .btn-blue {

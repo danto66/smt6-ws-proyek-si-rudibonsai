@@ -42,9 +42,10 @@ $images = $cart->productImages;
         </div>
 
         <div class="flex justify-between sm:space-x-3 flex-1">
-            <x-input x-on:blur="validateInput(); btnDisabled=false" x-on:focus="btnDisabled=true;" min="1"
-                max="{{ $product->stock }}" x-model.number="items[{{ $val }}]" class="block w-16 h-10 pr-2"
-                type="number" />
+            <x-input max="{{ $product->stock }}" min="1"
+                x-on:input="btnDisabled = true; $event.target.value > {{ $product->stock }} ? showValidationResponse({{ $val }}) : '' "
+                x-on:blur="$event.target.value < 1 ? showValidationResponse({{ $val }}) : btnDisabled = false"
+                x-model.number="items[{{ $val }}]" class="block w-16 h-10 pr-2" type="number" />
 
             <form method="POST" action="{{ route('main.cart.destroy', ['cart' => $cart->id]) }}">
                 @method('DELETE')

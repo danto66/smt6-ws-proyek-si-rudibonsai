@@ -21,6 +21,7 @@ module.exports = {
             opacity: ['disabled'],
             ringColor: ['hover', 'active'],
             ringWidth: ['hover', 'active'],
+            pointerEvents: ['hover', 'focus'],
         },
     },
 

@@ -65,7 +65,7 @@
                     <div :class="{'animate-pulse' : isLoading}" class="mt-1 text-sm">
                         <x-select x-on:change="splitShippingRes(); setTotal(); isValid=true;" x-model="shippingRes"
                             x-bind:disabled="isDisable">
-                            <option value="">--Pilih Jenis Layanan--</option>
+                            <option x-text="isLoading ? 'Loading...' : '--Pilih Jenis Layanan--'" value=""></option>
                             <template x-for="res in results">
                                 <option :value="`${res.cost[0].value}|${res.service}`"
                                     x-text="`${res.service} (${setCurrencyFormat(res.cost[0].value)}) | ${res.cost[0].etd}` + (courier !== 'pos' ? ' Hari' : '')">
@@ -186,7 +186,7 @@
                         .then(res => res.json())
                         .then(data => {
                             this.results = [...data.rajaongkir.results[0].costs];
-                            console.log(this.results);
+                            // console.log(this.results);
                             this.isDisable = false;
                             this.isLoading = false;
                         })

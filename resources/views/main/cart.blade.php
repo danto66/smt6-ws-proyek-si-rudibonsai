@@ -29,14 +29,14 @@
                     <div class="text-gray-600 text-sm">
                         <span class="font-semibold text-gray-400">Total Item :</span>
 
-                        <span x-text="totalItem()"></span>
+                        <span x-text="getTotalItem()"></span>
                     </div>
 
                     <div class="mt-2 flex sm:flex-col justify-between">
                         <h1 class="text-gray-600 font-bold text-xl">Total :</h1>
 
                         <h1 class="text-gray-900 font-bold text-xl whitespace-nowrap ml-auto">
-                            <span x-text="subtotalPrice()"></span>
+                            <span x-text="getSubtotalPrice()"></span>
                         </h1>
                     </div>
                 </div>
@@ -48,11 +48,11 @@
                             <x-input x-model.number="items[{{ $loop->index }}]" type="hidden" name="qty[]" />
                         @endforeach
 
-                        <input type="hidden" name="total_item" x-model.number="totalItem()">
+                        <input type="hidden" name="total_item" x-model.number="getTotalItem()">
                         <input type="hidden" name="subtotal" x-model.number="subtotal">
-                        <input type="hidden" name="total_weight" x-model.number="totalWeight()">
+                        <input type="hidden" name="total_weight" x-model.number="getTotalWeight()">
 
-                        <button :disabled="btnDisabled" type="submit"
+                        <button :class="{'disabled' : btnDisabled}" :disabled="btnDisabled" type="submit"
                             class="mt-4 w-full btn-sm btn-green hover-darken-green">Checkout</button>
                     </form>
                 </div>
@@ -69,7 +69,7 @@
                 stocks: [],
                 btnDisabled: false,
                 subtotal: null,
-                totalItem() {
+                getTotalItem() {
                     let totalItem = 0;
                     this.items.forEach(i => {
                         totalItem += i
@@ -89,7 +89,7 @@
                         this.stocks.push(item.product.stock);
                     });
                 },
-                subtotalPrice() {
+                getSubtotalPrice() {
                     let subtotal = 0;
                     this.prices.forEach((item, i) => {
                         subtotal += this.items[i] * item;
@@ -102,7 +102,7 @@
                         currency: 'IDR',
                     }).format(subtotal);
                 },
-                totalWeight() {
+                getTotalWeight() {
                     let totalWeight = 0;
                     this.weight.forEach((item, i) => {
                         totalWeight += this.items[i] * item;
@@ -110,19 +110,9 @@
 
                     return totalWeight;
                 },
-                validateInput() {
-                    this.items.forEach((item, i) => {
-                        if (item < 1 || item > this.stocks[i]) {
-                            this.btnDisabled = true;
-                            return this.showResponseValidate();
-                        }
-                    });
-                },
-                showResponseValidate() {
-                    alert('Nilai input minimal 1 dan maksimal sesuai stok yang tersedia!');
-                    this.items.forEach((item, i) => {
-                        this.items[i] = 1;
-                    });
+                showValidationResponse(itemIndex) {
+                    alert('Input tidak valid!');
+                    this.items[itemIndex] = 1;
                     this.btnDisabled = false;
                 }
             }
