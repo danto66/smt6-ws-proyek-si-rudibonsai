@@ -1,5 +1,7 @@
 @extends('layouts.main.app')
 
+@section('title', 'Home')
+
 @section('content')
     <div class="relative">
         <div class="bg-black h-80 sm:h-auto relative flex items-center">

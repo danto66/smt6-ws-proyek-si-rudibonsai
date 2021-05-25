@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Product;
+use App\Models\OrderDetail;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
@@ -19,5 +21,16 @@ class Order extends Model
         'shipping_agent',
         'shipping_service',
         'user_id',
+        'expired_at',
     ];
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'order_details');
+    }
+
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
 }

@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AddressSeeder::class,
             RoleSeeder::class,
+
+            // seeder akun, optional dinonaktifkan saat produksi
             UserSeeder::class,
             AdminProfileSeeder::class,
             UserProfileSeeder::class,

@@ -1,5 +1,7 @@
 @extends('layouts.main.app')
 
+@section('title', 'Keranjang')
+
 @section('content')
     <div x-data="countCart()" x-init="setItemValue({{ $carts->count() }}); setData({{ $carts }})"
         class="mt-6 px-2 sm:px-8 xl:px-4 max-w-7xl mx-auto min-h-screen">
@@ -9,7 +11,7 @@
 
         @if (session()->has('message'))
             <div class="mt-6 w-full">
-                <x-alert>
+                <x-alert :type="session()->get('type')">
                     <span>{{ session()->get('message') }}</span>
                 </x-alert>
             </div>
@@ -18,10 +20,17 @@
         {{-- body --}}
         <div class="mt-6 flex flex-col sm:flex-row sm:space-x-4">
             <div class="bg-white sm:w-8/12 shadow rounded-xl px-4 pb-4">
-                {{-- item keranjang --}}
-                @foreach ($carts as $cart)
-                    <x-main.cart-item :cart="$cart" :val="$loop->index" />
-                @endforeach
+                @if ($carts->count() > 0)
+                    {{-- item keranjang --}}
+                    @foreach ($carts as $cart)
+                        <x-main.cart-item :cart="$cart" :val="$loop->index" />
+                    @endforeach
+                @else
+                    <div class="flex justify-center flex-col p-4 space-y-6">
+                        <p class="text-center text-xl font-semibold text-gray-500">Keranjang Kosong</p>
+                        <img class="h-48" src="{{ asset('/img/empty.svg') }}" alt="">
+                    </div>
+                @endif
             </div>
 
             <div class="bg-white block h-full mt-4 sm:mt-0 sm:w-4/12 p-4 shadow rounded-xl">
@@ -52,8 +61,14 @@
                         <input type="hidden" name="subtotal" x-model.number="subtotal">
                         <input type="hidden" name="total_weight" x-model.number="getTotalWeight()">
 
-                        <button :class="{'disabled' : btnDisabled}" :disabled="btnDisabled" type="submit"
-                            class="mt-4 w-full btn-sm btn-green hover-darken-green">Checkout</button>
+                        @if ($carts->count() > 0)
+                            <button :class="{'disabled' : btnDisabled}" :disabled="btnDisabled" type="submit"
+                                class="mt-4 w-full btn-sm btn-green hover-darken-green">Checkout</button>
+                        @else
+                            <x-alert class="w-full" :type="'info'">
+                                Keranjang Kosong.
+                            </x-alert>
+                        @endif
                     </form>
                 </div>
             </div>

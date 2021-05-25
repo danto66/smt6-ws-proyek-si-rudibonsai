@@ -114,7 +114,7 @@
                         Akun
                     </a>
 
-                    <a href="#" class="block menu menu-hover dropdown-item" role="menuitem">
+                    <a href="{{ route('main.order.index') }}" class="block menu menu-hover dropdown-item" role="menuitem">
                         <i class="mr-2 fas fa-receipt"></i>
                         Pesanan
                     </a>

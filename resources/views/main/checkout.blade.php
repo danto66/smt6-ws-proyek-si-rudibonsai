@@ -1,5 +1,7 @@
 @extends('layouts.main.app')
 
+@section('title', 'Checkout')
+
 @section('content')
     <div x-data="checkout()"
         x-init="setData({{ $profile->city_id }}, {{ $cart_data['total_weight'] }}, {{ $cart_data['subtotal'] }})"
@@ -98,7 +100,7 @@
 
                     <div x-show.transition="showItem" class="p-2 border-2 rounded-md mt-1">
                         @foreach ($items as $item)
-                            <x-main.checkout-item :item="$item" :qty="$cart_data['qty'][$loop->index]" />
+                            <x-main.product-list :item="$item" :qty="$cart_data['qty'][$loop->index]" />
                         @endforeach
                     </div>
                 </div>
@@ -116,7 +118,7 @@
 
                     <div class="sm:mt-1 text-sm font-semibold flex justify-between sm:flex-col">
                         <p class="whitespace-nowrap text-gray-400">Ongkos Kirim</p>
-                        <span x-text="shippingCost" class="text-gray-600 ml-auto"></span>
+                        <span x-text="setCurrencyFormat(shippingCost)" class="text-gray-600 ml-auto"></span>
                     </div>
 
                     <div class="mt-2 text-sm font-bold text-black flex justify-between sm:flex-col">

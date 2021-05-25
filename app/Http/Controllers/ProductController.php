@@ -22,6 +22,6 @@ class ProductController extends Controller
             return redirect()->route('main.products.index');
         }
 
-        return view('main.products-show', compact('product'));
+        return view('main.product-show', compact('product'));
     }
 }

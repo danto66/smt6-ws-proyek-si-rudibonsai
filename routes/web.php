@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -25,11 +26,16 @@ require __DIR__ . '/auth.php';
 
 // main app / frontend
 Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(function () {
+    // non-auth
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::prefix('/products')->name('products.')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::get('/{product}', [ProductController::class, 'show'])->name('show');
+    });
+
+    Route::get('/orders/detail', function () {
+        return view('main.order-detail');
     });
 
     // auth user
@@ -44,11 +50,19 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
         // cheeckout
         Route::post('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
         Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
+
+        // pesanan
+        Route::prefix('/orders')->name('order.')->group(function () {
+            Route::get('/{status?}', [OrderController::class, 'index'])->name('index');
+            Route::get('/detail/{order}', [OrderController::class, 'detail'])->name('detail');
+            Route::put('/detail/{order}/payment-proof', [OrderController::class, 'uploadPaymentProof'])->name('upload_payment_proof');
+        });
     });
 });
 
 //admin dashboard / backend
 Route::prefix('/admin')->name('admin.')->group(function () {
+    // non-auth
     Route::middleware('guest')->group(function () {
         Route::get('/login', [AdminLoginController::class, 'create'])->name('login');
         Route::post('/login', [AdminLoginController::class, 'store'])->name('login.store');

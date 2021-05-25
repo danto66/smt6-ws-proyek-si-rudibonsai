@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Address\Province;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 
 class CheckoutController extends Controller
@@ -31,6 +33,8 @@ class CheckoutController extends Controller
             'payment_agent' => 'BRI',
             'payment_type' => 'TRANSFER BANK',
             'user_id' => auth()->user()->id,
+            'status' => 'Tertunda',
+            'expired_at' => Carbon::now()->addHours(24),
         ];
 
         $order = Order::create($query);
@@ -42,8 +46,16 @@ class CheckoutController extends Controller
                 'product_id' => $item->product_id,
                 'order_id' => $order->id,
             ]);
+
+            $product = Product::find($item->product_id);
+            $product->stock = $product->stock -  $qty['qty'][$i];
+            $product->save();
+
+            if ($product->stock < 1) {
+                Cart::find($item->id)->delete();
+            }
         }
 
-        return redirect()->route('main.cart.index')->with('message', 'Pesanan berhasil dibuat.');
+        return redirect()->route('main.order.detail', ['order' => $order->id])->with(['type' => 'success', 'message' => 'Pesanan berhasil dibuat.']);
     }
 }

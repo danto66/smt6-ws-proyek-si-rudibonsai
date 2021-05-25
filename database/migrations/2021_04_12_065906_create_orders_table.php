@@ -23,6 +23,9 @@ class CreateOrdersTable extends Migration
             $table->string('payment_type');
             $table->string('shipping_agent');
             $table->string('shipping_service');
+            $table->enum('status', ['Tertunda', 'Diproses', 'Dikirim', 'Selesai', 'Batal']);
+            $table->string('payment_proof')->default('empty');
+            $table->timestamp('expired_at');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
