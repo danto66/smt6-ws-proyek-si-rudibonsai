@@ -42,10 +42,14 @@ $images = $cart->productImages;
         </div>
 
         <div class="flex justify-between sm:space-x-3 flex-1">
-            <x-input max="{{ $product->stock }}" min="1"
-                x-on:input="btnDisabled = true; $event.target.value > {{ $product->stock }} ? showValidationResponse({{ $val }}) : '' "
-                x-on:blur="$event.target.value < 1 ? showValidationResponse({{ $val }}) : btnDisabled = false"
-                x-model.number="items[{{ $val }}]" class="block w-16 h-10 pr-2" type="number" />
+            @if ($product->stock < 1)
+                <x-input type="number" class="block w-16 h-10 pr-2 disabled" :value="$product->stock" disabled />
+            @else
+                <x-input max="{{ $product->stock }}" min="1"
+                    x-on:input="btnDisabled = true; $event.target.value > {{ $product->stock }} ? showValidationResponse({{ $val }}) : '' "
+                    x-on:blur="$event.target.value < 1 ? showValidationResponse({{ $val }}) : btnDisabled = false"
+                    x-model.number="items[{{ $val }}]" class="block w-16 h-10 pr-2" type="number" />
+            @endif
 
             <form method="POST" action="{{ route('main.cart.destroy', ['cart' => $cart->id]) }}">
                 @method('DELETE')
