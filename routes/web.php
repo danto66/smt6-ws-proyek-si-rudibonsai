@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\Admin\ProductCategoryAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -89,5 +90,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
             Route::put('/{category}', [ProductCategoryAdminController::class, 'update'])->name('update');
             Route::delete('/{category}', [ProductCategoryAdminController::class, 'destroy'])->name('destroy');
         });
+
+        Route::get('/orders', [OrderAdminController::class, 'index']);
     });
 });
