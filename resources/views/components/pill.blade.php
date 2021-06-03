@@ -7,7 +7,7 @@ switch ($status) {
         $color = 'indigo';
         break;
     case 'dikirim':
-        $color = 'blue';
+        $color = 'purple';
         break;
     case 'selesai':
         $color = 'green';
@@ -18,7 +18,8 @@ switch ($status) {
 }
 @endphp
 
-<span
+<div
     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $color }}-100 text-{{ $color }}-800">
     {{ ucfirst($status) }}
-</span>
+    {{ $slot }}
+</div>

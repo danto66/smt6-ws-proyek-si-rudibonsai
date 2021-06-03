@@ -17,11 +17,9 @@ class ProductCategoryAdminController extends Controller
      */
     public function index()
     {
-
         $categories = ProductCategory::paginate(10);
 
         return view('admin.category', compact('categories'));
-
     }
 
     /**
@@ -32,11 +30,9 @@ class ProductCategoryAdminController extends Controller
      */
     public function store(Request $request)
     {
-
         ProductCategory::create($request->all());
 
-        return redirect()->back()->with('message', 'Kategori berhasil ditambahkan.');
-
+        return redirect()->back()->with(['status' => 'success', 'message' => 'Kategori berhasil ditambahkan.']);
     }
 
     /**
@@ -48,11 +44,9 @@ class ProductCategoryAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         ProductCategory::find($request->id)->update($request->all());
 
-        return redirect()->back()->with('message', 'Kategori berhasil diedit.');
-
+        return redirect()->back()->with(['status' => 'success', 'message' => 'Kategori berhasil diedit.']);
     }
 
     /**
@@ -63,10 +57,8 @@ class ProductCategoryAdminController extends Controller
      */
     public function destroy($id)
     {
-
         ProductCategory::destroy($id);
 
-        return redirect()->back()->with('message', 'Kategori berhasil dihapus.');
-
+        return redirect()->back()->with(['status' => 'success', 'message' => 'Kategori berhasil dihapus.']);
     }
 }

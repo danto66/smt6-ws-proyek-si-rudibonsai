@@ -42,6 +42,6 @@ class CartController extends Controller
         $this->authorize('delete', $cart);
         $cart->delete();
 
-        return back()->with('message', 'Produk berhasil dihapus dari keranjang');
+        return back()->with(['type' => 'success', 'message' => 'Produk berhasil dihapus dari keranjang']);
     }
 }

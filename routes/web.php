@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\Admin\ProductCategoryAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +90,12 @@ Route::prefix('/admin')->name('admin.')->group(function () {
             Route::post('/', [ProductCategoryAdminController::class, 'store'])->name('store');
             Route::put('/{category}', [ProductCategoryAdminController::class, 'update'])->name('update');
             Route::delete('/{category}', [ProductCategoryAdminController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('/orders')->name('order.')->group(function () {
+            Route::get('/{status?}', [OrderAdminController::class, 'index'])->name('index');
+            Route::get('/detail/{order}', [OrderAdminController::class, 'detail'])->name('detail');
+            Route::put('/detail/{order}/update-status', [OrderAdminController::class, 'updateStatus'])->name('update_status');
         });
     });
 });

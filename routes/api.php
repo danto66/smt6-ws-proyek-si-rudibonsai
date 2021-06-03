@@ -3,6 +3,7 @@
 use App\Http\Controllers\Address\CityController;
 use App\Http\Controllers\Address\ProvinceController;
 use App\Http\Controllers\Address\SubdistrictController;
+use App\Http\Controllers\Api\AuthUserApiController;
 use App\Http\Controllers\Api\ProductCategoryApiController;
 use App\Http\Controllers\Api\RajaOngkirController;
 use Illuminate\Http\Request;
@@ -32,5 +33,11 @@ Route::prefix('/address')->name('address')->group(function () {
 Route::get('/get-cost/{courier}/{destination}/{weight}', [RajaOngkirController::class, 'getCost']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthUserApiController::class, 'logout']);
+
     Route::apiResource('/categories', ProductCategoryApiController::class);
 });
+
+// Auth
+Route::post('/register', [AuthUserApiController::class, 'register']);
+Route::post('/login', [AuthUserApiController::class, 'login']);
