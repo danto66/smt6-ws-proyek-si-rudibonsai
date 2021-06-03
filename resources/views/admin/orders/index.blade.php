@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Daftar Pesanan')
+@section('title', 'Daftar Pesanan ' . '(' . ucfirst($status) . ')')
 
 @section('content')
     <div class="py-2 overflow-x-auto mt-4">

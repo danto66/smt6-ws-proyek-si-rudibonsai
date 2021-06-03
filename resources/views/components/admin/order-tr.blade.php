@@ -14,6 +14,11 @@
 
     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
         <x-pill :status="strtolower($order->status)" />
+        @if ($order->payment_proof == 'empty' && $order->status == 'Tertunda')
+            <x-alert :type="'warning'">
+                <span class="text-sm">Belum upload bukti transfer</span>
+            </x-alert>
+        @endif
     </td>
 
     @php
@@ -50,6 +55,6 @@
     </td>
 
     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-        <a class="btn btn-green" href="{{ route('main.order.detail', ['order' => $order->id]) }}">Detail</a>
+        <a class="btn btn-green" href="{{ route('admin.order.detail', ['order' => $order->id]) }}">Detail</a>
     </td>
 </tr>
