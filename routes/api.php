@@ -3,6 +3,9 @@
 use App\Http\Controllers\Address\CityController;
 use App\Http\Controllers\Address\ProvinceController;
 use App\Http\Controllers\Address\SubdistrictController;
+use App\Http\Controllers\Api\AuthUserApiController;
+use App\Http\Controllers\Api\CartApiController;
+use App\Http\Controllers\Api\ProductApiController;
 use App\Http\Controllers\Api\ProductCategoryApiController;
 use App\Http\Controllers\Api\RajaOngkirController;
 use Illuminate\Http\Request;
@@ -32,5 +35,27 @@ Route::prefix('/address')->name('address')->group(function () {
 Route::get('/get-cost/{courier}/{destination}/{weight}', [RajaOngkirController::class, 'getCost']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('/categories', ProductCategoryApiController::class);
+    Route::post('/logout', [AuthUserApiController::class, 'logout']);
+
+    // data kategori produk
+    Route::get('/categories', [ProductCategoryApiController::class, 'index']);
+    Route::get('/categories/{category}', [ProductCategoryApiController::class, 'show']);
+
+    // data produk
+    Route::get('/products', [ProductApiController::class, 'index']);
+    Route::get('/products/{product}', [ProductApiController::class, 'show']);
+
+    // data keranjang 
+    Route::prefix('/carts')->group(function () {
+        Route::get('/', [CartApiController::class, 'index']);
+        Route::post('/', [CartApiController::class, 'store']);
+        Route::delete('/{cart}', [CartApiController::class, 'destroy']);
+    });
+
+    // data pesanan
+    // Route::prefix('/orders')->group(function () {
+    // });
 });
+
+Route::post('/register', [AuthUserApiController::class, 'register']);
+Route::post('/login', [AuthUserApiController::class, 'login']);

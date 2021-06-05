@@ -1,4 +1,4 @@
-@props(['type' => '', 'status' => ''])
+@props(['type' => '', 'status' => '', 'msg' => '', 'newMsg' => ''])
 
 @php
 switch ($type) {
@@ -29,7 +29,7 @@ switch ($status) {
         $msg = 'Pesanan sedang diproses.';
         break;
     case 'dikirim':
-        $color = 'blue';
+        $color = 'purple';
         $msg = 'Pesanan sedang dikirim.';
         break;
     case 'selesai':
@@ -41,11 +41,15 @@ switch ($status) {
         $msg = 'Pesanan dibatalkan.';
         break;
 }
+
+if ($newMsg !== '') {
+    $msg = $newMsg;
+}
 @endphp
 
 <div class="p-4 w-full mt-4 rounded text-{{ $color }}-700 bg-{{ $color }}-200">
     {{ $slot }}
-    @if (isset($msg))
+    @if ($msg !== '')
         <span class="font-bold">(Status : {{ ucfirst($status) }}) </span> {{ $msg }}
     @endif
 </div>

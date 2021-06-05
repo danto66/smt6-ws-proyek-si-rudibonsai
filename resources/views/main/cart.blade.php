@@ -3,6 +3,10 @@
 @section('title', 'Keranjang')
 
 @section('content')
+    @php
+    $stockEmpty = false;
+    @endphp
+
     <div x-data="countCart()" x-init="setItemValue({{ $carts->count() }}); setData({{ $carts }})"
         class="mt-6 px-2 sm:px-8 xl:px-4 max-w-7xl mx-auto min-h-screen">
         <div class="text-gray-900 font-semibold sm:text-3xl text-xl border-b-4 border-green-500 py-2">
@@ -24,6 +28,11 @@
                     {{-- item keranjang --}}
                     @foreach ($carts as $cart)
                         <x-main.cart-item :cart="$cart" :val="$loop->index" />
+                        @if ($cart->product->stock < 1)
+                            @php
+                                $stockEmpty = true;
+                            @endphp
+                        @endif
                     @endforeach
                 @else
                     <div class="flex justify-center flex-col p-4 space-y-6">
@@ -34,43 +43,49 @@
             </div>
 
             <div class="bg-white block h-full mt-4 sm:mt-0 sm:w-4/12 p-4 shadow rounded-xl">
-                <div class="border-b-2 pb-2">
-                    <div class="text-gray-600 text-sm">
-                        <span class="font-semibold text-gray-400">Total Item :</span>
+                @if ($stockEmpty == true)
+                    <x-alert class="w-full" :type="'info'">
+                        Silahkan hapus item yang stoknya kosong (0) untuk dapat melakukan checkout.
+                    </x-alert>
+                @else
+                    <div class="border-b-2 pb-2">
+                        <div class="text-gray-600 text-sm">
+                            <span class="font-semibold text-gray-400">Total Item :</span>
 
-                        <span x-text="getTotalItem()"></span>
+                            <span x-text="getTotalItem()"></span>
+                        </div>
+
+                        <div class="mt-2 flex sm:flex-col justify-between">
+                            <h1 class="text-gray-600 font-bold text-xl">Total :</h1>
+
+                            <h1 class="text-gray-900 font-bold text-xl whitespace-nowrap ml-auto">
+                                <span x-text="getSubtotalPrice()"></span>
+                            </h1>
+                        </div>
                     </div>
 
-                    <div class="mt-2 flex sm:flex-col justify-between">
-                        <h1 class="text-gray-600 font-bold text-xl">Total :</h1>
+                    <div class="flex flex-col">
+                        <form method="POST" action="{{ route('main.checkout.index') }}">
+                            @csrf
+                            @foreach ($carts as $cart)
+                                <x-input x-model.number="items[{{ $loop->index }}]" type="hidden" name="qty[]" />
+                            @endforeach
 
-                        <h1 class="text-gray-900 font-bold text-xl whitespace-nowrap ml-auto">
-                            <span x-text="getSubtotalPrice()"></span>
-                        </h1>
+                            <input type="hidden" name="total_item" x-model.number="getTotalItem()">
+                            <input type="hidden" name="subtotal" x-model.number="subtotal">
+                            <input type="hidden" name="total_weight" x-model.number="getTotalWeight()">
+
+                            @if ($carts->count() > 0)
+                                <button :class="{'disabled' : btnDisabled}" :disabled="btnDisabled" type="submit"
+                                    class="mt-4 w-full btn-sm btn-green hover-darken-green">Checkout</button>
+                            @else
+                                <x-alert class="w-full" :type="'info'">
+                                    Keranjang Kosong.
+                                </x-alert>
+                            @endif
+                        </form>
                     </div>
-                </div>
-
-                <div class="flex flex-col">
-                    <form method="POST" action="{{ route('main.checkout.index') }}">
-                        @csrf
-                        @foreach ($carts as $cart)
-                            <x-input x-model.number="items[{{ $loop->index }}]" type="hidden" name="qty[]" />
-                        @endforeach
-
-                        <input type="hidden" name="total_item" x-model.number="getTotalItem()">
-                        <input type="hidden" name="subtotal" x-model.number="subtotal">
-                        <input type="hidden" name="total_weight" x-model.number="getTotalWeight()">
-
-                        @if ($carts->count() > 0)
-                            <button :class="{'disabled' : btnDisabled}" :disabled="btnDisabled" type="submit"
-                                class="mt-4 w-full btn-sm btn-green hover-darken-green">Checkout</button>
-                        @else
-                            <x-alert class="w-full" :type="'info'">
-                                Keranjang Kosong.
-                            </x-alert>
-                        @endif
-                    </form>
-                </div>
+                @endif
             </div>
         </div>
     </div>
