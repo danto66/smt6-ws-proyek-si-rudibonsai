@@ -10,11 +10,16 @@ class CartApiController extends Controller
 {
     public function index()
     {
-        return response(Cart::all());
+        return response(Cart::where('user_id', auth()->user()->id)->get());
     }
 
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id' => 'required',
+            'product_id' => 'required',
+        ]);
+
         Cart::create([
             'user_id' => auth()->user()->id,
             'product_id' => $request->product_id,

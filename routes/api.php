@@ -5,6 +5,7 @@ use App\Http\Controllers\Address\ProvinceController;
 use App\Http\Controllers\Address\SubdistrictController;
 use App\Http\Controllers\Api\AuthUserApiController;
 use App\Http\Controllers\Api\CartApiController;
+use App\Http\Controllers\Api\OrderApiController;
 use App\Http\Controllers\Api\ProductApiController;
 use App\Http\Controllers\Api\ProductCategoryApiController;
 use App\Http\Controllers\Api\RajaOngkirController;
@@ -22,19 +23,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
+// data alamat
 Route::prefix('/address')->name('address')->group(function () {
     Route::get('/provinces', [ProvinceController::class, 'index'])->name('.provinces');
     Route::get('/cities/province/{id}', [CityController::class, 'getCitiesByProvinceId'])->name('.cities');
     Route::get('/subdistricts/city/{id}', [SubdistrictController::class, 'getSubdistrictsByCityId'])->name('.subdistricts');
 });
 
+// data ongkos kirim
 Route::get('/get-cost/{courier}/{destination}/{weight}', [RajaOngkirController::class, 'getCost']);
 
+// login dan register
+Route::post('/register', [AuthUserApiController::class, 'register']);
+Route::post('/login', [AuthUserApiController::class, 'login']);
+
+// auth user sanctum
+// diakses menggunakan token
 Route::middleware('auth:sanctum')->group(function () {
+    // logout
     Route::post('/logout', [AuthUserApiController::class, 'logout']);
 
     // data kategori produk
@@ -53,9 +59,9 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     // data pesanan
-    // Route::prefix('/orders')->group(function () {
-    // });
+    Route::prefix('/orders')->group(function () {
+        Route::get('/', [OrderApiController::class, 'index']);
+        Route::get('/{order}', [OrderApiController::class, 'detail']);
+        Route::post('/', [OrderApiController::class, 'store']);
+    });
 });
-
-Route::post('/register', [AuthUserApiController::class, 'register']);
-Route::post('/login', [AuthUserApiController::class, 'login']);
