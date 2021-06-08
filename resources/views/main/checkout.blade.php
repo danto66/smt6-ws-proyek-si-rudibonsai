@@ -4,7 +4,7 @@
 
 @section('content')
     <div x-data="checkout()"
-        x-init="setData({{ $profile->city_id }}, {{ $cart_data['total_weight'] }}, {{ $cart_data['subtotal'] }})"
+        x-init="setData({{ $profile->city_id }}, {{ $cart_data['total_weight'] }}, {{ $cart_data['subtotal'] }}, '{{ url('/') }}')"
         class="mt-6 px-2 sm:px-8 xl:px-4 max-w-7xl mx-auto min-h-screen">
         <div class="text-gray-900 font-semibold sm:text-3xl text-xl border-b-4 border-green-500 py-2">
             Checkout
@@ -156,8 +156,7 @@
                 destination: '', // diisi lewat setData()
                 weight: '', // diisi lewat setData()
                 courier: '', // diisi oleh x-model
-                url: "http://127.0.0.1:8000/api/get-cost",
-                key: "7669999eb1b0e20356e111f4adaee232",
+                url: '', // diisi lewat setData()
                 results: [],
                 isDisable: true,
                 isLoading: false,
@@ -166,10 +165,11 @@
                 shippingRes: '',
                 total: 0,
                 subtotal: 0,
-                setData(destination, weight, subtotal) {
+                setData(destination, weight, subtotal, baseUrl) {
                     this.destination = destination;
                     this.weight = weight;
                     this.subtotal = subtotal;
+                    this.url = `${baseUrl}/api/cost`;
                 },
                 resetData() {
                     this.results = [];

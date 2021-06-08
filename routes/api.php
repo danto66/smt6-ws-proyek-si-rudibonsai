@@ -1,14 +1,12 @@
 <?php
 
-use App\Http\Controllers\Address\CityController;
-use App\Http\Controllers\Address\ProvinceController;
-use App\Http\Controllers\Address\SubdistrictController;
+use App\Http\Controllers\Api\AddressApiController;
 use App\Http\Controllers\Api\AuthUserApiController;
 use App\Http\Controllers\Api\CartApiController;
 use App\Http\Controllers\Api\OrderApiController;
 use App\Http\Controllers\Api\ProductApiController;
 use App\Http\Controllers\Api\ProductCategoryApiController;
-use App\Http\Controllers\Api\RajaOngkirController;
+use App\Http\Controllers\Api\RajaOngkirApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,14 +22,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 // data alamat
-Route::prefix('/address')->name('address')->group(function () {
-    Route::get('/provinces', [ProvinceController::class, 'index'])->name('.provinces');
-    Route::get('/cities/province/{id}', [CityController::class, 'getCitiesByProvinceId'])->name('.cities');
-    Route::get('/subdistricts/city/{id}', [SubdistrictController::class, 'getSubdistrictsByCityId'])->name('.subdistricts');
+Route::prefix('/address')->name('address.')->group(function () {
+    Route::get('/provinces', [AddressApiController::class, 'getProvinces'])->name('provinces');
+    Route::get('/provinces/{id}/cities', [AddressApiController::class, 'getCitiesByProvinceId'])->name('cities');
+    Route::get('/cities/{id}/subdistricts', [AddressApiController::class, 'getSubdistrictsByCityId'])->name('subdistricts');
 });
 
 // data ongkos kirim
-Route::get('/get-cost/{courier}/{destination}/{weight}', [RajaOngkirController::class, 'getCost']);
+Route::get('/cost/{courier}/{destination}/{weight}', [RajaOngkirApiController::class, 'getCost']);
 
 // login dan register
 Route::post('/register', [AuthUserApiController::class, 'register']);
