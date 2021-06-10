@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 
-class RajaOngkirController extends Controller
+class RajaOngkirApiController extends Controller
 {
     public function getCost($courier, $destination, $weight)
     {
@@ -14,7 +14,7 @@ class RajaOngkirController extends Controller
             'key' => env('KEY_RAJAONGKIR'),
         ])->post('https://api.rajaongkir.com/starter/cost', [
             'courier' => $courier,
-            'origin' => '74',
+            'origin' => env('ORIGIN_ID'),
             'destination' => $destination,
             'weight' => $weight,
         ])->json();

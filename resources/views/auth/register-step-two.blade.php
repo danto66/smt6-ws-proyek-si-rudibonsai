@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <div x-data="getAlamat()" x-init="fetchProvinsi()" class="mt-4">
+            <div x-data="getAlamat()" x-init="setBaseUrl('{{ url('/') }}'), fetchProvinsi()" class="mt-4">
                 <x-label :value="__('Alamat')" />
 
                 <x-select required x-model="selectedProv" x-on:change="changeProv()" x-bind:disabled="provDisable"
@@ -108,6 +108,10 @@
             kecDisable: true,
             selectedProv: null,
             selectedKab: null,
+            baseUrl: null,
+            setBaseUrl(url) {
+                this.baseUrl = url;
+            },
             changeProv() {
                 this.dataKabupaten = null;
                 this.dataKecamatan = null;
@@ -121,17 +125,17 @@
                 this.kecDisable = true;
             },
             fetchProvinsi() {
-                fetch('http://127.0.0.1:8000/api/address/provinces')
+                fetch(`${this.baseUrl}/api/address/provinces`)
                     .then(res => res.json())
                     .then(data => {
                         this.dataProvinsi = data;
                         this.provDisable = false;
 
-                        console.log(this.dataProvinsi);
+                        // console.log(this.dataProvinsi);
                     });
             },
             fetchKabupaten() {
-                fetch('http://127.0.0.1:8000/api/address/cities/province/' + this.selectedProv)
+                fetch(`${this.baseUrl}/api/address/provinces/${this.selectedProv}/cities`)
                     .then(res => res.json())
                     .then(data => {
                         this.dataKabupaten = data;
@@ -141,7 +145,7 @@
                     })
             },
             fetchKecamatan() {
-                fetch('http://127.0.0.1:8000/api/address/subdistricts/city/' + this.selectedKab)
+                fetch(`${this.baseUrl}/api/address/cities/${this.selectedKab}/subdistricts`)
                     .then(res => res.json())
                     .then(data => {
                         this.dataKecamatan = data;
