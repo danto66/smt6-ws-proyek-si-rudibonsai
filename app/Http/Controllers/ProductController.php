@@ -24,4 +24,19 @@ class ProductController extends Controller
 
         return view('main.product-show', compact('product'));
     }
+
+    public function search(Request $request)
+    {
+        if ($request->keyword_product == '') {
+            return redirect()->route('main.products.index');
+        }
+
+        $products = Product::with('productImages')
+            ->where('name', 'LIKE', '%' . $request->keyword_product . '%')
+            ->paginate(8);
+
+        $keyword = $request->keyword_product;
+
+        return view('main.product', compact('products', 'keyword'));
+    }
 }
