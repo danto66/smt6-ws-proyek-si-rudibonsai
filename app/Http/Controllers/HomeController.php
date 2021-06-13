@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('main.home');
+        $latestProducts = Product::latest()->take(8)->get();
+
+        return view('main.home', compact('latestProducts'));
     }
 }
