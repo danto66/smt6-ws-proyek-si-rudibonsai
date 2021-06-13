@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Address;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\ProductCategory;
+use App\Models\Address\Subdistrict;
+use Illuminate\Http\Request;
 
-class ProductCategoryApiController extends Controller
+class SubdistrictController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ProductCategoryApiController extends Controller
      */
     public function index()
     {
-        return ProductCategory::all();
+        //
     }
 
     /**
@@ -26,12 +26,7 @@ class ProductCategoryApiController extends Controller
      */
     public function store(Request $request)
     {
-        ProductCategory::create($request->all());
-
-        return response()->json([
-            'status' => 'ok',
-            'message' => 'Product category was created!'
-        ], 200);;
+        //
     }
 
     /**
@@ -42,7 +37,7 @@ class ProductCategoryApiController extends Controller
      */
     public function show($id)
     {
-        return ProductCategory::find($id);
+        //
     }
 
     /**
@@ -54,12 +49,7 @@ class ProductCategoryApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        ProductCategory::find($id)->update($request->all());
-
-        return response()->json([
-            'status' => 'ok',
-            'message' => 'Product category was updated!'
-        ], 200);
+        //
     }
 
     /**
@@ -70,11 +60,14 @@ class ProductCategoryApiController extends Controller
      */
     public function destroy($id)
     {
-        ProductCategory::destroy($id);
+        //
+    }
 
-        return response()->json([
-            'status' => 'ok',
-            'message' => 'Product category was deleted'
-        ], 200);
+    public function getSubdistrictsByCityId($id)
+    {
+        $subdistrict = Subdistrict::where('city_id', $id)
+            ->orderBy('subdistrict_id')
+            ->get();
+        return $subdistrict;
     }
 }

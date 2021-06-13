@@ -22,7 +22,6 @@ class Order extends Model
         'payment_type',
         'shipping_agent',
         'shipping_service',
-        'status',
         'user_id',
         'expired_at',
     ];
