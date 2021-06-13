@@ -36,6 +36,8 @@ class AuthUserApiController extends Controller
 
         $user->userProfile()->create($request->all());
 
+        // $user->tokens()->delete();
+
         $token = $user->createToken('authToken')->plainTextToken;
 
         $user->userProfile;
@@ -57,6 +59,8 @@ class AuthUserApiController extends Controller
         $request->authenticate();
 
         $user = User::where('email', $request->email)->first();
+
+        $user->tokens()->delete();
 
         $token = $user->createToken('authToken')->plainTextToken;
 
