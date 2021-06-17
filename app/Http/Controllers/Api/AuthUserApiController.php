@@ -64,14 +64,24 @@ class AuthUserApiController extends Controller
 
         $token = $user->createToken('authToken')->plainTextToken;
 
-        $user->userProfile;
-        $user->userProfile->province;
-        $user->userProfile->city;
-        $user->userProfile->subdistrict;
-
         $response = [
-            'user' => $user,
-            'token' => $token,
+            'status' => 'true',
+            'message' => 'Login success',
+            'data' => [
+                'id' => $user->id,
+                'email' => $user->email,
+                'email_verified_at' => $user->email_verified_at,
+                'role_id' => $user->role_id,
+                'fullname' => $user->userProfile->fullname,
+                'phone' => $user->userProfile->phone,
+                'gender' => $user->userProfile->gender,
+                'profile_picture' => $user->userProfile->profile_picture,
+                'province' => $user->userProfile->province->province_name,
+                'city' => $user->userProfile->city->city_name,
+                'subdistrict' => $user->userProfile->subdistrict->subdistrict_name,
+                'address_detail' => $user->userProfile->address_detail,
+                'token' => $token,
+            ],
         ];
 
         return response($response, 201);
