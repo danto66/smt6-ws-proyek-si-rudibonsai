@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 class ProductApiController extends Controller
 {
@@ -21,5 +23,16 @@ class ProductApiController extends Controller
         $product->productImages;
 
         return response($product);
+    }
+
+    public function showImage($filename)
+    {
+        $path = 'public/img/products/' . $filename;
+
+        if (!Storage::exists($path)) {
+            abort(404);
+        }
+
+        return Storage::disk('local')->response($path);
     }
 }

@@ -48,6 +48,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // data produk
     Route::get('/products', [ProductApiController::class, 'index']);
     Route::get('/products/{product}', [ProductApiController::class, 'show']);
+    Route::get('/products/images/{filename}', [ProductApiController::class, 'showImage']);
 
     // data keranjang 
     Route::prefix('/carts')->group(function () {
