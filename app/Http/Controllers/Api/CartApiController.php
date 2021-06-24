@@ -10,7 +10,11 @@ class CartApiController extends Controller
 {
     public function index()
     {
-        return response(Cart::where('user_id', auth()->user()->id)->get());
+        $response = [
+            'carts' => Cart::with(["product", "productImages"])->where('user_id', auth()->user()->id)->get()
+        ];
+
+        return response($response);
     }
 
     public function store(Request $request)

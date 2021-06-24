@@ -35,6 +35,8 @@ Route::get('/cost/{courier}/{destination}/{weight}', [RajaOngkirApiController::c
 Route::post('/register', [AuthUserApiController::class, 'register']);
 Route::post('/login', [AuthUserApiController::class, 'login']);
 
+Route::get('/products/images/{filename}', [ProductApiController::class, 'showImage']);
+
 // auth user sanctum
 // diakses menggunakan token
 Route::middleware('auth:sanctum')->group(function () {
@@ -48,7 +50,6 @@ Route::middleware('auth:sanctum')->group(function () {
     // data produk
     Route::get('/products', [ProductApiController::class, 'index']);
     Route::get('/products/{product}', [ProductApiController::class, 'show']);
-    Route::get('/products/images/{filename}', [ProductApiController::class, 'showImage']);
 
     // data keranjang 
     Route::prefix('/carts')->group(function () {
