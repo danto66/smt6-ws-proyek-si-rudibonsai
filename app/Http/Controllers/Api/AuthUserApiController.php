@@ -78,6 +78,7 @@ class AuthUserApiController extends Controller
                 'profile_picture' => $user->userProfile->profile_picture,
                 'province' => $user->userProfile->province->province_name,
                 'city' => $user->userProfile->city->city_name,
+                'city_id' => $user->userProfile->city->city_id,
                 'subdistrict' => $user->userProfile->subdistrict->subdistrict_name,
                 'address_detail' => $user->userProfile->address_detail,
                 'token' => $token,

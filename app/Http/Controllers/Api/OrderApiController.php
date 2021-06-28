@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class OrderApiController extends Controller
 {
@@ -56,16 +57,23 @@ class OrderApiController extends Controller
             'product_total_amount' => 'required|integer',
             'grand_total_amount' => 'required|integer',
             'quantity_total' => 'required|integer',
-            'payment_agent' => 'required|string',
-            'payment_type' => 'required|string',
             'shipping_agent' => 'required|string',
             'shipping_service' => 'required|string',
-            'status' => 'required',
-            'user_id' => 'required',
-            'expired_at' => 'required',
         ]);
 
-        $order = Order::create($request->all());
+        $order = Order::create([
+            'shipping_cost' => $request->shipping_cost,
+            'product_total_amount' => $request->product_total_amount,
+            'grand_total_amount' => $request->grand_total_amount,
+            'quantity_total' => $request->quantity_total,
+            'payment_agent' => 'BRI',
+            'payment_type' => 'TRANSFER BANK',
+            'shipping_agent' => $request->shipping_agent,
+            'shipping_service' => $request->shipping_service,
+            'status' => 'Tertunda',
+            'user_id' => auth()->user()->id,
+            'expired_at' => Carbon::now()->addHours(24),
+        ]);
 
         foreach ($request->order_detail as $detail) {
             OrderDetail::create([
