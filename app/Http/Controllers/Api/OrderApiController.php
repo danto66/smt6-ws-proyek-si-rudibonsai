@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use Carbon\Carbon;
+use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -81,10 +83,18 @@ class OrderApiController extends Controller
                 'product_id' => $detail['product_id'],
                 'order_id' => $order->id,
             ]);
+
+            $product = Product::find($detail['product_id']);
+            $product->stock = $product->stock - $detail['quantity'];
+            $product->save();
+
+            if ($product->stock < 1) {
+                Cart::where('product_id', $detail['product_id'])->delete();
+            }
         }
 
         $response = [
-            'message' => 'pesanan berhasil dibuat',
+            'message' => 'Pesanan berhasil dibuat',
         ];
 
         return response($response);
