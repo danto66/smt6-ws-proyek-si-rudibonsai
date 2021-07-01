@@ -30,7 +30,7 @@ class CartApiController extends Controller
         ]);
 
         $response = [
-            'message' => 'produk berhasil ditambahkan ke keranjang',
+            'message' => 'Produk berhasil ditambahkan ke keranjang',
         ];
 
         return response($response);
@@ -42,7 +42,7 @@ class CartApiController extends Controller
         $cart->delete();
 
         $response = [
-            'message' => 'item berhasil dihapus dari keranjang',
+            'message' => 'Item berhasil dihapus dari keranjang',
         ];
 
         return response($response);
