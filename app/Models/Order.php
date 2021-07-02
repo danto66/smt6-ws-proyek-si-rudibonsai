@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use DateTimeInterface;
 use App\Models\Product;
 use App\Models\OrderDetail;
 use App\Models\UserProfile;
@@ -12,6 +13,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Order extends Model
 {
     use HasFactory;
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        // return $date->format('Y-m-d');
+        return $date->toIso8601String();
+    }
 
     protected $fillable = [
         'shipping_cost',
