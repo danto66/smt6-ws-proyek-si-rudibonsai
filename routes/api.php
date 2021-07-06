@@ -63,5 +63,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [OrderApiController::class, 'index']);
         Route::get('/{order}', [OrderApiController::class, 'detail']);
         Route::post('/', [OrderApiController::class, 'store']);
+        Route::post('/{order}/payment-proof', [OrderApiController::class, 'uploadPaymentProof']);
     });
 });
