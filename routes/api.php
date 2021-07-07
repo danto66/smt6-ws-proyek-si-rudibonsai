@@ -36,6 +36,7 @@ Route::post('/register', [AuthUserApiController::class, 'register']);
 Route::post('/login', [AuthUserApiController::class, 'login']);
 
 Route::get('/products/images/{filename}', [ProductApiController::class, 'showImage']);
+Route::get('/orders/payment-proof/{filename}', [OrderApiController::class, 'getPaymentProof']);
 
 // auth user sanctum
 // diakses menggunakan token

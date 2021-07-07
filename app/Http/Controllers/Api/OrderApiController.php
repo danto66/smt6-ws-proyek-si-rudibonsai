@@ -138,4 +138,15 @@ class OrderApiController extends Controller
 
         return $newName;
     }
+
+    public function getPaymentProof($filename)
+    {
+        $path = 'public/img/payment-proof/' . $filename;
+
+        if (!Storage::exists($path)) {
+            abort(404);
+        }
+
+        return Storage::disk('local')->response($path);
+    }
 }
