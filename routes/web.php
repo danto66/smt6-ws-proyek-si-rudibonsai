@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\Admin\ProductCategoryAdminController;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +60,11 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
             Route::get('/detail/{order}', [OrderController::class, 'detail'])->name('detail');
             Route::put('/detail/{order}/payment-proof', [OrderController::class, 'uploadPaymentProof'])->name('upload_payment_proof');
         });
+        //akun setting
+        Route::get('/account', function () {
+            return view('main/account',);
+        })->name('account');
+        // Route::resource('/account', AccountController::class);
     });
 });
 
@@ -83,6 +89,8 @@ Route::prefix('/admin')->name('admin.')->group(function () {
 
         // produk
         Route::resource('/products', ProductAdminController::class);
+
+
 
         // foto produk
         Route::prefix('/products')->name('products.')->group(function () {
