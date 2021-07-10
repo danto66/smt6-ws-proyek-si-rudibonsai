@@ -34,20 +34,8 @@ class AuthUserApiController extends Controller
 
         event(new Registered($user));
 
-        $user->userProfile()->create($request->all());
-
-        // $user->tokens()->delete();
-
-        $token = $user->createToken('authToken')->plainTextToken;
-
-        $user->userProfile;
-        $user->userProfile->province;
-        $user->userProfile->city;
-        $user->userProfile->subdistrict;
-
         $response = [
-            'user' => $user,
-            'token' => $token,
+            'message' => 'verifikasi email anda terlebih dahulu dengan menekan link verifikasi yang telah kami kirim ke email anda.',
         ];
 
         return response($response, 201);
@@ -59,6 +47,17 @@ class AuthUserApiController extends Controller
         $request->authenticate();
 
         $user = User::where('email', $request->email)->first();
+
+        if ($user->email_verified_at == null) {
+            $response = [
+                'message' => "Email belum ter-verifikasi",
+                'errors' => [
+                    'email' => []
+                ]
+            ];
+
+            return response($response, 422);
+        }
 
         $user->tokens()->delete();
 
