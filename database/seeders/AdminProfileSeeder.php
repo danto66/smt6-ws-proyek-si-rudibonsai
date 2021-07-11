@@ -14,9 +14,12 @@ class AdminProfileSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('admin_profiles')->insert([
-            'name' => 'admin',
-            'user_id' => 2,
-        ]);
+        $users = ['super_admin', 'admin'];
+        foreach ($users as $i => $user) {
+            DB::table('admin_profiles')->insert([
+                'name' => $user,
+                'user_id' => $i + 1,
+            ]);
+        }
     }
 }

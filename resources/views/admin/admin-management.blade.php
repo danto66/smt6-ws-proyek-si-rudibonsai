@@ -1,14 +1,11 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Kategori Produk')
+@section('title', 'Manajemen admin')
 
 @section('content')
-    <div
-        x-data="{modalCategoryShow:false, inputCategoryValue:null, inputCategoryId:null, modalTitle:null, actionPost:true}">
-        <button
-            x-on:click="modalCategoryShow = true; modalTitle = 'Tambah Kategori'; inputCategoryValue = null; inputCategoryId = null; actionPost = true;"
-            class="btn btn-green hover-darken-green mt-4">
-            Tambah Kategori
+    <div x-data="{modalAdminShow:false}">
+        <button x-on:click="modalAdminShow = true;" class="btn btn-green hover-darken-green mt-4">
+            Tambah admin
         </button>
 
         @if (session()->has('message'))
@@ -27,7 +24,7 @@
                                 <tr>
                                     <th
                                         class="whitespace-nowrap px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                        Kategori</th>
+                                        Admin</th>
 
                                     <th
                                         class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -37,8 +34,28 @@
 
                             <tbody class="bg-white">
 
-                                @foreach ($categories as $category)
-                                    <x-admin.category-tr :name="$category->name" :id="$category->id" />
+                                @foreach ($admin as $a)
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                            <div class="whitespace-nowrap text-sm leading-5 text-gray-900">
+                                                {{ $a->email }}
+                                            </div>
+
+                                        </td>
+
+                                        <td
+                                            class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                            <div class="flex justify-end space-x-2 text-white text-xs font-semibold">
+                                                <form method="POST"
+                                                    action="{{ route('admin.admin_management.destroy', ['id' => $a->id]) }}">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button onclick="return confirm('Hapus item ini?')" type="submit"
+                                                        class="py-1 px-3 rounded hover:bg-red-700 bg-red-500">Hapus</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
 
                             </tbody>
@@ -48,12 +65,12 @@
             </div>
 
             <div class="mt-4">
-                {{ $categories->links() }}
+                {{ $admin->links() }}
             </div>
         </div>
 
         <!-- This example requires Tailwind CSS v2.0+ -->
-        <div x-show="modalCategoryShow">
+        <div x-show="modalAdminShow">
             <div class="fixed z-40 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                 <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                     <div class="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
@@ -64,24 +81,22 @@
                     <div
                         class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full">
 
-                        <form method="POST"
-                            x-bind:action="(actionPost ? '/admin/categories' : ('/admin/categories/' + inputCategoryValue))">
-                            <input x-bind:disabled="actionPost" type="hidden" name="_method" value="PUT">
-
+                        <form method="POST" action="{{ route('admin.admin_management.store') }}">
                             @csrf
                             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                 <div class="mt-3 text-center sm:mt-0 sm:text-left">
-                                    <h3 x-text="modalTitle" class="text-lg leading-6 font-medium text-gray-900"
-                                        id="modal-title">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                        Tambah admin
                                     </h3>
 
                                     <div class="mt-3">
+                                        <label for="email">Email</label>
+                                        <input required class="w-full" type="email" name="email">
+                                    </div>
 
-                                        <input required class="w-full" type="text" name="name"
-                                            x-bind:value="inputCategoryValue !== null ? inputCategoryValue : '' ">
-                                        <input type="hidden" name="id"
-                                            x-bind:value="inputCategoryId !== null ? inputCategoryId : ''">
-
+                                    <div class="mt-3">
+                                        <label for="password">Password</label>
+                                        <input required class="w-full" type="password" name="password">
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +107,7 @@
                                     Submit
                                 </button>
 
-                                <button x-on:click="modalCategoryShow = !modalCategoryShow" type="button"
+                                <button x-on:click="modalAdminShow = !modalAdminShow" type="button"
                                     class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                                     Batal
                                 </button>
