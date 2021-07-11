@@ -144,19 +144,21 @@
                             </div>
                         @endif
 
-                        <div x-data="{btnDisabled : true}">
-                            <form enctype="multipart/form-data" method="POST"
-                                action="{{ route('main.order.upload_payment_proof', ['order' => $order->id]) }}">
-                                @method('PUT')
-                                @csrf
+                        @if (\Carbon\Carbon::now()->toDateTimeString() < $order->expired_at && $order->status == 'Tertunda')
+                            <div x-data="{btnDisabled : true}">
+                                <form enctype="multipart/form-data" method="POST"
+                                    action="{{ route('main.order.upload_payment_proof', ['order' => $order->id]) }}">
+                                    @method('PUT')
+                                    @csrf
 
-                                <x-input x-on:change="btnDisabled = false" name="payment_proof" class="w-full block"
-                                    type="file" />
+                                    <x-input x-on:change="btnDisabled = false" name="payment_proof" class="w-full block"
+                                        type="file" />
 
-                                <button :class="{'disabled' : btnDisabled}" :disabled="btnDisabled" type="submit"
-                                    class="btn-sm btn-green mt-4 w-full">Submit</button>
-                            </form>
-                        </div>
+                                    <button :class="{'disabled' : btnDisabled}" :disabled="btnDisabled" type="submit"
+                                        class="btn-sm btn-green mt-4 w-full">Submit</button>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
