@@ -35,8 +35,9 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
     // produk
     Route::prefix('/products')->name('products.')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
-        Route::get('/{product}', [ProductController::class, 'show'])->name('show');
+        Route::get('/detail/{product}', [ProductController::class, 'show'])->name('show');
         Route::post('/search', [ProductController::class, 'search'])->name('search');
+        Route::get('/categories/{category}', [ProductController::class, 'getByCategory'])->name('get_by_category');
     });
 
     // auth user / dapat diakses setelah login sebagai user
