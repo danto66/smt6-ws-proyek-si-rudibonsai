@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminManagementController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\Admin\ProductCategoryAdminController;
@@ -36,8 +37,9 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
     // produk
     Route::prefix('/products')->name('products.')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
-        Route::get('/{product}', [ProductController::class, 'show'])->name('show');
+        Route::get('/detail/{product}', [ProductController::class, 'show'])->name('show');
         Route::post('/search', [ProductController::class, 'search'])->name('search');
+        Route::get('/categories/{category}', [ProductController::class, 'getByCategory'])->name('get_by_category');
     });
 
     // auth user / dapat diakses setelah login sebagai user
@@ -113,6 +115,13 @@ Route::prefix('/admin')->name('admin.')->group(function () {
             Route::get('/{status?}', [OrderAdminController::class, 'index'])->name('index');
             Route::get('/detail/{order}', [OrderAdminController::class, 'detail'])->name('detail');
             Route::put('/detail/{order}/update-status', [OrderAdminController::class, 'updateStatus'])->name('update_status');
+        });
+
+        // tambah admin
+        Route::prefix('/admin-management')->name('admin_management.')->group(function () {
+            Route::get('/', [AdminManagementController::class, 'index'])->name('index');
+            Route::post('/', [AdminManagementController::class, 'store'])->name('store');
+            Route::delete('/{id}', [AdminManagementController::class, 'destroy'])->name('destroy');
         });
     });
 });

@@ -15,7 +15,7 @@ class OrderApiController extends Controller
 {
     public function index()
     {
-        $orders = Order::select('id', 'created_at', 'quantity_total', 'status', 'grand_total_amount')
+        $orders = Order::select('id', 'created_at', 'quantity_total', 'status', 'grand_total_amount', 'expired_at', 'payment_proof')
             ->where('user_id', auth()->user()->id)
             ->orderBy('id', 'desc')
             ->get();
@@ -23,12 +23,21 @@ class OrderApiController extends Controller
         $response = [];
 
         foreach ($orders as $order) {
+            if ($order->status == 'Tertunda') {
+                if (Carbon::now()->toDayDateTimeString() > $order->expired_at && $order->payment_proof == 'empty') {
+                    break;
+                }
+            }
+
             $details = OrderDetail::where('order_id', $order->id)->get();
             $products_name = [];
 
             foreach ($details as $detail) {
                 $products_name[] = $detail->product->name;
             }
+
+            unset($order->expired_at);
+            unset($order->payment_proof);
 
             $response[] = [
                 'order' => $order,
