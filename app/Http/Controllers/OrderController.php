@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderDetail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,11 +12,25 @@ class OrderController extends Controller
 {
     public function index($status = null)
     {
-        $orders =  Order::with('products')->where('user_id', auth()->user()->id)->get()->sortDesc();
+        $query =  Order::with('products')
+            ->where('user_id', auth()->user()->id)
+            ->when($status, function ($q, $status) {
+                return $q->where('status', ucfirst($status));
+            })
+            ->get()
+            ->sortDesc();
 
-        if ($status !== null) {
-            $orders = $orders->where('status', ucfirst($status));
-        }
+        $orders = $query->filter(function ($item) {
+            if ($item->status == 'Tertunda') {
+                if (Carbon::now()->toDateTimeString() < $item->expired_at || $item->payment_proof != 'empty') {
+                    return $item;
+                }
+            } else {
+                return $item;
+            }
+        });
+
+        $orders->all();
 
         return view('main.order', compact('orders'));
     }
