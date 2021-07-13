@@ -63,10 +63,13 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
             Route::put('/detail/{order}/payment-proof', [OrderController::class, 'uploadPaymentProof'])->name('upload_payment_proof');
         });
         //akun setting
-        Route::get('/account', function () {
-            return view('main/account',);
-        })->name('account');
-        // Route::resource('/account', AccountController::class);
+        // Route::get('/account', function () {
+        //     return view('main/account',);
+        // })->name('account');
+
+        Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
+        Route::put('/account/update', [AccountController::class, 'update'])->name('account.update');
+        Route::get('/account', [AccountController::class, 'index'])->name('account.index');
     });
 });
 

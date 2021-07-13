@@ -109,7 +109,7 @@
                         </span>
                     </a>
 
-                    <a href="{{ route('main.account') }}" class="block menu menu-hover dropdown-item" role="menuitem">
+                    <a href="{{ route('main.account.index') }}" class="block menu menu-hover dropdown-item" role="menuitem">
                         <i class="mr-2 fas fa-user"></i>
                         Akun
                     </a>

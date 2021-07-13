@@ -5,10 +5,18 @@
 @section('content')
 <div class="mt-5 px-2 sm:px-8 xl:px-4 max-w-2xl mx-auto min-h-screen">
     <div class="text-gray-900 font-semibold sm:text-3xl text-xl border-b-4 border-green-500 py-2">
-        Pengaturan Profil
+        Detail Profile
     </div>
 
-    <div class="bg-white overflow-auto whitespace-nowrap mt-4 p-7 rounded-md shadow ">
+        <div class="bg-white overflow-auto whitespace-nowrap mt-4 p-7 rounded-md shadow ">
+
+        @if (session()->has('message'))
+            <div class="mt-6 w-full">
+                <x-alert :type="session()->get('type')">
+                    <span>{{ session()->get('message') }}</span>
+                </x-alert>
+            </div>
+        @endif
         <form enctype="multipart/form-data" name="profile_edit" class="mt-8 space-y-6" action="{{ route('main.account.update') }}" method="POST">
             @csrf
             @method('PUT')
@@ -28,10 +36,10 @@
                         class="ml-1 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Change
                     </button> --}}
-                    <label for="profileupload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                    {{-- <label for="profileupload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                         <span>Upload Profile</span>
                         <input id="profileupload" name="profileupload" type="file" class="sr-only">
-                      </label>
+                      </label> --}}
                 </center>
 
                 <div class="text-gray-900 font-semibold sm:text-3xl text-xl border-b-4 border-grey-500 py-2">
@@ -42,7 +50,7 @@
 
                     <input id="fullname" name="fullname" type="text" autocomplete="fullname" required
                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
-                        placeholder="Nama Lengkap" value="{{ $user->userProfile->fullname }}">
+                        placeholder="Nama Lengkap" value="{{ $user->userProfile->fullname }}" disabled>
                 </div>
 
                 {{-- <div class="form-group">
@@ -61,14 +69,14 @@
 
                     <input id="phone" name="phone" type="number" minlength="9" maxlength="13" autocomplete="fullname" required
                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        placeholder="Nomor Telepon" value="{{ $user->userProfile->phone }}">
+                        placeholder="Nomor Telepon" value="{{ $user->userProfile->phone }}" disabled>
                 </div>
                 
                 <div x-data="getAlamat()" x-init="setBaseUrl('{{ url('/') }}'), fetchProvinsi()" class="mt-4">
                     <x-label :value="__('Alamat')" />
     
                     <x-select x-model="selectedProv" x-on:change="changeProv()" x-bind:disabled="provDisable"
-                       required name="province_id">
+                       required name="province_id" >
                         <option value="">--Provinsi--</option>
     
                         <template x-for="prov in dataProvinsi">
@@ -96,13 +104,13 @@
                 <div class="form-group">
                     <textarea name="address" rows="3"
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        placeholder="alamat lengkap">{{ $user->userProfile->address_detail }}</textarea>
+                        placeholder="alamat lengkap" disabled>{{ $user->userProfile->address_detail }}</textarea>
                 </div>
                 
                 <div class="text-gray-900 font-semibold sm:text-3xl text-xl border-b-4 border-grey-500 py-2">
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="password" class="sr-only">Password Baru</label>
                     <input id="password" name="password" type="password" autocomplete="fullpassword" minlength="7"
                         
@@ -115,14 +123,14 @@
                         minlength="7" 
                         class="password_confirm mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         placeholder="New Password Confirm">
-                </div>
+                </div> --}}
                 <div>
-                    <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    <a href="{{ route('main.account.edit') }}" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                         Ubah Profil
-                      </button>
+                    </a>
                 </div>
                 <div>
-                    <a href="{{ route('main.account.index') }}" type="button" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-400 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    <a href="/" type="button" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-400 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                         Kembali
                     </a>
                 </div>
