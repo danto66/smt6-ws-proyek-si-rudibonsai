@@ -28,6 +28,7 @@ class AccountController extends Controller
 
         return view('main.account', compact('user'));
     }
+    //proses update data akun 
     public function update(Request $request)
     {
         $userProfile = UserProfile::where('user_id', auth()->User()->id)->first();
@@ -65,7 +66,7 @@ class AccountController extends Controller
         $userProfile->save();
         return redirect()->route('main.account.index')->with(['type' => 'success', 'message' => 'Profile berhasil di update']);
     }
-
+    //unggah gambar kepada storage
     public function storeImage($file)
     {
         $name = rand(1000, 9999);

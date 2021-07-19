@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminManagementController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\Admin\AdminAccountController;
 use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\Admin\ProductCategoryAdminController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,7 @@ require __DIR__ . '/auth.php';
 // main app / frontend (tampilan yang diakses pembeli)
 Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(function () {
     // non-auth / publik (dapat diakses tanpa login)
+    
     // home
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -70,6 +72,12 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
         Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
         Route::put('/account/update', [AccountController::class, 'update'])->name('account.update');
         Route::get('/account', [AccountController::class, 'index'])->name('account.index');
+
+        // info
+        // about us
+        Route::get('/aboutus', function () {
+                return view('main/aboutus',);
+            })->name('aboutus');
     });
 });
 
@@ -126,5 +134,13 @@ Route::prefix('/admin')->name('admin.')->group(function () {
             Route::post('/', [AdminManagementController::class, 'store'])->name('store');
             Route::delete('/{id}', [AdminManagementController::class, 'destroy'])->name('destroy');
         });
+
+        //update admin
+        Route::get('/account', function () {
+            return view('admin/admin-account',);
+        })->name('account');
+        // Route::get('/admin-account', [AdminAccountController::class, 'index'])->name('admin-account.index');
+        // Route::put('/admin-account/update', [AdminAccountController::class, 'update'])->name('admin-account.update');
     });
 });
+

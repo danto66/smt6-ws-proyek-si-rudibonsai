@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AdminProfile;
-use App\Models\UserProfile;
 use Illuminate\Support\Facades\Hash;
 
 class AdminAccountController extends Controller
@@ -21,7 +20,7 @@ class AdminAccountController extends Controller
 
     public function update(Request $request)
     {
-        $userProfile = UserProfile::where('user_id', auth()->User()->id)->first();
+        $userProfile = AdminProfile::where('user_id', auth()->User()->id)->first();
         $admin = User::find(auth()->User()->id);
 
         $userProfile->fullname = $request->fullname;
