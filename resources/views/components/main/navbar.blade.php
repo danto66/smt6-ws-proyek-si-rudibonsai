@@ -46,7 +46,7 @@
                             {{-- menu list dropdown info --}}
                             <div x-show="dropdownInfo" x-on:click.away="{dropdownInfo = !dropdownInfo}"
                                 class="top-12 py-2 w-48 right-0 rounded absolute shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                <a href=""
+                                <a href="{{ route('main.about_us') }}"
                                     class="menu menu-hover dropdown-item block text-sm font-medium rounded-t">Tentang
                                     Kami</a>
 
@@ -84,9 +84,15 @@
                                 <i class="fas fa-user-circle my-auto"></i>
                             @else
 
-                                <img class="h-8 w-8 rounded-full"
-                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt="">
+                                {{-- <img class="h-8 w-8 rounded-full"
+                                    src="{{ asset('storage/img/profile-picture/') . '/' . $profile->profile_picture }}"
+                                    alt=""> --}}
+
+                                <div class="w-8 h-8">
+                                    <div class="aspect-w-1 aspect-h-1 bg-center bg-cover rounded-full"
+                                        style="background-image: url('{{ asset('storage/img/profile-picture/') . '/' . $profile->profile_picture }}')">
+                                    </div>
+                                </div>
                             @endif
                         </button>
                     </div>
@@ -109,12 +115,14 @@
                         </span>
                     </a>
 
-                    <a href="{{ route('main.account.index') }}" class="block menu menu-hover dropdown-item" role="menuitem">
+                    <a href="{{ route('main.account.index') }}" class="block menu menu-hover dropdown-item"
+                        role="menuitem">
                         <i class="mr-2 fas fa-user"></i>
                         Akun
                     </a>
 
-                    <a href="{{ route('main.order.index') }}" class="block menu menu-hover dropdown-item" role="menuitem">
+                    <a href="{{ route('main.order.index') }}" class="block menu menu-hover dropdown-item"
+                        role="menuitem">
                         <i class="mr-2 fas fa-receipt"></i>
                         Pesanan
                     </a>
@@ -161,7 +169,8 @@
                         class="ml-2 fas fa-caret-down"></i></button>
 
                 <div x-show="dropdownInfo" class="p-2 border-2 rounded">
-                    <a href="" class="block menu menu-hover dropdown-item rounded">Tentang
+                    <a href="{{ route('main.about_us') }}"
+                        class="block menu menu-hover dropdown-item rounded">Tentang
                         Kami</a>
 
                     <a href="" class="block menu menu-hover dropdown-item rounded">Kontak</a>
@@ -207,5 +216,4 @@
             },
         }
     }
-
 </script>

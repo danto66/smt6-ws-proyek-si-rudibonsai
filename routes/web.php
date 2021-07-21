@@ -74,10 +74,9 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
         Route::get('/account', [AccountController::class, 'index'])->name('account.index');
 
         // info
-        // about us
-        Route::get('/aboutus', function () {
-                return view('main/aboutus',);
-            })->name('aboutus');
+        Route::get('about-us', function () {
+            return view('main.about-us');
+        })->name('about_us');
     });
 });
 
