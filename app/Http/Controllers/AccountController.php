@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\Address\Province;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -47,6 +48,10 @@ class AccountController extends Controller
         $userProfile->phone = $request->phone;
 
         $userProfile->address_detail = $request->address;
+
+        $userProfile = auth()->user()->userProfile()->with(['province', 'city', 'subdistrict'])->get()->first();
+
+        $userProfile->profile_picture = $request->profile_picture;
 
 
 
