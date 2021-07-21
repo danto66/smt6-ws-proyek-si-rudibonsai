@@ -46,7 +46,7 @@
                             {{-- menu list dropdown info --}}
                             <div x-show="dropdownInfo" x-on:click.away="{dropdownInfo = !dropdownInfo}"
                                 class="top-12 py-2 w-48 right-0 rounded absolute shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                <a href=""
+                                <a href="{{ route('main.about_us') }}"
                                     class="menu menu-hover dropdown-item block text-sm font-medium rounded-t">Tentang
                                     Kami</a>
 
@@ -169,7 +169,8 @@
                         class="ml-2 fas fa-caret-down"></i></button>
 
                 <div x-show="dropdownInfo" class="p-2 border-2 rounded">
-                    <a href="" class="block menu menu-hover dropdown-item rounded">Tentang
+                    <a href="{{ route('main.about_us') }}"
+                        class="block menu menu-hover dropdown-item rounded">Tentang
                         Kami</a>
 
                     <a href="" class="block menu menu-hover dropdown-item rounded">Kontak</a>

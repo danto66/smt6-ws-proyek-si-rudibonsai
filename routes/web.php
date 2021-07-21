@@ -70,6 +70,11 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
         Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
         Route::put('/account/update', [AccountController::class, 'update'])->name('account.update');
         Route::get('/account', [AccountController::class, 'index'])->name('account.index');
+
+        // info
+        Route::get('about-us', function () {
+            return view('main.about-us');
+        })->name('about_us');
     });
 });
 
