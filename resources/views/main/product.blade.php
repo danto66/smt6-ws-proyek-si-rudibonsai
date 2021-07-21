@@ -53,6 +53,5 @@
                 <div class="mt-6">{{ $products->links() }}</div>
             @endif
         @endif
-
     </div>
 @endsection
