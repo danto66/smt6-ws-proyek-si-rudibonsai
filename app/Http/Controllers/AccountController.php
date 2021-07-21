@@ -27,12 +27,14 @@ class AccountController extends Controller
         $user = User::with('userProfile')
             ->where('id', auth()->User()->id)->first();
 
+
         return view('main.account', compact('user'));
     }
     //proses update data akun 
     public function update(Request $request)
     {
         $userProfile = UserProfile::where('user_id', auth()->User()->id)->first();
+        $userProfile = auth()->user()->userProfile()->with(['province', 'city', 'subdistrict'])->get()->first();
         $user = User::find(auth()->User()->id);
         if ($request->province_id  !=  null) {
             $userProfile->province_id = $request->province_id;
@@ -49,9 +51,9 @@ class AccountController extends Controller
 
         $userProfile->address_detail = $request->address;
 
-        $userProfile = auth()->user()->userProfile()->with(['province', 'city', 'subdistrict'])->get()->first();
+       
 
-        $userProfile->profile_picture = $request->profile_picture;
+        
 
 
 
