@@ -18,7 +18,7 @@
 
                     <input id="fullname" name="fullname" type="text" autocomplete="fullname" required
                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
-                        placeholder="Nama Lengkap" value="{{ $admin->email }}">
+                        placeholder="Nama Lengkap" value="{{ $admin->email }}" disabled>
                 </div>
                 <!-- <div class="text-gray-900 font-semibold sm:text-3xl text-xl border-b-4 border-gray-500 py-2"></div> -->
                 <div class="form-group">
