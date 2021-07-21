@@ -135,11 +135,11 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         });
 
         //update admin
-        Route::get('/account', function () {
-            return view('admin/admin-account',);
-        })->name('account');
-        // Route::get('/admin-account', [AdminAccountController::class, 'index'])->name('admin-account.index');
-        // Route::put('/admin-account/update', [AdminAccountController::class, 'update'])->name('admin-account.update');
+        // Route::get('/admin-account', function () {
+        //     return view('admin/admin-account',);
+        // })->name('account');
+        Route::get('/admin-account', [AdminAccountController::class, 'index'])->name('admin-account.index');
+        Route::put('/admin-account/update', [AdminAccountController::class, 'update'])->name('admin-account.update');
     });
 });
 

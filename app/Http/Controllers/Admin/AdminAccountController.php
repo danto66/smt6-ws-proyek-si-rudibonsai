@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\UserProfile;
 use App\Models\AdminProfile;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,11 +21,9 @@ class AdminAccountController extends Controller
 
     public function update(Request $request)
     {
-        $userProfile = AdminProfile::where('user_id', auth()->User()->id)->first();
+        // $userProfile = AdminProfile::where('user_id', auth()->User()->id)->first();
         $admin = User::find(auth()->User()->id);
 
-        $userProfile->fullname = $request->fullname;
-        $userProfile->save();
 
         if($request->password != null){
             $admin->password = Hash::make($request->password);

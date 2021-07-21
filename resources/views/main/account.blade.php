@@ -73,7 +73,7 @@
     
                     <x-select x-model="selectedProv" x-on:change="changeProv()" x-bind:disabled="provDisable"
                        required name="province_id">
-                        <option value="">--Provinsi--</option>
+                        <option value="{{ $user->userProfile->province_id }}">{{ $user->userProfile->province->province_name }}</option>
     
                         <template x-for="prov in dataProvinsi">
                             <option :value="prov.province_id" x-text="prov.province_name"></option>
@@ -82,7 +82,7 @@
     
                     <x-select x-model="selectedKab" x-on:change="changeKab()" x-bind:disabled="kabDisable"
                        required name="city_id" id="kabupaten">
-                        <option value="">--Kabupaten--</option>
+                        <option value="{{ $user->userProfile->city_id }}">{{ $user->userProfile->city->city_name }}</option>
     
                         <template x-for="kab in dataKabupaten">
                             <option :value="kab.city_id" x-text="kab.city_name"></option>
@@ -90,7 +90,7 @@
                     </x-select>
     
                     <x-select x-bind:disabled="kecDisable" name="subdistrict_id" id="kecamatan" required>
-                        <option value="">--Kecamatan--</option>
+                        <option value="{{ $user->userProfile->subdistrict_id }}">{{ $user->userProfile->subdistrict->subdistrict_name }}</option>
     
                         <template x-for="kec in dataKecamatan">
                             <option :value="kec.subdistrict_id" x-text="kec.subdistrict_name"></option>
@@ -113,13 +113,13 @@
                         class="form-password mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         placeholder="New Password">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="password_confirm" class="sr-only">Password Baru Confirmasi</label>
                     <input id="password_confirm" name="password_confirm" type="password" autocomplete="fullpassword"
                         minlength="7" 
                         class="password_confirm mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         placeholder="New Password Confirm">
-                </div>
+                </div> -->
                 <div>
                     <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                         Ubah Profil
