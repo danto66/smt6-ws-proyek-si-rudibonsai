@@ -9,12 +9,7 @@
         </div>
 
         <div class="bg-white py-8 px-2 sm:px-8 flex justify-center mt-4">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere voluptatibus doloremque sapiente alias
-            doloribus
-            veritatis cum eveniet provident tenetur? Vero quas modi, ea reiciendis praesentium aliquam provident earum
-            facere
-            aut rem error! Animi maiores quia obcaecati alias esse aperiam blanditiis, delectus iure sequi aut. Quas non
-            voluptatem labore temporibus eligendi!
+            Rudi Bonsai Merupakan website yang melayani penjualan berbagai macam jenis tanaman bonsai , tanaman hias , dan juga perlengkapan berkebun 
         </div>
     </div>
 @endsection
