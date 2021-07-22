@@ -12,7 +12,10 @@ class ProductApiController extends Controller
 {
     public function index()
     {
-        $products = Product::with('productCategory', 'productImages')->orderBy('id', 'desc')->paginate(10);
+        $products = Product::with('productCategory', 'productImages')
+            ->where('stock', '>', 0)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
 
         return response($products);
     }
