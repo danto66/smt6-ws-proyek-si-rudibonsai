@@ -42,7 +42,7 @@
                     </span>
                 </a>
 
-                <a href="{{ route('admin.admin_management.index') }}"
+                <!-- <a href="{{ route('admin.admin_management.index') }}"
                     class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -55,7 +55,7 @@
                     <span class="mx-3">
                         Manage Admin
                     </span>
-                </a>
+                </a> -->
 
                 <!-- Authentication -->
                 <div>
