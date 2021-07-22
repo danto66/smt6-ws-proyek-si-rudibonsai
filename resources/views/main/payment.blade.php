@@ -11,11 +11,27 @@
         <div class="bg-white py-8 px-2 sm:px-8 flex justify-center mt-4">
 
             <div class="card-body">
-                <img src="img/default/siklus1.png" width="100%">
+                <h5 class="card-title text-center"><strong>
+                    Metode Pengiriman
+                </strong></h5>
+                <hr>
+                <p><strong> 3 Cara Pembayaran, yaitu :</strong></p>
+                <ol>
+                    <li>1. Pembayaran Barang dengan mendatangi langsung ke tempat usaha Rudi Bonsai  Kabupaten Blitar, Jawa Timur</li><p class="mt-2">Pembayaran secara langsung ditempat usaha  oleh petugas toko atau pemilik toko bonsai.</p>
+                    <br>
+                    <li>2. Pembayaran Barang dengan COD atau Langsung dalam wilayah Kabupaten Blitar, Jawa Timur</li><p class="mt-2">Pembayaran COD dilakukan secara langsung oleh petugas toko atau pemilik toko bonsai dengan bertemu langsung dengan pembeli.</p>
+                    <br>
+                    <li>3. Pembayaran Barang di luar Kabupaten Blitar, Jawa Timur</li><p class="mt-2">Pembayaran Barang diluar kota bisa dilakukan dengan cara transfer bank dengan Bank BRI.</p>
+                    <br>
+                </ol>
+                <div class="card-body">
 
-                <p><strong>#NB: Jika Kurang Jelas, Dapat menghubungi kami melalui halaman <a class="text-success" href="kontak.php">Kontak</a></strong></p>
-
+                    <p><strong>#NB: Jika Kurang Jelas, Dapat menghubungi kami melalui Kontak Kami</strong></p>
+    
+                </div>
+               
             </div>
+            
         </div>
         </div>
     

@@ -20,7 +20,7 @@
                                     Metode Pengiriman
                                 </h5>
                                 <hr>
-                                <p>Terapat 2 Proses Pengiriman, yaitu :</p>
+                                <p><strong> 2 Proses Pengiriman, yaitu :</strong></p>
                                 <ol>
                                     <li>Pengiriman Barang dengan COD atau Langsung dalam wilayah Kabupaten Blitar, Jawa Timur</li>
                                     <p class="mt-2">Pengiriman COD dilakukan secara langsung oleh petugas toko atau pemilik toko bonsai dengan bertemu langsung dengan pembeli.</p>
