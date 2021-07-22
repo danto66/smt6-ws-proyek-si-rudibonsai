@@ -27,7 +27,7 @@
                 style="display: none;">
 
                 <span class="border-b-2 block px-4 py-2 font-semibold text-gray-700">
-                    {{ auth()->user()->adminProfile->name }} </span>
+                    {{ auth()->user()->email }} </span>
 
                 <a href="{{ route('admin.admin-account.index') }}"
                     class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">
@@ -41,9 +41,9 @@
                         Akun
                     </span>
                 </a>
-
-                <!-- <a href="{{ route('admin.admin_management.index') }}"
-                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">
+                @if (auth()->user()->role_id == 1)
+                <a href="{{ route('admin.admin_management.index') }}"
+                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white {{ request()->routeIs('admin.admin_management.*') ? 'sidebar-item-active' : '' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -55,8 +55,8 @@
                     <span class="mx-3">
                         Manage Admin
                     </span>
-                </a> -->
-
+                </a>
+                @endif
                 <!-- Authentication -->
                 <div>
                     <form method="POST" action="{{ route('admin.logout') }}">
