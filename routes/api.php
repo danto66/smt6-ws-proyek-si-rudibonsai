@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\OrderApiController;
 use App\Http\Controllers\Api\ProductApiController;
 use App\Http\Controllers\Api\ProductCategoryApiController;
 use App\Http\Controllers\Api\RajaOngkirApiController;
+use App\Http\Controllers\Api\UserProfileApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::post('/login', [AuthUserApiController::class, 'login']);
 
 Route::get('/products/images/{filename}', [ProductApiController::class, 'showImage']);
 Route::get('/orders/payment-proof/{filename}', [OrderApiController::class, 'getPaymentProof']);
+Route::get('/user/picture/{filename}', [UserProfileApiController::class, 'getPicture']);
 
 // auth user sanctum
 // diakses menggunakan token
