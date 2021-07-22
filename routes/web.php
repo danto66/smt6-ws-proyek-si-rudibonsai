@@ -3,12 +3,14 @@
 use App\Http\Controllers\Admin\AdminManagementController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\AdminAccountController;
+use App\Http\Controllers\admin\AdminDashboardController as AdminAdminDashboardController;
 use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\Admin\ProductCategoryAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\ProductAdminController;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
@@ -95,9 +97,10 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::post('/logout', [AdminLoginController::class, 'destroy'])->name('logout');
 
         // dashboard
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('dashboard');
+        // Route::get('/dashboard', function () {
+        //     return view('admin.dashboard');
+        // })->name('dashboard');
+        Route::get('/dashboard', [AdminAdminDashboardController::class, 'index'])->name('dashboard.index');
 
         // produk
         Route::resource('/products', ProductAdminController::class);
