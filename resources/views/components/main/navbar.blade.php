@@ -50,12 +50,13 @@
                                     class="menu menu-hover dropdown-item block text-sm font-medium rounded-t">Tentang
                                     Kami</a>
 
-                                <a href="" class="menu menu-hover dropdown-item block text-sm font-medium ">Kontak</a>
+                                <a href="{{ route ('main.contact')}}" 
+                                    class="menu menu-hover dropdown-item block text-sm font-medium ">Kontak</a>
 
-                                <a href=""
+                                <a href="{{ route ('main.payment')}}"
                                     class="menu menu-hover dropdown-item block text-sm font-medium ">Pembayaran</a>
 
-                                <a href=""
+                                <a href="{{ route ('main.delivery')}}"
                                     class="menu menu-hover dropdown-item block text-sm font-medium rounded-b">Pengiriman</a>
                             </div>
                         </div>
@@ -169,15 +170,18 @@
                         class="ml-2 fas fa-caret-down"></i></button>
 
                 <div x-show="dropdownInfo" class="p-2 border-2 rounded">
-                    <a href="{{ route('main.about_us') }}"
+                    <a href="{{ route ('main.about_us') }}"
                         class="block menu menu-hover dropdown-item rounded">Tentang
                         Kami</a>
 
-                    <a href="" class="block menu menu-hover dropdown-item rounded">Kontak</a>
+                    <a href="{{ route ('main.contact') }}" 
+                    class="block menu menu-hover dropdown-item rounded">Kontak</a>
 
-                    <a href="" class="block menu menu-hover dropdown-item rounded">Pembayaran</a>
+                    <a href="{{route  ('main.payment') }}" 
+                    class="block menu menu-hover dropdown-item rounded">Pembayaran</a>
 
-                    <a href="" class="block menu menu-hover dropdown-item rounded">Pengiriman</a>
+                    <a href="{{ route ('main.delivery') }}" 
+                    class="block menu menu-hover dropdown-item rounded">Pengiriman</a>
                 </div>
             </div>
 

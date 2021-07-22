@@ -32,7 +32,7 @@ require __DIR__ . '/auth.php';
 // main app / frontend (tampilan yang diakses pembeli)
 Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(function () {
     // non-auth / publik (dapat diakses tanpa login)
-    
+
     // home
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -74,9 +74,22 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
         Route::get('/account', [AccountController::class, 'index'])->name('account.index');
 
         // info
+
         Route::get('about-us', function () {
             return view('main.about-us');
         })->name('about_us');
+
+        Route::get('contact', function () {
+            return view('main.contact');
+        })->name('contact');
+
+        Route::get('payment', function () {
+            return view('main.payment');
+        })->name('payment');
+
+        Route::get('delivery', function () {
+            return view('main.delivery');
+        })->name('delivery');
     });
 });
 
@@ -142,4 +155,3 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::put('/admin-account/update', [AdminAccountController::class, 'update'])->name('admin-account.update');
     });
 });
-

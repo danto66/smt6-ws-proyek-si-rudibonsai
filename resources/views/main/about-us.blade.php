@@ -9,7 +9,7 @@
         </div>
 
         <div class="bg-white py-8 px-2 sm:px-8 flex justify-center mt-4">
-            Rudi Bonsai Merupakan website yang melayani penjualan berbagai macam jenis tanaman bonsai , tanaman hias , dan juga perlengkapan berkebun 
+            Rudi Bonsai melayani penjualan berbagai macam tanaman bonsai, tanaman hias, dan berbagai macam perlengkapan berkebun. Rudi Bonsai berdiri pada tahun 2018, berlokasi di kabupaten Blitar, Jawa Timur, Indonesia.
         </div>
     </div>
 @endsection
