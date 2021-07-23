@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\CartController;
@@ -13,10 +12,10 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\Admin\AdminAccountController;
 use App\Http\Controllers\Admin\ProductAdminController;
-use App\Http\Controllers\admin\PelangganAdminController;
+use App\Http\Controllers\Admin\PelangganAdminController;
 use App\Http\Controllers\Admin\AdminManagementController;
 use App\Http\Controllers\Admin\ProductCategoryAdminController;
-use App\Http\Controllers\admin\AdminDashboardController as AdminAdminDashboardController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,7 +116,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::post('/logout', [AdminLoginController::class, 'destroy'])->name('logout');
 
         // dashboard
-        Route::get('/dashboard', [AdminAdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
         // pelanggan
         Route::get('/pelanggan', [PelangganAdminController::class, 'index'])->name('pelanggan');
