@@ -1,21 +1,22 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminManagementController;
-use App\Http\Controllers\AccountController;
-use App\Http\Controllers\Admin\AdminAccountController;
-use App\Http\Controllers\admin\AdminDashboardController as AdminAdminDashboardController;
-use App\Http\Controllers\Admin\OrderAdminController;
-use App\Http\Controllers\Admin\ProductCategoryAdminController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Auth\AdminLoginController;
-use App\Http\Controllers\Admin\ProductAdminController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\admin\PelangganAdminController;
 use App\Models\Order;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Admin\OrderAdminController;
+use App\Http\Controllers\Admin\AdminAccountController;
+use App\Http\Controllers\Admin\ProductAdminController;
+use App\Http\Controllers\admin\PelangganAdminController;
+use App\Http\Controllers\Admin\AdminManagementController;
+use App\Http\Controllers\Admin\ProductCategoryAdminController;
+use App\Http\Controllers\admin\AdminDashboardController as AdminAdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,16 @@ use App\Models\Order;
 
 // auth
 require __DIR__ . '/auth.php';
+
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+    return 'DONE'; //Return anything
+});
+
+Route::get('/clear-cache', function () {
+    $exitCode = Artisan::call('config:cache');
+    return 'DONE'; //Return anything
+});
 
 // main app / frontend (tampilan yang diakses pembeli)
 Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(function () {

@@ -30,7 +30,7 @@ class ProductApiController extends Controller
 
     public function showImage($filename)
     {
-        $path = 'public/img/products/' . $filename;
+        $path = 'storage/img/products/' . $filename;
 
         if (!Storage::exists($path)) {
             abort(404);

@@ -51,9 +51,9 @@ class AccountController extends Controller
 
         $userProfile->address_detail = $request->address;
 
-       
 
-        
+
+
 
 
 
@@ -81,7 +81,7 @@ class AccountController extends Controller
         $extension = $file->getClientOriginalExtension();
         $newName = $time . $name  . '.' . $extension;
 
-        Storage::putFileAs('public/img/profile-picture', $file, $newName);
+        Storage::putFileAs('storage/img/profile-picture', $file, $newName);
 
         return $newName;
     }
