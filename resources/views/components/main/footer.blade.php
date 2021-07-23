@@ -4,10 +4,10 @@
             <a class="hover:underline hover:text-white px-4 sm:px-6 my-1" href="{{ route('main.home') }}">Home</a>
             <a class="hover:underline hover:text-white px-4 sm:px-6 my-1"
                 href="{{ route('main.products.index') }}">Produk</a>
-            <a class="hover:underline hover:text-white px-4 sm:px-6 my-1" href="">Tentang Kami</a>
-            <a class="hover:underline hover:text-white px-4 sm:px-6 my-1" href="">Kontak</a>
-            <a class="hover:underline hover:text-white px-4 sm:px-6 my-1" href="">Pembayaran</a>
-            <a class="hover:underline hover:text-white px-4 sm:px-6 my-1" href="">Pengiriman</a>
+            <a class="hover:underline hover:text-white px-4 sm:px-6 my-1" href="{{ route('main.about_us') }}">Tentang Kami</a>
+            <a class="hover:underline hover:text-white px-4 sm:px-6 my-1" href="{{ route('main.contact') }}">Kontak</a>
+            <a class="hover:underline hover:text-white px-4 sm:px-6 my-1" href="{{ route('main.payment') }}">Pembayaran</a>
+            <a class="hover:underline hover:text-white px-4 sm:px-6 my-1" href="{{ route('main.delivery') }}">Pengiriman</a>
         </div>
 
         <div class="flex justify-center mt-4">
