@@ -19,9 +19,9 @@ class AdminDashboardController extends Controller
 
         $countuser = User::where('role_id', 3)->count();
         $countorder = Order::all()->count();
-        $countdone = Order::where('status','selesai')->count();
+        $countdone = Order::where('status', 'Selesai')->count();
 
 
-        return view('admin.dashboard', compact('admin','countuser','countorder','countdone'));
+        return view('admin.dashboard', compact('admin', 'countuser', 'countorder', 'countdone'));
     }
 }

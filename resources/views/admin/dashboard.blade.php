@@ -4,6 +4,12 @@
 
 @section('content')
 
+    @if (session()->has('message'))
+        <div class="p-4 w-full bg-green-200 mt-4 rounded text-green-700">
+            <span>{{ session()->get('message') }}</span>
+        </div>
+    @endif
+
     <div class="mt-4">
         <div class="flex flex-wrap -mx-6">
             <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
@@ -33,7 +39,7 @@
 
                     <div class="mx-5">
                         <h4 class="text-2xl font-semibold text-gray-700">{{ $countuser }}</h4>
-                        <div class="text-gray-500">New Users</div>
+                        <div class="text-gray-500">Pelanggan</div>
                     </div>
                 </div>
             </div>
@@ -56,7 +62,7 @@
 
                     <div class="mx-5">
                         <h4 class="text-2xl font-semibold text-gray-700">{{ $countorder }}</h4>
-                        <div class="text-gray-500">Total Orders</div>
+                        <div class="text-gray-500">Total Pesanan</div>
                     </div>
                 </div>
             </div>
@@ -75,7 +81,7 @@
 
                     <div class="mx-5">
                         <h4 class="text-2xl font-semibold text-gray-700">{{ $countdone }}</h4>
-                        <div class="text-gray-500">Available Products</div>
+                        <div class="text-gray-500">Pesanan Selesai</div>
                     </div>
                 </div>
             </div>
@@ -100,7 +106,7 @@
                                 Address</th>
                             <th
                                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Phone  </th>
+                                Phone </th>
                             <th
                                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Status</th>
@@ -111,53 +117,58 @@
                         </tr>
                     </thead>
                     @foreach ($admin as $a)
-                    <tbody class="bg-white">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="flex items-center">
-                                    @if ($a->userProfile->profile_picture == 'default')
-                                    <div class="h-10 w-10">
-                                        <img class="my-auto h-10 w-10" src="{{ asset('img/logo/user.svg') }}" alt="">           
-                                    </div>
-                                     @else
-                                    <div class="w-10 h-10">
-                                        <div class="aspect-w-1 aspect-h-1 bg-center bg-cover rounded-full"
-                                            style="background-image: url('{{ asset('storage/img/profile-picture/') . '/' . $a->userProfile->profile_picture }}')">
+                        <tbody class="bg-white">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="flex items-center">
+                                        @if ($a->userProfile->profile_picture == 'default')
+                                            <div class="h-10 w-10">
+                                                <img class="my-auto h-10 w-10" src="{{ asset('img/logo/user.svg') }}"
+                                                    alt="">
+                                            </div>
+                                        @else
+                                            <div class="w-10 h-10">
+                                                <div class="aspect-w-1 aspect-h-1 bg-center bg-cover rounded-full"
+                                                    style="background-image: url('{{ asset('storage/img/profile-picture/') . '/' . $a->userProfile->profile_picture }}')">
+                                                </div>
+                                            </div>
+                                        @endif
+                                        <div class="ml-4">
+                                            <div class="text-sm leading-5 font-medium text-gray-900">
+                                                {{ $a->userProfile->fullname }}
+                                            </div>
+                                            <div class="text-sm leading-5 text-gray-500">
+                                                {{ $a->email }}
+                                            </div>
                                         </div>
                                     </div>
-                                    @endif
-                                    <div class="ml-4">
-                                        <div class="text-sm leading-5 font-medium text-gray-900">
-                                            {{ $a->userProfile->fullname }}
-                                        </div>
-                                        <div class="text-sm leading-5 text-gray-500">
-                                            {{ $a->email }}
-                                        </div>
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">{{ $a->userProfile->address_detail }}
                                     </div>
-                                </div>
-                            </td>
+                                    <div class="text-sm leading-5 text-gray-500">
+                                        {{ $a->userProfile->province->province_name }} ,
+                                        {{ $a->userProfile->city->city_name }} ,
+                                        {{ $a->userProfile->subdistrict->subdistrict_name }}</div>
+                                </td>
+                                <td
+                                    class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                    {{ $a->userProfile->phone }}</td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                </td>
 
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">{{ $a->userProfile->address_detail }}</div>
-                                <div class="text-sm leading-5 text-gray-500">{{ $a->userProfile->province->province_name }} , {{ $a->userProfile->city->city_name }} , {{ $a->userProfile->subdistrict->subdistrict_name }}</div>
-                            </td>
-                            <td
-                                class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                {{ $a->userProfile->phone }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                            </td>
+                                <td
+                                    class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                    {{ $a->role->role }}</td>
 
-                            <td
-                                class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                {{ $a->role->role }}</td>
-
-                            <td
-                                class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                <!-- <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a> -->
-                            </td>
-                        </tr>
+                                <td
+                                    class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                                    <!-- <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a> -->
+                                </td>
+                            </tr>
                     @endforeach
                     </tbody>
                 </table>

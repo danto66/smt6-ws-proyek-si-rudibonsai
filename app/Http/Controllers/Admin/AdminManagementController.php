@@ -37,6 +37,7 @@ class AdminManagementController extends Controller
 
     public function destroy($id)
     {
+        AdminProfile::where('user_id', $id)->delete();
         User::destroy($id);
 
         return redirect()->back()->with(['status' => 'success', 'message' => 'Admin berhasil dihapus.']);
