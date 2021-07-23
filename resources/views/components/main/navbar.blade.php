@@ -30,10 +30,10 @@
                 {{-- menu utama tengah --}}
                 <div class="hidden sm:absolute sm:flex sm:justify-center sm:w-full">
                     <div class="flex space-x-4">
-                        <a href="/"
+                        <a href="{{ route('main.home') }}"
                             class="menu navbar-item menu-hover {{ request()->routeIs('main.home') ? 'menu-active' : '' }}">Home</a>
 
-                        <a href="/products"
+                        <a href="{{ route('main.products.index') }}"
                             class="menu navbar-item menu-hover {{ request()->routeIs('main.products*') ? 'menu-active' : '' }}">Produk</a>
 
                         <div class="relative">
@@ -50,13 +50,13 @@
                                     class="menu menu-hover dropdown-item block text-sm font-medium rounded-t">Tentang
                                     Kami</a>
 
-                                <a href="{{ route ('main.contact')}}" 
+                                <a href="{{ route('main.contact') }}"
                                     class="menu menu-hover dropdown-item block text-sm font-medium ">Kontak</a>
 
-                                <a href="{{ route ('main.payment')}}"
+                                <a href="{{ route('main.payment') }}"
                                     class="menu menu-hover dropdown-item block text-sm font-medium ">Pembayaran</a>
 
-                                <a href="{{ route ('main.delivery')}}"
+                                <a href="{{ route('main.delivery') }}"
                                     class="menu menu-hover dropdown-item block text-sm font-medium rounded-b">Pengiriman</a>
                             </div>
                         </div>
@@ -144,9 +144,9 @@
 
             @guest
                 <div class="z-30 hidden sm:inline">
-                    <a href="/login" class="btn hover:underline text-green-500">Masuk</a>
+                    <a href="{{ route('login') }}" class="btn hover:underline text-green-500">Masuk</a>
 
-                    <a href="/register" class="btn btn-outline-green hover-green">
+                    <a href="{{ route('register') }}" class="btn btn-outline-green hover-green">
                         Daftar
                     </a>
                 </div>
@@ -157,10 +157,10 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div x-show="isOpen('menu')" x-on:click.away="close" class="sm:hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-4 space-y-1">
-            <a href="#"
+            <a href="{{ route('main.home') }}"
                 class="rounded px-3 py-2 block menu menu-hover {{ request()->routeIs('main.home') ? 'menu-active' : '' }}">Home</a>
 
-            <a href="/products"
+            <a href="{{ route('main.products.index') }}"
                 class="rounded px-3 py-2 block menu menu-hover {{ request()->routeIs('main.products*') ? 'menu-active' : '' }}">Produk</a>
 
             <div class="rounded">
@@ -170,27 +170,27 @@
                         class="ml-2 fas fa-caret-down"></i></button>
 
                 <div x-show="dropdownInfo" class="p-2 border-2 rounded">
-                    <a href="{{ route ('main.about_us') }}"
+                    <a href="{{ route('main.about_us') }}"
                         class="block menu menu-hover dropdown-item rounded">Tentang
                         Kami</a>
 
-                    <a href="{{ route ('main.contact') }}" 
-                    class="block menu menu-hover dropdown-item rounded">Kontak</a>
+                    <a href="{{ route('main.contact') }}"
+                        class="block menu menu-hover dropdown-item rounded">Kontak</a>
 
-                    <a href="{{route  ('main.payment') }}" 
-                    class="block menu menu-hover dropdown-item rounded">Pembayaran</a>
+                    <a href="{{ route('main.payment') }}"
+                        class="block menu menu-hover dropdown-item rounded">Pembayaran</a>
 
-                    <a href="{{ route ('main.delivery') }}" 
-                    class="block menu menu-hover dropdown-item rounded">Pengiriman</a>
+                    <a href="{{ route('main.delivery') }}"
+                        class="block menu menu-hover dropdown-item rounded">Pengiriman</a>
                 </div>
             </div>
 
             @guest
                 <div class="border-t-2 pt-4 flex flex-col sm:hidden">
-                    <a href="/login"
+                    <a href="{{ route('login') }}"
                         class="py-2 text-center font-medium text-green-500 ring-1 ring-green-500 rounded">Masuk</a>
 
-                    <a href="/register"
+                    <a href="{{ route('register') }}"
                         class="mt-2 py-2 text-center font-medium rounded bg-green-500 text-white hover:bg-white hover:text-green-500 hover:ring-1 hover:ring-green-500">
                         Daftar
                     </a>
