@@ -46,6 +46,24 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
         Route::get('/categories/{category}', [ProductController::class, 'getByCategory'])->name('get_by_category');
     });
 
+    // info
+
+    Route::get('about-us', function () {
+        return view('main.about-us');
+    })->name('about_us');
+
+    Route::get('contact', function () {
+        return view('main.contact');
+    })->name('contact');
+
+    Route::get('payment', function () {
+        return view('main.payment');
+    })->name('payment');
+
+    Route::get('delivery', function () {
+        return view('main.delivery');
+    })->name('delivery');
+
     // auth user / dapat diakses setelah login sebagai user
     Route::middleware('auth')->group(function () {
         // keranjang
@@ -70,24 +88,6 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
         Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
         Route::put('/account/update', [AccountController::class, 'update'])->name('account.update');
         Route::get('/account', [AccountController::class, 'index'])->name('account.index');
-
-        // info
-
-        Route::get('about-us', function () {
-            return view('main.about-us');
-        })->name('about_us');
-
-        Route::get('contact', function () {
-            return view('main.contact');
-        })->name('contact');
-
-        Route::get('payment', function () {
-            return view('main.payment');
-        })->name('payment');
-
-        Route::get('delivery', function () {
-            return view('main.delivery');
-        })->name('delivery');
     });
 });
 

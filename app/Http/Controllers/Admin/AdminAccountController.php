@@ -25,9 +25,11 @@ class AdminAccountController extends Controller
         $admin = User::find(auth()->User()->id);
 
 
-        if($request->password != null){
+        if ($request->password != null) {
             $admin->password = Hash::make($request->password);
             $admin->save();
         }
+
+        return redirect()->route('admin.dashboard')->with(['status' => 'success', 'message' => 'Password berhasil diubah']);
     }
 }
