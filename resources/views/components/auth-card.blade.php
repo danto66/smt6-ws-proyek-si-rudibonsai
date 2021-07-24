@@ -9,7 +9,7 @@
             {{ $slot }}
         </div>
         <div class="flex items-center justify-between px-6 py-4 rounded-b-lg bg-gray-800 text-white">
-            <a class="underline text-sm text-gray-300 hover:text-gray-100" href="/">Home</a>
+            <a class="underline text-sm text-gray-300 hover:text-gray-100" href="{{ route('main.home') }}">Home</a>
             <span class="text-sm">
                 {{ $cardFooter }}
             </span>

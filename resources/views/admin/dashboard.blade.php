@@ -121,18 +121,10 @@
                             <tr>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <div class="flex items-center">
-                                        @if ($a->userProfile->profile_picture == 'default')
-                                            <div class="h-10 w-10">
-                                                <img class="my-auto h-10 w-10" src="{{ asset('img/logo/user.svg') }}"
-                                                    alt="">
-                                            </div>
-                                        @else
-                                            <div class="w-10 h-10">
-                                                <div class="aspect-w-1 aspect-h-1 bg-center bg-cover rounded-full"
-                                                    style="background-image: url('{{ asset('storage/img/profile-picture/') . '/' . $a->userProfile->profile_picture }}')">
-                                                </div>
-                                            </div>
-                                        @endif
+                                        <div class="h-10 w-10">
+                                            <img class="my-auto h-10 w-10" src="{{ asset('img/logo/user.svg') }}" alt="">
+                                        </div>
+
                                         <div class="ml-4">
                                             <div class="text-sm leading-5 font-medium text-gray-900">
                                                 {{ $a->userProfile->fullname }}
