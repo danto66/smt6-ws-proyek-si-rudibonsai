@@ -23,13 +23,13 @@
                 <div x-data="{i: 0 ,data:{{ $product->productImages->sortByDesc('is_primary')->values() }}, name:null, active:false}"
                     x-init="name=data[i].name;" class="relative w-full rounded-t-xl">
                     <div class="aspect-w-16 aspect-h-9 bg-center bg-cover rounded-t-xl"
-                        :style="`background-image: url('/storage/img/products/${name}')`">
+                        :style="`background-image: url('{{ asset('/storage/img/products') }}/${name}')`">
                     </div>
 
                     {{-- load cache image --}}
                     <div class="hidden">
                         <template x-for="item in data">
-                            <img :src="`/storage/img/products/${item.name}`">
+                            <img :src="`{{ asset('/storage/img/products') }}/${item.name}`">
                         </template>
                     </div>
 
@@ -95,7 +95,7 @@
 
                 @guest
                     <x-alert class="w-full" :type="'warning'">
-                        Silahkan login / masuk terlebih dahulu untuk dapat melakukan transaksi.
+                        <span>Silahkan login / masuk terlebih dahulu untuk dapat melakukan transaksi.</span>
                     </x-alert>
                 @endguest
 

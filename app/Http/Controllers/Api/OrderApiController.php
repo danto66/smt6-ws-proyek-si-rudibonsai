@@ -127,7 +127,7 @@ class OrderApiController extends Controller
 
             if ($order->payment_proof !== 'empty') {
                 $imageOld = $order->payment_proof;
-                $path = 'public/img/payment-proof/';
+                $path = 'storage/img/payment-proof/';
                 $filename = $path . $imageOld;
 
                 Storage::disk('local')->delete($filename);
@@ -149,14 +149,14 @@ class OrderApiController extends Controller
         $extension = $file->getClientOriginalExtension();
         $newName = $time . $name  . '.' . $extension;
 
-        Storage::putFileAs('public/img/payment-proof', $file, $newName);
+        Storage::putFileAs('storage/img/payment-proof', $file, $newName);
 
         return $newName;
     }
 
     public function getPaymentProof($filename)
     {
-        $path = 'public/img/payment-proof/' . $filename;
+        $path = 'storage/img/payment-proof/' . $filename;
 
         if (!Storage::exists($path)) {
             abort(404);

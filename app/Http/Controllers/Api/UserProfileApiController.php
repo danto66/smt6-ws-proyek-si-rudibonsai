@@ -10,7 +10,7 @@ class UserProfileApiController extends Controller
 {
     public function getPicture($filename)
     {
-        $path = 'public/img/profile-picture/' . $filename;
+        $path = 'storage/img/profile-picture/' . $filename;
 
         if (!Storage::exists($path)) {
             abort(404);

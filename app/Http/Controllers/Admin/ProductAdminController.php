@@ -124,7 +124,7 @@ class ProductAdminController extends Controller
     {
 
         $fileName = [];
-        $path = 'public/img/products/';
+        $path = 'storage/img/products/';
         $files = Product::find($id)->productImages;
 
         foreach ($files as $file) {
@@ -150,7 +150,7 @@ class ProductAdminController extends Controller
     public function destroyImage($id)
     {
         $image = ProductImage::find($id)->name;
-        $path = 'public/img/products/';
+        $path = 'storage/img/products/';
         $filename = $path . $image;
 
         Storage::disk('local')->delete($filename);
@@ -204,7 +204,7 @@ class ProductAdminController extends Controller
         $extension = $file->getClientOriginalExtension();
         $newName = $time . $name  . '.' . $extension;
 
-        Storage::putFileAs('public/img/products', $file, $newName);
+        Storage::putFileAs('storage/img/products', $file, $newName);
 
         return $newName;
     }
