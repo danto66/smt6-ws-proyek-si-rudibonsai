@@ -41,6 +41,16 @@ Route::get('/clear-cache', function () {
     return 'DONE'; //Return anything
 });
 
+Route::get('/clear-view', function () {
+    $exitCode = Artisan::call('view:clear');
+    return 'DONE'; //Return anything
+});
+
+Route::get('/clear-route', function () {
+    $exitCode = Artisan::call('route:clear');
+    return 'DONE'; //Return anything
+});
+
 // main app / frontend (tampilan yang diakses pembeli)
 Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(function () {
     // non-auth / publik (dapat diakses tanpa login)

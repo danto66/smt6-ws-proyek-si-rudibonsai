@@ -65,7 +65,7 @@
                         class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full">
 
                         <form method="POST"
-                            x-bind:action="(actionPost ? '/admin/categories' : ('/admin/categories/' + inputCategoryValue))">
+                            x-bind:action="(actionPost ? '{{ route('admin.categories.store') }}' : ('{{ url('admin/categories') . '/' }}' + inputCategoryValue))">
                             <input x-bind:disabled="actionPost" type="hidden" name="_method" value="PUT">
 
                             @csrf

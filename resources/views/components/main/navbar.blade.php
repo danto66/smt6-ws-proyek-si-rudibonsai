@@ -69,7 +69,7 @@
                     <!-- Profile dropdown -->
                     <div class="relative flex justify-between">
                         <a class="hidden sm:flex justify-center text-sm rounded-xl px-3 py-1 bg-green-300 hover:bg-green-500"
-                            href="/carts">
+                            href="{{ route('main.cart.index') }}">
                             <i class="my-auto fas fa-shopping-cart mr-2"></i>
                             <span class="text-sm my-auto font-semibold"> {{ $cart > 0 ? $cart : 0 }} </span>
                         </a>
