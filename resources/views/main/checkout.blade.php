@@ -45,9 +45,9 @@
                         </p>
                     </div>
 
-                    <div class="mt-4 flex">
+                    {{-- <div class="mt-4 flex">
                         <a class="ml-auto btn-sm btn-outline-green hover-green" href="">Ubah Alamat</a>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="mt-4 border-b-2 pb-3">
@@ -213,7 +213,6 @@
                 }
             }
         }
-
     </script>
 
 @endsection

@@ -11,10 +11,10 @@ class RajaOngkirApiController extends Controller
     public function getCost($courier, $destination, $weight)
     {
         $response = Http::asForm()->withHeaders([
-            'key' => env('KEY_RAJAONGKIR'),
+            'key' => config('rajaongkir.key'),
         ])->post('https://api.rajaongkir.com/starter/cost', [
             'courier' => $courier,
-            'origin' => env('ORIGIN_ID'),
+            'origin' => config('rajaongkir.origin_id'),
             'destination' => $destination,
             'weight' => $weight,
         ])->json();

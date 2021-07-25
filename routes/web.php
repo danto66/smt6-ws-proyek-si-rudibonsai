@@ -31,30 +31,20 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 // auth
 require __DIR__ . '/auth.php';
 
-Route::get('/storage-link', function () {
-    Artisan::call('storage:link');
-    return 'DONE'; //Return anything
-});
-
-Route::get('/clear-cache', function () {
+Route::get('/config-cache', function () {
     $exitCode = Artisan::call('config:cache');
-    return 'DONE'; //Return anything
+    return 'DONE, config:cache'; //Return anything
 });
 
-Route::get('/clear-view', function () {
-    $exitCode = Artisan::call('view:clear');
-    return 'DONE'; //Return anything
-});
-
-Route::get('/clear-route', function () {
-    $exitCode = Artisan::call('route:clear');
-    return 'DONE'; //Return anything
+Route::get('/optimize-clear', function () {
+    $exitCode = Artisan::call('optimize:clear');
+    return 'DONE, optimize:clear'; //Return anything
 });
 
 // main app / frontend (tampilan yang diakses pembeli)
 Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(function () {
-    // non-auth / publik (dapat diakses tanpa login)
 
+    // non-auth / publik (dapat diakses tanpa login)
     // home
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -67,7 +57,6 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
     });
 
     // info
-
     Route::get('about-us', function () {
         return view('main.about-us');
     })->name('about_us');
@@ -86,6 +75,7 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
 
     // auth user / dapat diakses setelah login sebagai user
     Route::middleware('auth')->group(function () {
+
         // keranjang
         Route::prefix('/carts')->name('cart.')->group(function () {
             Route::get('/', [CartController::class, 'index'])->name('index');
@@ -104,6 +94,7 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
             Route::get('/detail/{order}', [OrderController::class, 'detail'])->name('detail');
             Route::put('/detail/{order}/payment-proof', [OrderController::class, 'uploadPaymentProof'])->name('upload_payment_proof');
         });
+
         //akun setting
         Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
         Route::put('/account/update', [AccountController::class, 'update'])->name('account.update');
@@ -113,6 +104,7 @@ Route::middleware(['not.admin', 'verified.or.guest'])->name('main.')->group(func
 
 //admin dashboard / backend (tampilan yang diakses admin)
 Route::prefix('/admin')->name('admin.')->group(function () {
+
     // non-auth / dapat diakses tanpa login
     // logout
     Route::middleware('guest')->group(function () {
@@ -122,6 +114,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
 
     // auth admin / dapat diakses setelah login sebagai admin
     Route::middleware('is.admin')->group(function () {
+
         // logout
         Route::post('/logout', [AdminLoginController::class, 'destroy'])->name('logout');
 
@@ -133,8 +126,6 @@ Route::prefix('/admin')->name('admin.')->group(function () {
 
         // produk
         Route::resource('/products', ProductAdminController::class);
-
-
 
         // foto produk
         Route::prefix('/products')->name('products.')->group(function () {

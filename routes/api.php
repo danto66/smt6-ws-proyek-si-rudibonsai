@@ -36,6 +36,7 @@ Route::get('/cost/{courier}/{destination}/{weight}', [RajaOngkirApiController::c
 Route::post('/register', [AuthUserApiController::class, 'register']);
 Route::post('/login', [AuthUserApiController::class, 'login']);
 
+// data gambar api
 Route::get('/products/images/{filename}', [ProductApiController::class, 'showImage']);
 Route::get('/orders/payment-proof/{filename}', [OrderApiController::class, 'getPaymentProof']);
 Route::get('/user/picture/{filename}', [UserProfileApiController::class, 'getPicture']);
@@ -43,6 +44,7 @@ Route::get('/user/picture/{filename}', [UserProfileApiController::class, 'getPic
 // auth user sanctum
 // diakses menggunakan token
 Route::middleware('auth:sanctum')->group(function () {
+
     // logout
     Route::post('/logout', [AuthUserApiController::class, 'logout']);
 
