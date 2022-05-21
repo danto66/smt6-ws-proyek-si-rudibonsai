@@ -18,18 +18,17 @@
                 </div>
                 <p class="mt-4 text-left"><strong> 3 Cara Pembayaran, yaitu :</strong></p>
                 <ol class="text-justify p-6 font-poppins list-outside list-decimal ">
-                    <li>Pembayaran Barang dengan mendatangi langsung ke tempat usaha Rudi Bonsai Kabupaten Blitar,
-                        Jawa Timur</li>
-                    <p class="mt-2">Pembayaran secara langsung ditempat usaha oleh petugas toko atau pemilik toko
-                        bonsai.</p>
+                    <li>Pembayaran Barang dengan mendatangi langsung ke tempat usaha Voaleta Kabupaten Jember,
+                        Jawa Timur.</li>
+                    <p class="mt-2">Pembayaran secara langsung ditempat usaha oleh Owner atau pemilik toko
+                       Voaleta.</p>
                     <br>
-                    <li>Pembayaran Barang dengan COD atau Langsung dalam wilayah Kabupaten Blitar, Jawa Timur</li>
-                    <p class="mt-2">Pembayaran COD dilakukan secara langsung oleh petugas toko atau pemilik toko bonsai
+                    <li>Pembayaran Barang dengan COD atau Langsung dalam wilayah Kabupaten Jember, Jawa Timur.</li>
+                    <p class="mt-2">Pembayaran COD dilakukan secara langsung oleh Owner atau pemilik toko bonsai
                         dengan bertemu langsung dengan pembeli.</p>
                     <br>
-                    <li>Pembayaran Barang di luar Kabupaten Blitar, Jawa Timur</li>
-                    <p class="mt-2">Pembayaran Barang diluar kota bisa dilakukan dengan cara transfer bank dengan Bank
-                        BRI.</p>
+                    <li>Pembayaran Barang di luar Kabupaten Jember, Jawa Timur.</li>
+                    <p class="mt-2">Pembayaran Barang diluar kota bisa dilakukan dengan cara transfer bank dan E-Wallet.</p>
                     <br>
                 </ol>
                 <div class="card-body">

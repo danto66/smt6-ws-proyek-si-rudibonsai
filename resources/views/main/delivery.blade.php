@@ -17,10 +17,10 @@
                         </div>
                      <div class="text-justify m-8 mt-2 card-body">
                         <ol class="list-decimal list-outside mt-4 font-mono">
-                            <li class="font-bold">Pengiriman Barang dengan COD atau Langsung dalam wilayah Kabupaten Blitar, Jawa Timur</li>
-                                <p class="mt-2 text-justify">Pengiriman COD dilakukan secara langsung oleh petugas toko atau pemilik toko bonsai dengan bertemu langsung dengan pembeli.</p>
-                            <li class="font-bold">Pengiriman Barang di luar Kabupaten Blitar, Jawa Timur</li>
-                                <p class="mt-2 text-justify">Pengiriman Barang diluar kota akan dilakukan apabila pembeli telah melakukan pembayaran terhadap barang pesanan, pengiriman barang akan dikirim melalui jasa pengiriman JNE, TIKI , dan Pos Indonesia yang dapat mencangkup seluruh wilayah di Indonesia.</p>
+                            <li class="font-bold">Pengiriman Barang dengan COD atau Langsung dalam wilayah Jember, Jawa Timur</li>
+                                <p class="mt-2 text-justify">Pengiriman COD dilakukan secara langsung oleh Owner atau pemilik toko Voaleta dengan bertemu langsung dengan pembeli.</p>
+                            <li class="font-bold">Pengiriman Barang di luar Kabupaten Jember, Jawa Timur</li>
+                                <p class="mt-2 text-justify">Pengiriman Barang diluar kota akan dilakukan apabila pembeli telah melakukan pembayaran terhadap barang pesanan, pengiriman barang akan dikirim melalui jasa pengiriman JNE, J&T , dan Pos Indonesia yang dapat mencangkup seluruh wilayah di Indonesia.</p>
                             <br>
                         </ol>
                         <p><strong>#Note: Pastikan Alamat Rumah dan Nomor Telepon Anda Sudah Tepat dan Benar!!</strong></p>
