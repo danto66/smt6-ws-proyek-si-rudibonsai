@@ -7,17 +7,17 @@
         <div class="bg-black h-80 sm:h-auto relative flex items-center">
             <div class="w-full h-auto">
                 <img class="object-cover sm:object-contain h-80 w-full sm:h-auto opacity-50"
-                    src="{{ asset('img/hero/hero-section-bonsai.jpg') }}" alt="">
+                    src="{{ asset('img/hero/hijab.jpg') }}" alt="">
             </div>
 
             <div class="absolute w-full">
                 <div class="px-8 xl:px-4 text-center lg:text-left max-w-7xl mx-auto">
                     <p class="lg:w-1/2 text-3xl md:text-6xl text-white font-bold ">
-                        Jual bonsai dan tanaman hias berkualitas.
+                        Menjual Hijab Berkualitas.
                     </p>
 
                     <p class="lg:w-1/2 text-lg md:text-xl text-gray-300 font-semibold mt-4 leading-5">
-                        Rudibonsai menyediakan beragam jenis bonsai dan tanaman hias serta perlengkapan berkebun.
+                        Voaleta menyediakan beragam jenis hijab yang sedang trend.
                     </p>
 
                     <p class="mt-8">
@@ -47,7 +47,7 @@
                         </div>
 
                         <div class="text-sm text-gray-500 mt-1 leading-tight">
-                            Kami menyediakan tanaman berkualitas yang dirawat dengan baik.
+                            Kami menyediakan hijab berkualitas yang diproduksi dengan baik.
                         </div>
                     </div>
                 </div>
