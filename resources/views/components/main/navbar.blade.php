@@ -16,13 +16,13 @@
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 {{-- logo header kiri --}}
                 <div class="flex-shrink-0 flex items-center lg:mr-8">
-                    <img class="block lg:hidden h-8 w-auto" src="{{ asset('img/logo/bonsai.svg') }}" alt="">
+                    <img class="block lg:hidden h-8 w-auto" src="{{ asset('img/logo/logo.png') }}" alt="">
 
                     <div class="hidden lg:flex space-x-2">
-                        <img class="my-auto h-8 w-auto" src="{{ asset('img/logo/bonsai.svg') }}" alt="">
+                        <img class="my-auto h-8 w-auto" src="{{ asset('img/logo/logo.png') }}" alt="">
 
                         <span class="my-auto text-2xl font-semibold h-8 w-auto font-poppins">
-                            Rudibonsai
+                            Voaleta
                         </span>
                     </div>
                 </div>

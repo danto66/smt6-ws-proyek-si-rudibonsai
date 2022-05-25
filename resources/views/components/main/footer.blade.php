@@ -11,7 +11,7 @@
         </div>
 
         <div class="flex justify-center mt-4">
-            <p class="text-xs text-gray-400">&#169;2021 Rudibonsai</p>
+            <p class="text-xs text-gray-400">&#169;2022 Voaleta</p>
         </div>
     </div>
 </div>
