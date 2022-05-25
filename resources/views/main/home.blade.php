@@ -75,7 +75,7 @@
 
                 <div class="p-4 rounded shadow flex">
                     <div class="flex flex-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-green-500" viewBox="0 0 20 20"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-red-500" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path fill-rule="evenodd"
                                 d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -98,7 +98,7 @@
 
         {{-- produk terbaru --}}
         <div class="mt-8 px-2 sm:px-8 xl:px-4 max-w-7xl mx-auto">
-            <div class="text-gray-900 font-semibold sm:text-3xl text-xl border-b-4 border-green-500 py-2">
+            <div class="text-gray-900 font-semibold sm:text-3xl text-xl border-b-4 border-red-500 py-2">
                 Produk terbaru
             </div>
 

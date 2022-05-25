@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-auth-card class="bg-green-100">
+    <x-auth-card class="bg-red-100">
         <x-slot name="cardHeader">
             <span>Selamat Datang Admin!</span>
         </x-slot>
