@@ -3,8 +3,8 @@
 <div class="bg-white flex flex-col rounded shadow-md">
     <div class="relative">
         @php
-            $img = $product->productImages;
-            $primary = $img->where('is_primary', 1)->values();
+        $img = $product->productImages;
+        $primary = $img->where('is_primary', 1)->values();
         @endphp
 
         <div class="aspect-w-16 aspect-h-9 bg-center bg-cover"
@@ -36,14 +36,14 @@
 
         <div class="sm:flex sm:justify-end mt-3">
             @if ($product->stock > 0)
-                <a href="{{ route('main.products.show', ['product' => $product->id]) }}"
-                    class="text-center block sm:inline-block sm:w-auto btn-sm btn-green hover-darken-green">
-                    Detail Produk
-                </a>
+            <a href="{{ route('main.products.show', ['product' => $product->id]) }}"
+                class="text-center block sm:inline-block sm:w-auto btn-sm btn-primary hover-darken-primary">
+                Detail Produk
+            </a>
             @else
-                <div class="text-center block sm:inline-block sm:w-auto btn-sm btn-green disabled">
-                    Stok Habis
-                </div>
+            <div class="text-center block sm:inline-block sm:w-auto btn-sm btn-primary disabled">
+                Stok Habis
+            </div>
             @endif
         </div>
     </div>
