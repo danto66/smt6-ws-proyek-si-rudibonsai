@@ -23,6 +23,6 @@ class IsAdmin
             }
         }
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('admin.login');
     }
 }
