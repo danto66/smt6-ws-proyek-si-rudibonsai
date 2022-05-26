@@ -119,7 +119,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::post('/logout', [AdminLoginController::class, 'destroy'])->name('logout');
 
         // dashboard
-        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
 
         // pelanggan
         Route::get('/pelanggan', [PelangganAdminController::class, 'index'])->name('pelanggan');
