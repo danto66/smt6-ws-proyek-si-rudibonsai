@@ -4,90 +4,98 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @layer components {
+
   /* button */
-    .btn {
-      @apply py-2 px-4 font-semibold rounded-md border border-transparent;
-    }
-    
-    .btn-sm {
-      @apply py-1 px-3 font-medium text-sm rounded;
-    }
-
-    .disabled{
-      @apply opacity-50 cursor-default focus:outline-none pointer-events-none;
-    }
-
-    .btn-blue {
-      @apply bg-blue-500 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
-    }
-
-    .btn-green {
-      @apply bg-pink-500 text-white focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-75;
-    }
-    
-    .btn-red {
-      @apply bg-red-500 text-white focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75;
-    }
-
-    .btn-outline-green {
-      @apply bg-white text-green-500 ring-1 ring-green-500 focus:outline-none;
-    }
-    /* ==== */
-
-
-    /* button hover */
-    .hover-outline-green{
-        @apply hover:bg-white hover:text-green-500 hover:ring-1 hover:ring-green-500;
-    }
-
-    .hover-green{
-      @apply hover:bg-green-500 hover:text-white;
-    }
-
-    .hover-darken-green{
-        @apply hover:bg-green-700;
-    }
-    /* ==== */
-
-
-     /* sidebar */
-    .sidebar-item{
-      @apply text-gray-500;
-    }
-
-    .sidebar-item-hover{
-      @apply hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100;
-    }
-
-    .sidebar-item-active{
-      @apply bg-gray-700 bg-opacity-25 text-gray-100;
-    }
-    /* ==== */
-
-
-    /* menu */
-    .menu{
-      @apply text-gray-500 text-sm font-medium;
-    }
-
-    .menu-sm{
-      @apply text-gray-500 text-base font-medium;
-    }
-
-    .menu-hover{
-      @apply hover:text-black hover:bg-gray-200;
-    }
-    
-    .menu-active{
-      @apply text-black bg-gray-200;
-    }
-
-    .navbar-item{
-      @apply px-3 py-2 rounded-lg;
-    }
-
-    .dropdown-item{
-      @apply px-4 py-2;
-    }
-
+  .btn {
+    @apply py-2 px-4 font-semibold rounded-md border border-transparent;
   }
+
+  .btn-sm {
+    @apply py-1 px-3 font-medium text-sm rounded;
+  }
+
+  .disabled {
+    @apply opacity-50 cursor-default focus:outline-none pointer-events-none;
+  }
+
+  .btn-blue {
+    @apply bg-blue-500 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+  }
+
+  .btn-primary {
+    @apply bg-pink-500 text-white focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-75;
+  }
+
+  .btn-red {
+    @apply bg-red-500 text-white focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75;
+  }
+
+  .btn-outline-primary {
+    @apply bg-white text-pink-500 ring-1 ring-pink-500 focus:outline-none;
+  }
+
+  .btn-link-primary{
+    @apply hover:underline text-pink-500
+  }
+
+  /* ==== */
+
+
+  /* button hover */
+  .hover-outline-primary {
+    @apply hover:bg-white hover:text-pink-500 hover:ring-1 hover:ring-pink-500;
+  }
+
+  .hover-primary {
+    @apply hover:bg-pink-500 hover:text-white;
+  }
+
+  .hover-darken-primary {
+    @apply hover:bg-pink-700;
+  }
+
+  /* ==== */
+
+
+  /* sidebar */
+  .sidebar-item {
+    @apply text-gray-500;
+  }
+
+  .sidebar-item-hover {
+    @apply hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100;
+  }
+
+  .sidebar-item-active {
+    @apply bg-gray-700 bg-opacity-25 text-gray-100;
+  }
+
+  /* ==== */
+
+
+  /* menu */
+  .menu {
+    @apply text-gray-500 text-sm font-medium;
+  }
+
+  .menu-sm {
+    @apply text-gray-500 text-base font-medium;
+  }
+
+  .menu-hover {
+    @apply hover:text-black hover:bg-gray-200;
+  }
+
+  .menu-active {
+    @apply text-black bg-gray-200;
+  }
+
+  .navbar-item {
+    @apply px-3 py-2 rounded-lg;
+  }
+
+  .dropdown-item {
+    @apply px-4 py-2;
+  }
+
+}

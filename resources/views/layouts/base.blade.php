@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Voaleta - @yield('title')</title>
-    <link rel="shortcut icon" href="{{ asset('img/logo/icon_rb.svg') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo/logo.png') }}">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">

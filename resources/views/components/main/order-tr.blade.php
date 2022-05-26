@@ -5,9 +5,9 @@
 
     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
         @foreach ($order->products as $item)
-            <p class="w-80 font-bold line-clamp-2">
-                {{ $item->name . ',' }}
-            </p>
+        <p class="w-80 font-bold line-clamp-2">
+            {{ $item->name . ',' }}
+        </p>
         @endforeach
         <p class="text-gray-500 whitespace-nowrap">{{ $order->quantity_total }} item</p>
     </td>
@@ -21,6 +21,6 @@
     </td>
 
     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-        <a class="btn btn-green" href="{{ route('main.order.detail', ['order' => $order->id]) }}">Detail</a>
+        <a class="btn btn-primary" href="{{ route('main.order.detail', ['order' => $order->id]) }}">Detail</a>
     </td>
 </tr>

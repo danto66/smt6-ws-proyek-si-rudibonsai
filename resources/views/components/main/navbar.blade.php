@@ -65,91 +65,89 @@
             </div>
 
             @auth
-                <div class="absolute inset-y-0 right-0 z-30 flex items-center">
-                    <!-- Profile dropdown -->
-                    <div class="relative flex justify-between">
-                        <a class="hidden sm:flex justify-center text-sm rounded-xl px-3 py-1 bg-green-300 hover:bg-green-500"
-                            href="{{ route('main.cart.index') }}">
-                            <i class="my-auto fas fa-shopping-cart mr-2"></i>
-                            <span class="text-sm my-auto font-semibold"> {{ $cart > 0 ? $cart : 0 }} </span>
-                        </a>
+            <div class="absolute inset-y-0 right-0 z-30 flex items-center">
+                <!-- Profile dropdown -->
+                <div class="relative flex justify-between">
+                    <a class="hidden sm:flex justify-center text-sm rounded-xl px-3 py-1 bg-pink-300 hover:bg-pink-500"
+                        href="{{ route('main.cart.index') }}">
+                        <i class="my-auto fas fa-shopping-cart mr-2"></i>
+                        <span class="text-sm my-auto font-semibold"> {{ $cart > 0 ? $cart : 0 }} </span>
+                    </a>
 
-                        <button x-on:click="open('dropdown')" type="button" class="ml-2 text-3xl flex" id="user-menu"
-                            aria-expanded="false" aria-haspopup="true">
-                            <span x-show="!isOpen('dropdown')"
-                                class="sm:hidden absolute font-semibold -top-2 right-7 bg-green-300 text-black p-1 px-2 rounded-lg text-xs">
-                                {{ $cart }} </span>
-                            <span class="sr-only">Open user menu</span>
+                    <button x-on:click="open('dropdown')" type="button" class="ml-2 text-3xl flex" id="user-menu"
+                        aria-expanded="false" aria-haspopup="true">
+                        <span x-show="!isOpen('dropdown')"
+                            class="sm:hidden absolute font-semibold -top-2 right-7 bg-pink-300 text-black p-1 px-2 rounded-lg text-xs">
+                            {{ $cart }} </span>
+                        <span class="sr-only">Open user menu</span>
 
-                            @if ($profile->profile_picture == 'default')
-                                <i class="fas fa-user-circle my-auto"></i>
-                            @else
+                        @if ($profile->profile_picture == 'default')
+                        <i class="fas fa-user-circle my-auto"></i>
+                        @else
 
-                                {{-- <img class="h-8 w-8 rounded-full"
-                                    src="{{ asset('storage/img/profile-picture/') . '/' . $profile->profile_picture }}"
-                                    alt=""> --}}
+                        {{-- <img class="h-8 w-8 rounded-full"
+                            src="{{ asset('storage/img/profile-picture/') . '/' . $profile->profile_picture }}" alt="">
+                        --}}
 
-                                <div class="w-8 h-8">
-                                    <div class="aspect-w-1 aspect-h-1 bg-center bg-cover rounded-full"
-                                        style="background-image: url('{{ asset('storage/img/profile-picture/') . '/' . $profile->profile_picture }}')">
-                                    </div>
-                                </div>
-                            @endif
+                        <div class="w-8 h-8">
+                            <div class="aspect-w-1 aspect-h-1 bg-center bg-cover rounded-full"
+                                style="background-image: url('{{ asset('storage/img/profile-picture/') . '/' . $profile->profile_picture }}')">
+                            </div>
+                        </div>
+                        @endif
+                    </button>
+                </div>
+            </div>
+
+            <div x-show="isOpen('dropdown')" x-on:click.away="close"
+                class="top-16 w-full sm:w-48 right-0 absolute rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                <div href="#" class="border-b-2 border-gray-100 block px-4 py-2 text-sm font-semibold">
+                    {{ $profile->fullname }} </div>
+
+                <a href="{{ route('main.cart.index') }}"
+                    class="flex justify-between sm:hidden menu menu-hover dropdown-item" role="menuitem">
+                    <span>
+                        <i class="mr-2 fas fa-shopping-cart"></i>
+                        Keranjang
+                    </span>
+                    <span class="bg-pink-300 text-black px-2 rounded-md">
+                        {{ $cart }}
+                    </span>
+                </a>
+
+                <a href="{{ route('main.account.index') }}" class="block menu menu-hover dropdown-item" role="menuitem">
+                    <i class="mr-2 fas fa-user"></i>
+                    Akun
+                </a>
+
+                <a href="{{ route('main.order.index') }}" class="block menu menu-hover dropdown-item" role="menuitem">
+                    <i class="mr-2 fas fa-receipt"></i>
+                    Pesanan
+                </a>
+
+                <!-- Authentication -->
+                <div class="border-gray-100 border-t-2 block hover:bg-gray-100">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <button class="w-full text-left menu menu-hover dropdown-item">
+                            <i class="mr-2 fas fa-sign-out-alt"></i>
+                            Keluar
                         </button>
-                    </div>
+                    </form>
                 </div>
-
-                <div x-show="isOpen('dropdown')" x-on:click.away="close"
-                    class="top-16 w-full sm:w-48 right-0 absolute rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                    role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                    <div href="#" class="border-b-2 border-gray-100 block px-4 py-2 text-sm font-semibold">
-                        {{ $profile->fullname }} </div>
-
-                    <a href="{{ route('main.cart.index') }}"
-                        class="flex justify-between sm:hidden menu menu-hover dropdown-item" role="menuitem">
-                        <span>
-                            <i class="mr-2 fas fa-shopping-cart"></i>
-                            Keranjang
-                        </span>
-                        <span class="bg-green-300 text-black px-2 rounded-md">
-                            {{ $cart }}
-                        </span>
-                    </a>
-
-                    <a href="{{ route('main.account.index') }}" class="block menu menu-hover dropdown-item"
-                        role="menuitem">
-                        <i class="mr-2 fas fa-user"></i>
-                        Akun
-                    </a>
-
-                    <a href="{{ route('main.order.index') }}" class="block menu menu-hover dropdown-item"
-                        role="menuitem">
-                        <i class="mr-2 fas fa-receipt"></i>
-                        Pesanan
-                    </a>
-
-                    <!-- Authentication -->
-                    <div class="border-gray-100 border-t-2 block hover:bg-gray-100">
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <button class="w-full text-left menu menu-hover dropdown-item">
-                                <i class="mr-2 fas fa-sign-out-alt"></i>
-                                Keluar
-                            </button>
-                        </form>
-                    </div>
-                </div>
+            </div>
             @endauth
 
             @guest
-                <div class="z-30 hidden sm:inline">
-                    <a href="{{ route('login') }}" class="btn hover:underline text-green-500">Masuk</a>
+            <div class="z-30 hidden sm:inline">
+                <a href="{{ route('login') }}" class="btn btn-link-primary">Masuk</a>
 
-                    <a href="{{ route('register') }}" class="btn btn-outline-green hover-green">
-                        Daftar
-                    </a>
-                </div>
+                <a href="{{ route('register') }}" class="btn btn-outline-primary hover-primary">
+                    Daftar
+                </a>
+            </div>
             @endguest
         </div>
     </div>
@@ -170,12 +168,10 @@
                         class="ml-2 fas fa-caret-down"></i></button>
 
                 <div x-show="dropdownInfo" class="p-2 border-2 rounded">
-                    <a href="{{ route('main.about_us') }}"
-                        class="block menu menu-hover dropdown-item rounded">Tentang
+                    <a href="{{ route('main.about_us') }}" class="block menu menu-hover dropdown-item rounded">Tentang
                         Kami</a>
 
-                    <a href="{{ route('main.contact') }}"
-                        class="block menu menu-hover dropdown-item rounded">Kontak</a>
+                    <a href="{{ route('main.contact') }}" class="block menu menu-hover dropdown-item rounded">Kontak</a>
 
                     <a href="{{ route('main.payment') }}"
                         class="block menu menu-hover dropdown-item rounded">Pembayaran</a>
@@ -186,15 +182,13 @@
             </div>
 
             @guest
-                <div class="border-t-2 pt-4 flex flex-col sm:hidden">
-                    <a href="{{ route('login') }}"
-                        class="py-2 text-center font-medium text-green-500 ring-1 ring-green-500 rounded">Masuk</a>
+            <div class="border-t-2 pt-4 flex flex-col sm:hidden text-center">
+                <a href="{{ route('login') }}" class="btn btn-outline-primary">Masuk</a>
 
-                    <a href="{{ route('register') }}"
-                        class="mt-2 py-2 text-center font-medium rounded bg-green-500 text-white hover:bg-white hover:text-green-500 hover:ring-1 hover:ring-green-500">
-                        Daftar
-                    </a>
-                </div>
+                <a href="{{ route('register') }}" class="btn btn-primary mt-2">
+                    Daftar
+                </a>
+            </div>
             @endguest
         </div>
     </div>
