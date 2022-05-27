@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="flex flex-col sm:flex-row sm:space-x-2 flex-shrink">
-                        <div class="mt-4 w-full">
+                        {{-- <div class="mt-4 w-full">
                             <x-label for="height" value="Tinggi" />
 
                             <div class="rounded-md mt-1 flex flex-row justify-center bg-gray-300">
@@ -107,7 +107,7 @@
                                     cm
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="mt-4 w-full">
                             <x-label for="weight" value="Berat" />

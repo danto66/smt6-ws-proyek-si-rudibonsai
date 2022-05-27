@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\Cart;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductImage;
@@ -20,7 +21,6 @@ class ProductAdminController extends Controller
     public function index()
     {
         $products = Product::orderBy('id', 'desc')->paginate(10);
-        // $products = Product::paginate(10);
 
         return view('admin.products.index', compact('products'));
     }
@@ -32,7 +32,6 @@ class ProductAdminController extends Controller
      */
     public function create()
     {
-
         $categories = ProductCategory::all();
 
         return view('admin.products.create', compact('categories'));
@@ -120,22 +119,32 @@ class ProductAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
+        // cek apakah produk ada pada pesanan
+        $productInOrderDetail = OrderDetail::where('product_id', $product->id);
+        $productInCart = Cart::where('product_id', $product->id);
 
-        $fileName = [];
-        $path = 'storage/img/products/';
-        $files = Product::find($id)->productImages;
+        // apakah produk ada di Order dan Cart
+        if (is_null($productInOrderDetail) && is_null($productInCart)) {
+            // hapus produk image
+            $fileName = [];
+            $path = 'storage/img/products/';
+            $files = $product->productImages;
 
-        foreach ($files as $file) {
-            $fileName[] = $path . $file->name;
+            foreach ($files as $file) {
+                $fileName[] = $path . $file->name;
+            }
+
+            Storage::disk('local')->delete($fileName);
         }
 
-        // dd($fileName);
+        if (!is_null($productInCart)) {
+            $productInCart->delete();
+        }
 
-        Storage::disk('local')->delete($fileName);
-
-        Product::destroy($id);
+        // hapus produk
+        $product->delete();
 
         return redirect()->back()->with('message', 'Produk berhasil dihapus.');
     }

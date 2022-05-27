@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Product;
-use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
     public function index()
     {
-        $carts = Cart::with(['product', 'productImages'])->where('user_id', auth()->user()->id)->get();
+        $carts = Cart::with(['product'])->where('user_id', auth()->user()->id)->get();
 
         return view('main.cart', compact('carts'));
     }

@@ -41,7 +41,7 @@ class OrderController extends Controller
 
         $profile = auth()->user()->userProfile()->with(['province', 'city', 'subdistrict'])->get()->first();
 
-        $items = OrderDetail::with(['product', 'productImages'])->where('order_id', $order->id)->get();
+        $items = OrderDetail::with(['product'])->where('order_id', $order->id)->get();
 
         return view('main.order-detail', compact(['order', 'profile', 'items']));
     }

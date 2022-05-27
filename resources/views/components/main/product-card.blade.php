@@ -26,7 +26,7 @@
 
             <div class="mt-1 text-gray-600 text-xs sm:text-sm">
                 <span class="font-semibold text-gray-400 hidden sm:block">Dimensi :</span>
-                <span>{{ $product->length }}cm x {{ $product->width }}cm x {{ $product->height }}cm</span>
+                <span>{{ $product->length }}cm x {{ $product->width }}cm</span>
             </div>
 
             <div class="mt-2">

@@ -2,20 +2,19 @@
 
 @php
 $product = $item->product;
-$images = $item->productImages;
 @endphp
 
 <div class="flex border-b-2 pb-2 justify-between sm:space-x-4 flex-col sm:flex-row mt-2">
     <div class="flex justify-items-start items-start sm:items-center w-full">
         <div class="w-32">
-            @if ($images->where('is_primary', 1)->isNotEmpty())
-                <div class="aspect-w-16 aspect-h-9 bg-center bg-cover"
-                    style="background-image: url('{{ asset('storage/img/products/') . '/' . $images->where('is_primary', 1)->first()->name }}')">
-                </div>
+            @if ($product->productImages->where('is_primary', 1)->isNotEmpty())
+            <div class="aspect-w-16 aspect-h-9 bg-center bg-cover"
+                style="background-image: url('{{ asset('storage/img/products/') . '/' . $product->productImages->where('is_primary', 1)->first()->name }}')">
+            </div>
             @else
-                <div class="aspect-w-16 aspect-h-9 bg-center bg-cover"
-                    style="background-image: url('{{ asset('storage/img/products/') . '/' . $images->first()->name }}')">
-                </div>
+            <div class="aspect-w-16 aspect-h-9 bg-center bg-cover"
+                style="background-image: url('{{ asset('storage/img/products/') . '/' . $product->productImages->first()->name }}')">
+            </div>
             @endif
         </div>
 

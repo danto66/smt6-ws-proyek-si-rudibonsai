@@ -9,7 +9,7 @@ $stockEmpty = false;
 
 <div x-data="countCart()" x-init="setItemValue({{ $carts->count() }}); setData({{ $carts }})"
     class="mt-6 px-2 sm:px-8 xl:px-4 max-w-7xl mx-auto min-h-screen">
-    <div class="text-gray-900 font-semibold sm:text-3xl text-xl border-b-4 border-green-500 py-2">
+    <div class="text-gray-900 font-semibold sm:text-3xl text-xl border-b-4 border-pink-500 py-2">
         Keranjang
     </div>
 
