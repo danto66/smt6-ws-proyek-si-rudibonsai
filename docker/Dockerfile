@@ -22,12 +22,16 @@ RUN apt update --allow-releaseinfo-change \
     && docker-php-source delete
 
 # Copy vhost.conf
-COPY docker/apache/vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/config/apache/vhost.conf /etc/apache2/sites-available/000-default.conf
 
 # Copy .env
 # COPY .env /var/www/html/.env
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN chown -R www-data:www-data /var/www/html \
+COPY . /var/www/html
+
+RUN chown -R www-data:www-data \
+        /var/www/html/storage \
+        /var/www/html/bootstrap/cache \
     && a2enmod rewrite

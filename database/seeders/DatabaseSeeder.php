@@ -30,8 +30,8 @@ class DatabaseSeeder extends Seeder
             UserProfileSeeder::class,
 
             // seeder tes, akan dinonaktifkan saat produksi
-            ProductCategorySeeder::class,
-            ProductSeeder::class,
+            // ProductCategorySeeder::class,
+            // ProductSeeder::class,
         ]);
     }
 }
