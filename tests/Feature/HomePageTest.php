@@ -7,13 +7,16 @@ use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testHomePageScreenCanBeRendered()
     {
+
         $response = $this->get('/');
 
         $response->assertStatus(200);
