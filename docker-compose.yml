@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    image: voaleta/laravel
+    container_name: voaleta_web
+    ports:
+      - "8001:80"
+    volumes:
+      - ./:/var/www/html
+
+  db:
+    image: mysql:5.7
+    container_name: voaleta_db
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      # MYSQL_PASSWORD: ${DB_PASSWORD}
+      # MYSQL_USER: ${DB_USERNAME}
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    ports:
+      - 6603:3306
+    volumes:
+          - ./docker/volumes/mysql:/var/lib/mysql
