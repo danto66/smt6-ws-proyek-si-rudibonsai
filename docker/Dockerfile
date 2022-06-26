@@ -29,9 +29,5 @@ COPY docker/config/apache/vhost.conf /etc/apache2/sites-available/000-default.co
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY . /var/www/html
-
-RUN chown -R www-data:www-data \
-        /var/www/html/storage \
-        /var/www/html/bootstrap/cache \
+RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
