@@ -16,6 +16,16 @@
     </div>
     @endif
 
+    @if ($errors->any())
+    @foreach ($errors->all() as $error)
+    <div class="mt-4 w-full">
+        <x-alert :type="'danger'">
+            <span>{{$error }}</span>
+        </x-alert>
+    </div>
+    @endforeach
+    @endif
+
     <div class="mt-4 w-full">
         <x-alert :status="strtolower($order->status)" />
     </div>
@@ -152,7 +162,7 @@
                                 @csrf
 
                                 <x-input x-on:change="btnDisabled = false" name="payment_proof" class="w-full block"
-                                    type="file" />
+                                    type="file" accept=".jpg, .jpeg, .png" />
 
                                 <button :class="{'disabled' : btnDisabled}" :disabled="btnDisabled" type="submit"
                                     class="btn-sm btn-primary mt-4 w-full">Submit</button>

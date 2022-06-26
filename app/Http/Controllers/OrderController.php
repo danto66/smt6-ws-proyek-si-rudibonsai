@@ -51,6 +51,10 @@ class OrderController extends Controller
         $this->authorize('access', $order);
 
         if ($request->hasFile('payment_proof')) {
+            $request->validate([
+                'payment_proof' => 'mimes:png,jpg,jpeg|max:4000'
+            ]);
+
             $file = $request->file('payment_proof');
 
             $image = $this->storeImage($file);

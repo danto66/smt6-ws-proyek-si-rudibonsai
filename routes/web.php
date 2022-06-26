@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\PelangganAdminController;
 use App\Http\Controllers\Admin\AdminManagementController;
 use App\Http\Controllers\Admin\ProductCategoryAdminController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\ReportAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -148,6 +149,10 @@ Route::prefix('/admin')->name('admin.')->group(function () {
             Route::get('/{status?}', [OrderAdminController::class, 'index'])->name('index');
             Route::get('/detail/{order}', [OrderAdminController::class, 'detail'])->name('detail');
             Route::put('/detail/{order}/update-status', [OrderAdminController::class, 'updateStatus'])->name('update_status');
+        });
+
+        Route::prefix('/reports')->name('reports.')->group(function () {
+            Route::get('/', [ReportAdminController::class, 'index'])->name('index');
         });
 
         // tambah admin
