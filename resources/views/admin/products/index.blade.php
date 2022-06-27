@@ -51,9 +51,19 @@
                     </thead>
 
                     <tbody class="bg-white">
+                        @if ($products->count() > 0)
                         @foreach ($products as $product)
                         <x-admin.product-tr :product="$product" />
                         @endforeach
+                        @else
+                        <tr>
+                            <td colspan="6">
+                                <div class="flex justify-center flex-col p-4 space-y-6">
+                                    <img class="h-48" src="{{ asset('/img/empty.svg') }}" alt="">
+                                </div>
+                            </td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>
