@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    image: voaleta/laravel
+    container_name: voaleta_web
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html

@@ -1,21 +1,19 @@
 version: "3.7"
 
 services:
-  # db:
-  #   image: mysql:5.7
-  #   container_name: voaleta_db
-  #   environment:
-  #     MYSQL_DATABASE: "db_voaleta"
-  #     # MYSQL_PASSWORD: ${DB_PASSWORD}
-  #     # MYSQL_USER: ${DB_USERNAME}
-  #     MYSQL_ROOT_PASSWORD: ""
-  #     MYSQL_ALLOW_EMPTY_PASSWORD: 1
-  #     SERVICE_TAGS: dev
-  #     SERVICE_NAME: mysql
-  #   ports:
-  #     - 6603:3306
-  #   volumes:
-  #         - ./docker/volumes/mysql:/var/lib/mysql
+  db:
+    image: mysql:5.7
+    container_name: voaleta_db
+    environment:
+      MYSQL_DATABASE: "db_voaleta"
+      # MYSQL_PASSWORD: ${DB_PASSWORD}
+      # MYSQL_USER: ${DB_USERNAME}
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    ports:
+      - 6603:3306
+    volumes:
+          - ./docker/volumes/mysql:/var/lib/mysql
 
   app:
     build:
