@@ -60,7 +60,7 @@
                 @endforeach
                 @else
                 <tr>
-                    <td colspan="3">
+                    <td colspan="5">
                         <div class="flex justify-center flex-col p-4 space-y-6">
                             <img class="h-48" src="{{ asset('/img/empty.svg') }}" alt="">
                         </div>
