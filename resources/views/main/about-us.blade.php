@@ -13,11 +13,6 @@
             <center>
                 <div class="card mb-5 shadow w-5/6">
                     <div class="card-body p-4 text-justify">
-
-                        <center>
-                            <img class="mt-4" src=" {{ asset('img/hero/bonsai.jpg') }}"
-                                style="width: 90%; height: 60%; " alt="" srcset="">
-                        </center>
                         <h5 class="card-title text-center font-mono text-3xl mt-4">
                             <strong> Voaleta </strong>
                         </h5>
