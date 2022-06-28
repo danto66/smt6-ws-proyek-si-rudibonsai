@@ -10,7 +10,9 @@ class PelangganAdminController extends Controller
 {
     public function index()
     {
-        $pelanggan = User::where('role_id', 3)->paginate(10);
+        $pelanggan = User::where('role_id', 3)
+            ->has('userProfile')
+            ->paginate(10);
 
         return view('admin.pelanggan', compact('pelanggan'));
     }
